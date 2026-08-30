@@ -66,6 +66,7 @@ jobs:
           [[ "$actual" == "${MCFPM_RELEASE_SHA256,,}" ]]
           unzip -q "$archive" -d "$RUNNER_TEMP/mcfpm"
           chmod +x "$RUNNER_TEMP/mcfpm/bin/mcfpm"
+          chmod +x "$RUNNER_TEMP/mcfpm/runtime/bin/"*
 
       - name: Run the no-secret Mcfpm audit
         id: audit-mcfpm
@@ -186,6 +187,7 @@ jobs:
           [[ "$actual" == "${MCFPM_RELEASE_SHA256,,}" ]]
           unzip -q "$archive" -d "$RUNNER_TEMP/mcfpm"
           chmod +x "$RUNNER_TEMP/mcfpm/bin/mcfpm"
+          chmod +x "$RUNNER_TEMP/mcfpm/runtime/bin/"*
 
       - name: Publish the frozen candidate after Environment approval
         id: publish-mcfpm
