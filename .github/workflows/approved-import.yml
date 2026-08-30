@@ -127,7 +127,7 @@ jobs:
 
   publish:
     needs: audit
-    if: needs.audit.result == 'success'
+    if: needs.audit.result == 'success' && vars.MCFPM_AUDIT_ONLY != 'true'
     runs-on: ubuntu-latest
     environment:
       name: nexus-production

@@ -25,6 +25,8 @@ Add these repository variables so the unprivileged audit job can read the pinned
 - `MCFPM_RELEASE_VERSION`, for example `0.1.0`
 - `MCFPM_RELEASE_SHA256`, the SHA-256 of the exact `mcfpm-${MCFPM_RELEASE_VERSION}-linux.zip` Release asset
 
+Private staging repositories whose plan does not support required reviewers may set `MCFPM_AUDIT_ONLY=true`. That repository variable skips the publish job after a successful audit. Do not set it in production.
+
 Add these Environment variables:
 
 - `NEXUS_REPOSITORY_URL`, normally `https://nexus.mcfpp.top/repository/maven-releases/`
