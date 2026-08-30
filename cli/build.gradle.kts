@@ -81,6 +81,14 @@ tasks.register<Zip>("runtimeZip") {
         into("bin")
     }
     into("runtime") {
-        from(runtimeImage)
+        from(runtimeImage) {
+            exclude("bin/**")
+        }
+        from(runtimeImage.map { it.dir("bin") }) {
+            into("bin")
+            filePermissions {
+                unix("rwxr-xr-x")
+            }
+        }
     }
 }
