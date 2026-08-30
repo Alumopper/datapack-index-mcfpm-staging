@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
 import org.gradle.api.publish.PublishingExtension
 import org.gradle.api.publish.maven.MavenPublication
 import org.gradle.api.tasks.bundling.AbstractArchiveTask
+import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 
 plugins {
     kotlin("jvm") version "2.4.10" apply false
@@ -126,6 +127,7 @@ subprojects {
             useJUnitPlatform()
             testLogging {
                 events("failed", "skipped")
+                exceptionFormat = TestExceptionFormat.FULL
             }
         }
     }

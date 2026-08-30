@@ -84,8 +84,9 @@ class CliContractTest {
         assertEquals(0, result.exitCode)
         val json = CanonicalJson.format.parseToJsonElement(result.stdout.trim()).jsonObject
         val usage = json.getValue("data").jsonObject.getValue("usage").jsonPrimitive.content
-        assertTrue(usage.contains("--repository=ID"))
-        assertTrue(usage.contains("--repository-url"))
+        val compactUsage = usage.replace(Regex("\\s+"), "")
+        assertTrue(compactUsage.contains("--repository=ID"), usage)
+        assertTrue(compactUsage.contains("--repository-url"), usage)
     }
 
     @Test
@@ -94,7 +95,7 @@ class CliContractTest {
         val result = run(workspace, "install", "--help")
 
         assertEquals(0, result.exitCode)
-        assertTrue(result.stdout.contains("GROUP:NAME@REQUIREMENT"))
+        assertTrue(result.stdout.replace(Regex("\\s+"), "").contains("GROUP:NAME@REQUIREMENT"), result.stdout)
     }
 
     @Test
@@ -144,7 +145,11 @@ class CliContractTest {
             "$dependencyId@$dependencyVersion",
         )
 
-        assertEquals(0, installed.exitCode, installed.stderr)
+        assertEquals(
+            0,
+            installed.exitCode,
+            "stdout:\n${installed.stdout}\nstderr:\n${installed.stderr}",
+        )
         assertTrue(installed.stdout.contains("Created"))
         assertTrue(installed.stdout.contains("downloaded, and verified 1 artifact(s)"))
         val manifest = PackageManifestCodec.decode(Files.readAllBytes(workspace.resolve("mcfpm.toml")))
