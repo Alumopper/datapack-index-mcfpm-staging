@@ -1,0 +1,86 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test-and-package:
+    name: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+      - uses: actions/setup-java@b6effb05e454b25005698d916606bdc6ffcbf961
+        with:
+          distribution: temurin
+          java-version: "25"
+          cache: gradle
+      - name: Make Gradle wrapper executable
+        shell: bash
+        run: chmod +x gradlew
+      - name: Test all modules
+        shell: bash
+        run: ./gradlew build --configuration-cache --build-cache --no-daemon
+      - name: Build current-platform bundled-JRE distribution
+        shell: bash
+        run: ./gradlew :cli:runtimeZip --configuration-cache --build-cache --no-daemon
+      - name: Smoke test bundled runtime (Unix)
+        if: runner.os != 'Windows'
+        shell: bash
+        run: |
+          set -euo pipefail
+          destination="$(mktemp -d)"
+          if [ "$(uname -s)" = "Darwin" ]; then classifier=macos; else classifier=linux; fi
+          archive="$(find cli/build/distributions -maxdepth 1 -name "*-${classifier}.zip" -print -quit)"
+          unzip -q "$archive" -d "$destination"
+          launcher="$(find "$destination" -type f -path '*/bin/mcfpm' -print -quit)"
+          chmod +x "$launcher"
+          elsewhere="$(mktemp -d)"
+          cd "$elsewhere"
+          "$launcher" --version
+          "$launcher" --json config > config.json
+          python3 -c 'import json; value=json.load(open("config.json", encoding="utf-8")); assert value["schema"] == 1 and value["ok"] is True'
+      - name: Smoke test bundled runtime (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          $archive = Get-ChildItem cli/build/distributions/mcfpm-*-windows.zip | Select-Object -First 1
+          $destination = Join-Path $env:RUNNER_TEMP "mcfpm-runtime"
+          Expand-Archive -LiteralPath $archive.FullName -DestinationPath $destination
+          $launcher = Get-ChildItem $destination -Filter mcfpm.bat -Recurse | Select-Object -First 1
+          Push-Location $env:RUNNER_TEMP
+          & $launcher.FullName --version
+          $json = & $launcher.FullName --json config | ConvertFrom-Json
+          if ($json.schema -ne 1 -or -not $json.ok) { throw "Invalid CLI JSON smoke output" }
+          Pop-Location
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: mcfpm-${{ runner.os }}
+          path: |
+            cli/build/distributions/*-linux.zip
+            cli/build/distributions/*-macos.zip
+            cli/build/distributions/*-windows.zip
+          if-no-files-found: error
+
+  deterministic-protocol:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+      - uses: actions/setup-java@b6effb05e454b25005698d916606bdc6ffcbf961
+        with:
+          distribution: temurin
+          java-version: "25"
+          cache: gradle
+      - run: chmod +x gradlew
+        shell: bash
+      - name: Verify canonical descriptor, lockfile, ZIP, and offline integration fixtures
+        shell: bash
+        run: ./gradlew :model:test :core:test :repository-maven:test --rerun-tasks --no-daemon

@@ -1,0 +1,4 @@
+#!/bin/sh
+set -eu
+APP_HOME=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+exec "$APP_HOME/runtime/bin/java" -classpath "$APP_HOME/lib/*" moe.afox.mcfpm.cli.MainKt "$@"
