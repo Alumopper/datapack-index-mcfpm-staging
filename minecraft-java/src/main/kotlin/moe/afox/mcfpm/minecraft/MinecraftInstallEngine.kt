@@ -218,7 +218,7 @@ public class MinecraftInstallEngine(
             )
         }
 
-        val allowedRoots = listOfNotNull(world, instance).map { it.toRealPath(LinkOption.NOFOLLOW_LINKS) }.distinct()
+        val allowedRoots = listOfNotNull(world, instance).map { it.toRealPath() }.distinct()
         val copies = mutableListOf<PlannedCopy>()
         val mutations = mutableListOf<Mutation>()
         fun payloadBytes(reference: PayloadRef): Pair<Path, ByteArray> {
@@ -481,7 +481,7 @@ public class MinecraftInstallEngine(
 
     private fun safeResolve(root: Path, relative: Path): Path {
         require(!relative.isAbsolute) { "Install target must be relative" }
-        val canonicalRoot = root.toRealPath(LinkOption.NOFOLLOW_LINKS)
+        val canonicalRoot = root.toRealPath()
         var current = canonicalRoot
         relative.forEach { segment ->
             val candidate = current.resolve(segment.toString())

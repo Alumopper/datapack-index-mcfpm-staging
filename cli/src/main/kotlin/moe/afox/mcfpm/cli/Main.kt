@@ -132,7 +132,7 @@ public fun runMcfpm(
             JsonObject(
                 mapOf(
                     "command" to JsonPrimitive(selected.commandName),
-                    "usage" to JsonPrimitive(selected.usageMessage),
+                    "usage" to JsonPrimitive(selected.getUsageMessage(CommandLine.Help.Ansi.OFF)),
                 ),
             ),
             "",

@@ -84,6 +84,7 @@ class CliContractTest {
         assertEquals(0, result.exitCode)
         val json = CanonicalJson.format.parseToJsonElement(result.stdout.trim()).jsonObject
         val usage = json.getValue("data").jsonObject.getValue("usage").jsonPrimitive.content
+        assertTrue('\u001B' !in usage, usage)
         val compactUsage = usage.replace(Regex("\\s+"), "")
         assertTrue(compactUsage.contains("--repository=ID"), usage)
         assertTrue(compactUsage.contains("--repository-url"), usage)
@@ -95,7 +96,8 @@ class CliContractTest {
         val result = run(workspace, "install", "--help")
 
         assertEquals(0, result.exitCode)
-        assertTrue(result.stdout.replace(Regex("\\s+"), "").contains("GROUP:NAME@REQUIREMENT"), result.stdout)
+        val plainUsage = result.stdout.replace(Regex("\u001B\\[[;\\d]*m"), "")
+        assertTrue(plainUsage.replace(Regex("\\s+"), "").contains("GROUP:NAME@REQUIREMENT"), result.stdout)
     }
 
     @Test
