@@ -1,0 +1,223 @@
+name: 提交新前置
+description: 向香草前置馆提交一个新的前置介绍，无论这个前置是否是你写的
+title: ""
+labels:
+  - wheel
+body:
+  - type: markdown
+    attributes:
+      value: |
+        <!-- mcfpm-import-template: new_wheel-v1 -->
+        提交后，管理员可以添加 `approved-import` 标签触发 Mcfpm 的无密钥审计。
+
+  - type: input
+    id: name
+    attributes:
+      label: 前置名称
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: 版本
+      placeholder: 1.0.0
+    validations:
+      required: true
+
+  - type: input
+    id: cover
+    attributes:
+      label: 前置图标链接
+    validations:
+      required: false
+
+  - type: input
+    id: author
+    attributes:
+      label: 作者
+      description: 如果不是你写的，请填写原作者。
+    validations:
+      required: true
+
+  - type: input
+    id: authorAvatar
+    attributes:
+      label: 作者头像的链接
+    validations:
+      required: true
+
+  - type: textarea
+    id: authorSocialLinks
+    attributes:
+      label: 作者链接（每行一个）
+      value: |
+        Github:
+        Bilibili:
+        Discord:
+    validations:
+      required: false
+
+  - type: textarea
+    id: description
+    attributes:
+      label: 简介
+    validations:
+      required: true
+
+  - type: input
+    id: link
+    attributes:
+      label: Github 仓库链接（可选）
+    validations:
+      required: false
+
+  - type: input
+    id: gameversion
+    attributes:
+      label: 支持的游戏版本
+    validations:
+      required: true
+
+  - type: input
+    id: tags
+    attributes:
+      label: 标签
+    validations:
+      required: true
+
+  - type: textarea
+    id: depends
+    attributes:
+      label: 依赖项
+    validations:
+      required: false
+
+  - type: textarea
+    id: details
+    attributes:
+      label: 详情
+    validations:
+      required: true
+
+  - type: dropdown
+    id: sourceType
+    attributes:
+      label: 来源类型
+      options:
+        - GitHub Release asset
+        - GitHub tag/commit archive
+        - 普通 HTTPS ZIP
+    validations:
+      required: true
+
+  - type: input
+    id: githubRepository
+    attributes:
+      label: GitHub 仓库
+      description: OWNER/REPOSITORY；GitHub 来源必填，普通 HTTPS ZIP 留空。
+    validations:
+      required: false
+
+  - type: input
+    id: githubRef
+    attributes:
+      label: GitHub tag/commit
+      description: Release asset 使用 tag，archive 可以使用 tag 或完整 commit。
+    validations:
+      required: false
+
+  - type: input
+    id: githubAsset
+    attributes:
+      label: GitHub Release asset
+      description: Release asset 的精确 ZIP 文件名；archive 和普通 HTTPS ZIP 留空。
+    validations:
+      required: false
+
+  - type: input
+    id: sourceUrl
+    attributes:
+      label: 普通 HTTPS ZIP 下载 URL
+      description: 仅允许公开 HTTPS；不支持认证、Cookie 或自定义 Header。
+    validations:
+      required: false
+
+  - type: input
+    id: packageCoordinate
+    attributes:
+      label: Maven 坐标（GROUP:NAME）
+      placeholder: example.author:example-pack
+    validations:
+      required: true
+
+  - type: input
+    id: spdxLicense
+    attributes:
+      label: SPDX 许可证
+      placeholder: MIT
+    validations:
+      required: true
+
+  - type: input
+    id: licenseBasisUrl
+    attributes:
+      label: 许可证/再分发依据链接
+      description: 指向上游许可证、授权声明或明确的再分发许可依据。
+    validations:
+      required: true
+
+  - type: input
+    id: expectedSha256
+    attributes:
+      label: 预期 SHA-256（可选）
+      placeholder: 64 位小写十六进制
+    validations:
+      required: false
+
+  - type: input
+    id: packageSubdir
+    attributes:
+      label: 包内子目录（可选）
+      description: ZIP 中 pack.mcmeta 所在的相对目录。
+    validations:
+      required: false
+
+  - type: input
+    id: nestedZip
+    attributes:
+      label: 嵌套 ZIP 路径（可选）
+      description: 仅选择构建产物目录中的嵌套 ZIP。
+    validations:
+      required: false
+
+  - type: input
+    id: minecraftRange
+    attributes:
+      label: Minecraft 版本范围（可选）
+      placeholder: ">=1.21"
+    validations:
+      required: false
+
+  - type: textarea
+    id: mcfpmDependencies
+    attributes:
+      label: Mcfpm 依赖（每行一个，可选）
+      description: 使用 GROUP:NAME@REQUIREMENT，例如 example:library@^1.0.0。
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: redistribution
+    attributes:
+      label: 再分发确认
+      options:
+        - label: 我确认自己有权提交此来源，并允许管理员按许可证和上游依据进行再分发审核。
+          required: true
+    validations:
+      required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        提交即视为同意遵守 [CONTRIBUTING.md](https://github.com/CR-019/datapack-index/blob/master/CONTRIBUTING.md)。

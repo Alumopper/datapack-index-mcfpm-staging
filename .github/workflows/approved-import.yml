@@ -1,0 +1,227 @@
+name: Audit and publish Mcfpm import
+
+on:
+  issues:
+    types: [labeled]
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: mcfpm-import-${{ github.event.issue.number }}
+  cancel-in-progress: false
+
+jobs:
+  audit:
+    if: github.event.label.name == 'approved-import' && github.event.issue.state == 'open'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - name: Checkout trusted master scripts
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: master
+          fetch-depth: 1
+          persist-credentials: false
+
+      - name: Verify labeler is a repository administrator
+        id: verify-labeler
+        continue-on-error: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node .github/scripts/verify-approved-import.mjs 2>"$RUNNER_TEMP/mcfpm-audit-error.txt"
+
+      - name: Parse issue form into an argument file
+        id: parse-issue
+        if: steps.verify-labeler.outcome == 'success'
+        continue-on-error: true
+        run: node .github/scripts/parse-approved-import.mjs --event "$GITHUB_EVENT_PATH" --output "$RUNNER_TEMP/import-params.json" 2>"$RUNNER_TEMP/mcfpm-audit-error.txt"
+
+      - name: Download and verify the pinned Mcfpm release
+        id: download-mcfpm
+        if: steps.parse-issue.outcome == 'success'
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MCFPM_RELEASE_REPOSITORY: ${{ vars.MCFPM_RELEASE_REPOSITORY }}
+          MCFPM_RELEASE_VERSION: ${{ vars.MCFPM_RELEASE_VERSION }}
+          MCFPM_RELEASE_SHA256: ${{ vars.MCFPM_RELEASE_SHA256 }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          exec 2> >(tee "$RUNNER_TEMP/mcfpm-audit-error.txt" >&2)
+          version="${MCFPM_RELEASE_VERSION#v}"
+          [[ "$MCFPM_RELEASE_REPOSITORY" =~ ^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$ ]]
+          [[ "$version" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]
+          [[ "${MCFPM_RELEASE_SHA256,,}" =~ ^[0-9a-f]{64}$ ]]
+          archive="$RUNNER_TEMP/mcfpm-${version}-linux.zip"
+          gh release download "v${version}" \
+            --repo "$MCFPM_RELEASE_REPOSITORY" \
+            --pattern "mcfpm-${version}-linux.zip" \
+            --dir "$RUNNER_TEMP"
+          actual="$(sha256sum "$archive" | awk '{print $1}')"
+          [[ "$actual" == "${MCFPM_RELEASE_SHA256,,}" ]]
+          unzip -q "$archive" -d "$RUNNER_TEMP/mcfpm"
+          chmod +x "$RUNNER_TEMP/mcfpm/bin/mcfpm"
+
+      - name: Run the no-secret Mcfpm audit
+        id: audit-mcfpm
+        if: steps.download-mcfpm.outcome == 'success'
+        continue-on-error: true
+        run: |
+          node .github/scripts/run-mcfpm-import.mjs \
+            --config "$RUNNER_TEMP/import-params.json" \
+            --mcfpm "$RUNNER_TEMP/mcfpm/bin/mcfpm" \
+            --candidate "$RUNNER_TEMP/candidate.mcfpm-import" \
+            --report "$RUNNER_TEMP/mcfpm-audit.json" \
+            --error "$RUNNER_TEMP/mcfpm-audit-error.txt"
+
+      - name: Prepare the frozen candidate artifact
+        id: package-candidate
+        if: steps.audit-mcfpm.outcome == 'success'
+        continue-on-error: true
+        run: |
+          set -euo pipefail
+          rm -rf "$RUNNER_TEMP/mcfpm-audit-artifact"
+          mkdir -p "$RUNNER_TEMP/mcfpm-audit-artifact"
+          cp "$RUNNER_TEMP/candidate.mcfpm-import" "$RUNNER_TEMP/mcfpm-audit-artifact/candidate.mcfpm-import"
+          cp "$RUNNER_TEMP/mcfpm-audit.json" "$RUNNER_TEMP/mcfpm-audit-artifact/mcfpm-audit.json"
+          cp "$RUNNER_TEMP/import-params.json" "$RUNNER_TEMP/mcfpm-audit-artifact/import-params.json"
+
+      - name: Store the frozen candidate and audit report
+        id: upload-candidate
+        if: steps.package-candidate.outcome == 'success'
+        continue-on-error: true
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: mcfpm-import-${{ github.event.issue.number }}
+          if-no-files-found: error
+          retention-days: 14
+          path: |
+            ${{ runner.temp }}/mcfpm-audit-artifact/*
+
+      - name: Report audit result on the Issue
+        id: update-issue
+        if: always()
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          IMPORT_PARAMS: ${{ runner.temp }}/import-params.json
+          AUDIT_OK: ${{ steps.audit-mcfpm.outcome == 'success' && steps.package-candidate.outcome == 'success' && steps.upload-candidate.outcome == 'success' }}
+        run: |
+          if [[ "$AUDIT_OK" == "true" ]]; then state=audit-passed; else state=audit-failed; fi
+          node .github/scripts/update-import-issue.mjs \
+            --state "$state" \
+            --report "$RUNNER_TEMP/mcfpm-audit.json" \
+            --error "$RUNNER_TEMP/mcfpm-audit-error.txt"
+
+      - name: Keep failed audits from reaching the approval job
+        if: always()
+        env:
+          AUDIT_OK: ${{ steps.audit-mcfpm.outcome == 'success' && steps.package-candidate.outcome == 'success' && steps.upload-candidate.outcome == 'success' && steps.update-issue.outcome == 'success' }}
+        run: |
+          [[ "$AUDIT_OK" == "true" ]]
+
+  publish:
+    needs: audit
+    if: needs.audit.result == 'success'
+    runs-on: ubuntu-latest
+    environment:
+      name: nexus-production
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - name: Checkout trusted master scripts
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: master
+          fetch-depth: 1
+          persist-credentials: false
+
+      - name: Download the audit artifact from this run
+        id: download-candidate
+        continue-on-error: true
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: mcfpm-import-${{ github.event.issue.number }}
+          path: ${{ runner.temp }}/mcfpm-import
+
+      - name: Verify the candidate was not replaced between jobs
+        id: verify-candidate
+        if: steps.download-candidate.outcome == 'success'
+        continue-on-error: true
+        run: |
+          node .github/scripts/verify-candidate-artifact.mjs \
+            --candidate "$RUNNER_TEMP/mcfpm-import/candidate.mcfpm-import" \
+            --audit-report "$RUNNER_TEMP/mcfpm-import/mcfpm-audit.json" \
+            2>"$RUNNER_TEMP/mcfpm-publish-error.txt"
+
+      - name: Download and verify the pinned Mcfpm release
+        id: download-mcfpm
+        if: steps.verify-candidate.outcome == 'success'
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MCFPM_RELEASE_REPOSITORY: ${{ vars.MCFPM_RELEASE_REPOSITORY }}
+          MCFPM_RELEASE_VERSION: ${{ vars.MCFPM_RELEASE_VERSION }}
+          MCFPM_RELEASE_SHA256: ${{ vars.MCFPM_RELEASE_SHA256 }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          exec 2> >(tee "$RUNNER_TEMP/mcfpm-publish-error.txt" >&2)
+          version="${MCFPM_RELEASE_VERSION#v}"
+          [[ "$MCFPM_RELEASE_REPOSITORY" =~ ^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$ ]]
+          [[ "$version" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]
+          [[ "${MCFPM_RELEASE_SHA256,,}" =~ ^[0-9a-f]{64}$ ]]
+          archive="$RUNNER_TEMP/mcfpm-${version}-linux.zip"
+          gh release download "v${version}" \
+            --repo "$MCFPM_RELEASE_REPOSITORY" \
+            --pattern "mcfpm-${version}-linux.zip" \
+            --dir "$RUNNER_TEMP"
+          actual="$(sha256sum "$archive" | awk '{print $1}')"
+          [[ "$actual" == "${MCFPM_RELEASE_SHA256,,}" ]]
+          unzip -q "$archive" -d "$RUNNER_TEMP/mcfpm"
+          chmod +x "$RUNNER_TEMP/mcfpm/bin/mcfpm"
+
+      - name: Publish the frozen candidate after Environment approval
+        id: publish-mcfpm
+        if: steps.download-mcfpm.outcome == 'success'
+        continue-on-error: true
+        env:
+          NEXUS_REPOSITORY_URL: ${{ vars.NEXUS_REPOSITORY_URL }}
+          NEXUS_REPOSITORY_NAME: ${{ vars.NEXUS_REPOSITORY_NAME }}
+          NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
+          NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
+        run: |
+          node .github/scripts/publish-mcfpm-import.mjs \
+            --mcfpm "$RUNNER_TEMP/mcfpm/bin/mcfpm" \
+            --candidate "$RUNNER_TEMP/mcfpm-import/candidate.mcfpm-import" \
+            --repository-url "$NEXUS_REPOSITORY_URL" \
+            --repository-name "$NEXUS_REPOSITORY_NAME" \
+            --report "$RUNNER_TEMP/mcfpm-publish.json" \
+            --error "$RUNNER_TEMP/mcfpm-publish-error.txt"
+
+      - name: Report publication result on the Issue
+        id: update-issue
+        if: always()
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          PUBLISH_OK: ${{ steps.download-candidate.outcome == 'success' && steps.verify-candidate.outcome == 'success' && steps.download-mcfpm.outcome == 'success' && steps.publish-mcfpm.outcome == 'success' }}
+        run: |
+          if [[ "$PUBLISH_OK" == "true" ]]; then state=publish-passed; else state=publish-failed; fi
+          node .github/scripts/update-import-issue.mjs \
+            --state "$state" \
+            --report "$RUNNER_TEMP/mcfpm-publish.json" \
+            --error "$RUNNER_TEMP/mcfpm-publish-error.txt"
+
+      - name: Fail the run if publication did not complete
+        if: always()
+        env:
+          PUBLISH_OK: ${{ steps.download-candidate.outcome == 'success' && steps.verify-candidate.outcome == 'success' && steps.download-mcfpm.outcome == 'success' && steps.publish-mcfpm.outcome == 'success' && steps.update-issue.outcome == 'success' }}
+        run: |
+          [[ "$PUBLISH_OK" == "true" ]]
