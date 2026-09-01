@@ -6,6 +6,7 @@ on:
       - "indexer/**"
       - "ops/api-server/**"
       - "ops/index-server/mcfpm-central-index.*"
+      - ".github/scripts/**"
       - ".github/workflows/index-tests.yml"
   push:
     branches: [master]
@@ -13,6 +14,7 @@ on:
       - "indexer/**"
       - "ops/api-server/**"
       - "ops/index-server/mcfpm-central-index.*"
+      - ".github/scripts/**"
       - ".github/workflows/index-tests.yml"
 
 permissions:
@@ -29,6 +31,9 @@ jobs:
 
       - name: Test the collector and HTTP API
         run: PYTHONPATH=indexer/python python3 -m unittest discover -s indexer/python/tests -v
+
+      - name: Test the trusted import automation
+        run: node --test .github/scripts/*.test.mjs
 
       - name: Build and test the pinned Java 21 Central scanner
         run: docker build --progress=plain -t mcfpm-central-index:test indexer/central-index
