@@ -72,24 +72,26 @@ for (const audited of audit.results.filter((result) => result.ok)) {
       || sha256(metadata) !== frozen.siteMetadataSha256
     ) fail("Frozen batch artifact failed hash or identity verification");
 
-    const published = spawnSync(args["--mcfpm"], [
-      "--json", "--yes", "import", "publish",
+    const packageReportPath = path.join(directory, "package-publish.json");
+    const packageErrorPath = path.join(directory, "package-publish-error.txt");
+    const published = spawnSync(process.execPath, [
+      path.join(import.meta.dirname, "publish-mcfpm-import.mjs"),
+      "--mcfpm", args["--mcfpm"],
       "--candidate", candidate,
       "--repository-url", repositoryUrl,
       "--repository-name", args["--repository-name"],
-      "--username-env", "NEXUS_USERNAME",
-      "--password-env", "NEXUS_PASSWORD",
+      "--report", packageReportPath,
+      "--error", packageErrorPath,
     ], {
       cwd: process.cwd(),
       env: process.env,
       encoding: "utf8",
       maxBuffer: 32 * 1024 * 1024,
-      shell: process.platform === "win32",
     });
     if (published.error) throw published.error;
     let packageReport;
     try {
-      packageReport = JSON.parse(published.stdout || "");
+      packageReport = JSON.parse(fs.readFileSync(packageReportPath, "utf8"));
     } catch {
       fail(published.stderr?.trim() || "Mcfpm publish did not return JSON");
     }
