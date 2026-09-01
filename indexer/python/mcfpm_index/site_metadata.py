@@ -34,7 +34,7 @@ def _string(
         return None
     if not isinstance(value, str) or not value or len(value) > maximum:
         raise ValidationError(f"site metadata {field} is missing or too long")
-    allowed_controls = "\n\t" if layout else ""
+    allowed_controls = "\r\n\t" if layout else ""
     if any(
         (ord(character) < 0x20 and character not in allowed_controls) or ord(character) == 0x7F
         for character in value

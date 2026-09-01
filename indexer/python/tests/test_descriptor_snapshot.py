@@ -60,7 +60,7 @@ def site_metadata(version="1.2.3"):
         "tags": ["utility"],
         "gameVersions": ["1.21"],
         "dependencyNotes": None,
-        "detailsMarkdown": "## Usage\n\nDetails.",
+        "detailsMarkdown": "## Usage\r\n\r\nDetails.",
         "projectUrl": "https://github.com/example/demo",
         "legacyPath": "/wheel/resources/demo.html",
     }
