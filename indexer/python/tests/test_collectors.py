@@ -80,6 +80,25 @@ class CollectorTests(unittest.TestCase):
         with self.assertRaises(ValidationError):
             collect_nexus("https://nexus.example/search", NEXUS_REPOSITORY, get_json=lambda _: payload)
 
+    def test_nexus_accepts_decoded_semver_build_metadata_in_asset_path(self):
+        payload = {
+            "items": [
+                {
+                    "path": "/org/example/demo/2.0.2+0/demo-2.0.2+0.mcfpkg",
+                    "maven2": {
+                        "groupId": "org.example",
+                        "artifactId": "demo",
+                        "version": "2.0.2+0",
+                        "extension": "mcfpkg",
+                    },
+                }
+            ],
+            "continuationToken": None,
+        }
+        result = collect_nexus("https://nexus.example/search", NEXUS_REPOSITORY, get_json=lambda _: payload)
+        self.assertEqual("org.example:demo:2.0.2+0", result[0].gav)
+        self.assertIn("2.0.2%2B0", result[0].descriptor_url)
+
     def test_central_search_paginates_to_num_found(self):
         pages = [
             {"response": {"numFound": 2, "docs": [{"g": "a.b", "a": "one", "v": "1.0.0", "p": "mcfpkg"}]}},

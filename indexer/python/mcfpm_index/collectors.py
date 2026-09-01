@@ -3,7 +3,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 from typing import Any, Callable, Dict, Iterable, List, Optional
-from urllib.parse import urlencode
+from urllib.parse import unquote, urlencode
 
 from .http import fetch_json
 from .model import Candidate, ValidationError, maven_artifact_path, validate_coordinate
@@ -46,7 +46,7 @@ def collect_nexus(
                 raise ValidationError("Nexus returned a non-mcfpkg asset")
             expected_path = maven_artifact_path(group, name, version)
             actual_path = str(item.get("path", "")).lstrip("/")
-            if actual_path != expected_path:
+            if unquote(actual_path) != unquote(expected_path):
                 raise ValidationError("Nexus asset path does not match its Maven coordinate")
             candidates.append(
                 Candidate(
