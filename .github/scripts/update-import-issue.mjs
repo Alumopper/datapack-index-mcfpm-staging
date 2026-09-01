@@ -137,6 +137,7 @@ if (state === "audit-passed") {
     `| Coordinate | \`${markdown(data.package)}@${markdown(data.version)}\` |`,
     `| Repository | ${markdown(data.repository)} |`,
     `| Descriptor SHA-256 | \`${markdown(data.descriptorSha256)}\` |`,
+    `| Site metadata SHA-256 | \`${markdown(report.siteMetadataSha256)}\` |`,
     `| Candidate SHA-256 | \`${markdown(report.candidateSha256)}\` |`,
     `| Workflow run | [open run](${runUrl}) |`,
     "",
