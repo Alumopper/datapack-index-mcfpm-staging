@@ -149,6 +149,14 @@ def query_packages(snapshot: Dict[str, Any], etag: str, query: Dict[str, list[st
                 str(package.get("coordinate", "")),
                 str(package.get("name", "")),
                 str(package.get("description") or ""),
+                str((package.get("display") or {}).get("name", "")),
+                str((package.get("display") or {}).get("description", "")),
+                " ".join((package.get("display") or {}).get("tags", [])),
+                " ".join(
+                    author.get("name", "")
+                    for author in (package.get("display") or {}).get("authors", [])
+                    if isinstance(author, dict)
+                ),
                 " ".join(package.get("licenses", [])),
                 " ".join(package.get("types", [])),
             ]

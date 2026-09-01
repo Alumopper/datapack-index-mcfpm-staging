@@ -1,0 +1,3262 @@
+{
+  "schema": 1,
+  "generatedAt": "2026-09-01T19:01:39.983Z",
+  "legacyCount": 55,
+  "entryCount": 55,
+  "readyCount": 20,
+  "blockedCount": 35,
+  "entries": [
+    {
+      "legacyId": "wheel/resources/Anisum.md",
+      "legacyFile": "wheel/resources/Anisum.md",
+      "legacyPath": "/wheel/resources/Anisum.html",
+      "coordinate": "io.github.anvil-dev:anisum",
+      "version": "0.0.1",
+      "license": null,
+      "licenseBasisUrl": null,
+      "source": null,
+      "subdir": null,
+      "nestedZip": null,
+      "minecraft": "1.21.11-26.1",
+      "dependencies": [],
+      "site": {
+        "name": "八角",
+        "description": "从战利品表中收集物品并同步到客户端的自定义创造模式标签页",
+        "cover": "https://vanillalibrary.mcfpp.top/datapack-index/wheel/Anisum.png",
+        "authors": [
+          {
+            "name": "古镇天Gugle",
+            "avatarUrl": "https://vanillalibrary.mcfpp.top/datapack-index/_authors/gugle.jpg",
+            "links": [
+              {
+                "label": "Bilibili",
+                "url": "https://space.bilibili.com/19822751"
+              },
+              {
+                "label": "GitHub",
+                "url": "https://github.com/Gu-ZT"
+              }
+            ]
+          },
+          {
+            "name": "铁砧工艺开发组",
+            "avatarUrl": "https://vanillalibrary.mcfpp.top/datapack-index/_authors/AnvilDev.png",
+            "links": [
+              {
+                "label": "GitHub",
+                "url": "https://github.com/Anvil-Dev"
+              }
+            ]
+          }
+        ],
+        "tags": [
+          "外部软件",
+          "模组"
+        ],
+        "gameVersions": [
+          "1.21.11-26.1"
+        ],
+        "dependencyNotes": null,
+        "details": "八角是一个基于 NeoForge 的 Minecraft 模组，用于从战利品表中收集物品并同步到客户端创意标签页，便于资源整合与内容浏览。\r\n - 通过数据包 JSON 配置自定义标签页来源与排序。\r\n - 支持 include 规则：精确匹配、通配符、正则表达式。\r\n - 服务端重载后自动重新扫描战利品表并同步给玩家。\r\n - 支持在玩家加入时增量同步标签页内容。\r\n\r\n请阅读其[说明文档](https://github.com/Anvil-Dev/Anisum)以获知如何使用。模组jar可以在[Modrinth](https://modrinth.com/mod/anisum)上下载。",
+        "projectUrl": "https://github.com/Anvil-Dev/Anisum",
+        "legacyPath": "/wheel/resources/Anisum.html"
+      },
+      "discovery": {
+        "repositoryArchived": false,
+        "githubUrls": [
+          "https://github.com/Anvil-Dev/Anisum"
+        ],
+        "downloadUrls": []
+      },
+      "status": "blocked",
+      "blockers": [
+        "missing-exact-version-tag-or-release",
+        "missing-spdx-license"
+      ]
+    },
+    {
+      "legacyId": "wheel/resources/BetterCustomTools.md",
+      "legacyFile": "wheel/resources/BetterCustomTools.md",
+      "legacyPath": "/wheel/resources/BetterCustomTools.html",
+      "coordinate": "io.github.bybycyann:bettercustomtools",
+      "version": "1.0.0",
+      "license": "MIT",
+      "licenseBasisUrl": "https://github.com/Bybycyann/BetterCustomTools/blob/main/LICENSE",
+      "source": {
+        "type": "github-release-asset",
+        "repository": "Bybycyann/BetterCustomTools",
+        "ref": "v1.0.0",
+        "asset": "BetterCustomTools-datapack-v1.0.0-mc1.21.4-26.1.zip"
+      },
+      "subdir": null,
+      "nestedZip": null,
+      "minecraft": "1.21.4+",
+      "dependencies": [],
+      "site": {
+        "name": "Better Custom Tools",
+        "description": "允许用户更简单的配置物品的交互效果",
+        "cover": null,
+        "authors": [
+          {
+            "name": "七柏",
+            "avatarUrl": "https://vanillalibrary.mcfpp.top/datapack-index/_authors/%E4%B8%83%E6%9F%8F.jpg",
+            "links": [
+              {
+                "label": "Bilibili",
+                "url": "https://space.bilibili.com/405830542"
+              }
+            ]
+          }
+        ],
+        "tags": [
+          "物品",
+          "自定义"
+        ],
+        "gameVersions": [
+          "1.21.4+"
+        ],
+        "dependencyNotes": null,
+        "details": "对多个触发器进行了封装, 用于实现仅配置物品组件就可实现物品交互效果的事件流, 并针对 `use_cooldown` 组件以及道具的主副手逻辑问题与原版做了兼容.\r\n\r\n阅读其官方说明文件 ([Github](https://github.com/Bybycyann/BetterCustomTools/blob/main/README_zh.md)) 以获取更多信息。\r\n\r\n## 依赖\r\n\r\n> [!IMPORTANT]\r\n> Better Custom Tools需要[Player Data Expansion](/datapack-index/wheel/resources/PlayerDataExpansion.html)作为前置以管理玩家数据。\r\n\r\n\r\n以下提供部分说明，可能过时。请以官方文档为准。\r\n\r\n\r\n## 函数\r\n\r\n> *数据包提供了一些函数接口, 但通常为内部调用.*\r\n\r\n|        函数        |                             功能                             |                             说明                             |\r\n| :----------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |\r\n|  `#bct:item.get`   |     获取物品数据到 `bct.io stack[-1].CONTEXT.item_data`      |             CONTEXT: {hand: (mainhand\\|offhand)}             |\r\n| `#bct:item.update` | 将 `bct:io stack[-1].item_update` 的数据合并到目标物品上 (merge) | CONTEXT: {hand: (mainhand\\|offhand)\n需要向 `bct:io stack[-1].item_update` 中传入待合并的数据 |\r\n|   `#bct:item.cd`   | 获取目标物品的冷却情况, 返回值为 1 (冷却结束) 或 0 (冷却中)  |             CONTEXT: {hand: (mainhand\\|offhand)              |\r\n| `#bct:using.exit`  |                   打断一个使用状态 (using)                   |                              -                               |\r\n|    `#bct:macro`    |                        调用一个宏命令                        | 需要向 `bct:io stack[-1].command` 中写入目标命令\n需要将 `bct:io stack[-1]` 作为宏参数传入 |\r\n\r\n## 示例\r\n\r\n包内提供了 7 个道具示例, [点击此处查看](https://github.com/Bybycyann/BetterCustomTools/tree/main/data/bct/loot_table).",
+        "projectUrl": "https://github.com/Bybycyann/BetterCustomTools",
+        "legacyPath": "/wheel/resources/BetterCustomTools.html"
+      },
+      "discovery": {
+        "repositoryArchived": false,
+        "githubUrls": [
+          "https://github.com/Bybycyann/BetterCustomTools/blob/main/README_zh.md",
+          "https://github.com/Bybycyann/BetterCustomTools/tree/main/data/bct/loot_table"
+        ],
+        "downloadUrls": []
+      },
+      "status": "ready-for-cli-audit",
+      "blockers": []
+    },
+    {
+      "legacyId": "wheel/resources/Better_Title.md",
+      "legacyFile": "wheel/resources/Better_Title.md",
+      "legacyPath": "/wheel/resources/Better_Title.html",
+      "coordinate": "io.github.huoyuyuyu:bettertitle",
+      "version": "0.0.43",
+      "license": null,
+      "licenseBasisUrl": null,
+      "source": null,
+      "subdir": null,
+      "nestedZip": null,
+      "minecraft": "1.20.2~26.1",
+      "dependencies": [],
+      "site": {
+        "name": "Better Title",
+        "description": "一个基于负空格和着色器实现的多文本操作库",
+        "cover": "https://vanillalibrary.mcfpp.top/datapack-index/wheel/Better_Title.png",
+        "authors": [
+          {
+            "name": "火昱Flame",
+            "avatarUrl": "https://vanillalibrary.mcfpp.top/datapack-index/_authors/%E7%81%AB%E6%98%B1Flame.jpg",
+            "links": [
+              {
+                "label": "Bilibili",
+                "url": "https://space.bilibili.com/1036717393"
+              },
+              {
+                "label": "Github",
+                "url": "https://github.com/Huoyuyuyu"
+              }
+            ]
+          }
+        ],
+        "tags": [
+          "资源包",
+          "着色器",
+          "负空格",
+          "UI"
+        ],
+        "gameVersions": [
+          "1.20.2~26.1"
+        ],
+        "dependencyNotes": null,
+        "details": "Better Title是一个基于负空格和着色器实现的多文本操作库，允许在屏幕的各个位置显示多变的文本。\r\n\r\n查看展示视频：[BetterTitle 原版文本ui支持库](https://www.bilibili.com/video/BV1AcvyeyECH)\r\n\r\n阅读其官方说明文件（[Github](https://github.com/Huoyuyuyu/BetterTitle)）以获取详细信息。",
+        "projectUrl": "https://github.com/Huoyuyuyu/BetterTitle",
+        "legacyPath": "/wheel/resources/Better_Title.html"
+      },
+      "discovery": {
+        "repositoryArchived": false,
+        "githubUrls": [
+          "https://github.com/Huoyuyuyu/BetterTitle"
+        ],
+        "downloadUrls": []
+      },
+      "status": "blocked",
+      "blockers": [
+        "missing-exact-version-tag-or-release",
+        "missing-spdx-license"
+      ]
+    },
+    {
+      "legacyId": "wheel/resources/BlockState.md",
+      "legacyFile": "wheel/resources/BlockState.md",
+      "legacyPath": "/wheel/resources/BlockState.html",
+      "coordinate": "io.github.triton365:blockstate",
+      "version": "1.1.0",
+      "license": "MIT",
+      "licenseBasisUrl": "https://github.com/Triton365/BlockState/blob/main/LICENSE",
+      "source": {
+        "type": "github-archive",
+        "repository": "Triton365/BlockState",
+        "ref": "v1.1.0"
+      },
+      "subdir": null,
+      "nestedZip": null,
+      "minecraft": "1.19.2-26.2",
+      "dependencies": [],
+      "site": {
+        "name": "BlockState",
+        "description": "使用超长战利品表获取当前位置的方块与方块状态",
+        "cover": "https://vanillalibrary.mcfpp.top/datapack-index/wheel/Block_State.gif",
+        "authors": [
+          {
+            "name": "Triton365",
+            "avatarUrl": "https://vanillalibrary.mcfpp.top/datapack-index/_authors/Triton365.jpg",
+            "links": [
+              {
+                "label": "GitHub",
+                "url": "https://github.com/Triton365"
+              }
+            ]
+          }
+        ],
+        "tags": [
+          "方块",
+          "环境读取",
+          "方块状态"
+        ],
+        "gameVersions": [
+          "1.19.2-26.2"
+        ],
+        "dependencyNotes": null,
+        "details": "本库添加了一个超长的战利品表，并以此获取任意位置的方块与方块状态信息。\r\n\r\n## 使用说明\r\n\r\n阅读其官方说明文件（[Github](https://github.com/Triton365/BlockState)）以获取详细信息。\r\n\r\n在任意位置执行`loot ... loot blockstate:get`即可生成一个物品。该物品的\"minecraft:custom_data\"中存储了该方块的ID与方块状态：\r\n\r\n```snbt\r\n{\"minecraft:custom_data\":{Name:\"minecraft:...\",Properties:{...}}}\r\n```\r\n\r\n示例：\r\n```mcfunction\r\nsummon item_display ~ ~ ~ {UUID:[I;0,0,0,0]}\r\nexecute at @s positioned ~ ~-0.1 ~ run loot replace entity 0-0-0-0-0 contents loot blockstate:get\r\ntellraw @a {\"nbt\":\"item.components.minecraft:custom_data\",\"entity\":\"0-0-0-0-0\"}\r\nkill 0-0-0-0-0\r\n```",
+        "projectUrl": "https://github.com/Triton365/BlockState",
+        "legacyPath": "/wheel/resources/BlockState.html"
+      },
+      "discovery": {
+        "repositoryArchived": false,
+        "githubUrls": [
+          "https://github.com/Triton365/BlockState"
+        ],
+        "downloadUrls": []
+      },
+      "status": "blocked",
+      "blockers": [
+        "pinned-cli:repository-only-contains-ambiguous-benchmark-packs"
+      ]
+    },
+    {
+      "legacyId": "wheel/resources/CEM-S.md",
+      "legacyFile": "wheel/resources/CEM-S.md",
+      "legacyPath": "/wheel/resources/CEM-S.html",
+      "coordinate": "io.github.dartcat25:cem-s",
+      "version": "1.0.0",
+      "license": "MIT",
+      "licenseBasisUrl": "https://github.com/DartCat25/CEM-S/blob/main/LICENSE",
+      "source": null,
+      "subdir": null,
+      "nestedZip": null,
+      "minecraft": "1.17-1.21.7",
+      "dependencies": [],
+      "site": {
+        "name": "CEM-S",
+        "description": "使用着色器修改实体模型",
+        "cover": null,
+        "authors": [
+          {
+            "name": "DartCat25",
+            "avatarUrl": "https://vanillalibrary.mcfpp.top/datapack-index/_authors/DartCat25.jpg",
+            "links": [
+              {
+                "label": "GitHub",
+                "url": "https://github.com/DartCat25"
+              }
+            ]
+          }
+        ],
+        "tags": [
+          "着色器",
+          "资源包",
+          "模型",
+          "实体模型"
+        ],
+        "gameVersions": [
+          "1.17-1.21.7"
+        ],
+        "dependencyNotes": null,
+        "details": "本前置做好了使用着色器实现修改实体模型的准备工作。你可以在其基础上修改MC原版实体的模型。\r\n\r\n查阅[官方文档](https://github.com/DartCat25/CEM-S)获取更多信息。",
+        "projectUrl": "https://github.com/DartCat25/CEM-S",
+        "legacyPath": "/wheel/resources/CEM-S.html"
+      },
+      "discovery": {
+        "repositoryArchived": false,
+        "githubUrls": [
+          "https://github.com/DartCat25/CEM-S"
+        ],
+        "downloadUrls": []
+      },
+      "status": "blocked",
+      "blockers": [
+        "missing-exact-version-tag-or-release"
+      ]
+    },
+    {
+      "legacyId": "wheel/resources/Cartographer.md",
+      "legacyFile": "wheel/resources/Cartographer.md",
+      "legacyPath": "/wheel/resources/Cartographer.html",
+      "coordinate": "io.github.pearuhdox:cartographer-2.0",
+      "version": null,
+      "license": null,
+      "licenseBasisUrl": null,
+      "source": null,
+      "subdir": null,
+      "nestedZip": null,
+      "minecraft": "1.21+",
+      "dependencies": [],
+      "site": {
+        "name": "Cartographer",
+        "description": "辅助CTM地图机制制作的多功能复杂前置",
+        "cover": null,
+        "authors": [
+          {
+            "name": "PearUhDox",
+            "avatarUrl": "https://vanillalibrary.mcfpp.top/datapack-index/_authors/PearUhDox.png",
+            "links": [
+              {
+                "label": "GitHub",
+                "url": "https://github.com/PearUhDox"
+              }
+            ]
+          }
+        ],
+        "tags": [
+          "多功能",
+          "CTM"
+        ],
+        "gameVersions": [
+          "1.21+"
+        ],
+        "dependencyNotes": null,
+        "details": "## 使用说明\r\n\r\n制图师包（又称大包）是一个围绕CTM地图制作的多功能前置包集合，允许使用者在地图中添加自定义的魔咒，状态，属性，怪物攻击，等多种机制。\r\n\r\n阅读其[官方wiki](https://github.com/pearuhdox/Cartographer-2.0/wiki)以获取更多说明。",
+        "projectUrl": "https://github.com/pearuhdox/Cartographer-2.0",
+        "legacyPath": "/wheel/resources/Cartographer.html"
+      },
+      "discovery": {
+        "repositoryArchived": null,
+        "githubUrls": [
+          "https://github.com/pearuhdox/Cartographer-2.0/wiki"
+        ],
+        "downloadUrls": []
+      },
+      "status": "blocked",
+      "blockers": [
+        "invalid-semver"
+      ]
+    },
+    {
+      "legacyId": "wheel/resources/ChestMinecartGUI.md",
+      "legacyFile": "wheel/resources/ChestMinecartGUI.md",
+      "legacyPath": "/wheel/resources/ChestMinecartGUI.html",
+      "coordinate": "io.github.windwavessea:chest-minecart-gui",
+      "version": "1.1.0",
+      "license": "MIT",
+      "licenseBasisUrl": "https://github.com/WindWavesSea/Chest-Minecart-GUI/blob/main/LICENSE",
+      "source": {
+        "type": "github-release-asset",
+        "repository": "WindWavesSea/Chest-Minecart-GUI",
+        "ref": "V1.1.0",
+        "asset": "Chest.Minecart.GUI.V1.1.0.zip"
+      },
+      "subdir": null,
+      "nestedZip": null,
+      "minecraft": "1.21-26.2",
+      "dependencies": [],
+      "site": {
+        "name": "运输矿车GUI",
+        "description": "使用storage便捷地配置并创建箱子矿车GUI",
+        "cover": "https://vanillalibrary.mcfpp.top/datapack-index/wheel/ChestMinecartGUI.jpg",
+        "authors": [
+          {
+            "name": "洛风澜_Sea",
+            "avatarUrl": "https://vanillalibrary.mcfpp.top/datapack-index/_authors/%E6%B4%9B%E9%A3%8E%E6%BE%9C_Sea.png",
+            "links": [
+              {
+                "label": "Bilibili",
+                "url": "https://space.bilibili.com/3493092078389380"
+              },
+              {
+                "label": "Github",
+                "url": "https://github.com/WindWavesSea"
+              }
+            ]
+          }
+        ],
+        "tags": [
+          "GUI"
+        ],
+        "gameVersions": [
+          "1.21-26.2"
+        ],
+        "dependencyNotes": null,
+        "details": "此数据包让运输矿车GUI配置更加简单快捷，只需要在storage配置并执行生成函数即可快速配置一个GUI。支持点击物品时执行任意函数或跳转至另一个页面。\r\n\r\n以下说明可能过时，请以其[官方文档（GitHub）](https://github.com/WindWavesSea/Chest-Minecart-GUI)为准。\r\n\r\n## Storage结构说明\r\n\r\n配置时需要在指定的storage中填充以下结构\r\n\r\n::: details 查看NBT树\r\n\r\n\r\n`name`（compound） 配置名称\r\n- `mode`（string，必填） 模式。默认填normal，如果使用NPC请在此填写npc\r\n- `slot_id`（list，必填）槽位列表。参照[WIKI](https://zh.minecraft.wiki/w/%E6%A7%BD%E4%BD%8D#%E5%91%BD%E4%BB%A4%E5%8F%82%E6%95%B0)填写(只需填写槽位编号)。\r\n- `slot`（compound，必填） 配置选项。\r\n  - `1`（compound，必填） 槽位编号。\r\n    - `item`（compound，必填）物品。\r\n      - `id`（string，必填） 物品ID。\r\n      - `components`（compound，必填） 物品数据组件，参考[WIKI](https://zh.minecraft.wiki/w/%E6%95%B0%E6%8D%AE%E7%BB%84%E4%BB%B6#%E6%95%B0%E6%8D%AE%E7%BB%84%E4%BB%B6%E7%B1%BB%E5%9E%8B)填写。\r\n      - `count`（int，必填） 物品数量。\r\n    - `click_event`（compound，必填）默认朝向( 如果使用look_player此项为必填 )。\r\n      - `action`（string，必填） 行为。可以为run_command( 执行指令 )/show_ui( 显示GUI )。\r\n      - `value`（string，必填） 值。如果为run_command此处应为一条指令。如果为show_ui应该填写配置名称。\r\n   - `2`（string，必填） 槽位编号\r\n     - `2`（value，必填） 格式与\"1\"相同。\r\n\r\n:::\r\n\r\n::: details 查看[mcdoc](/feature/archive/202505/3/content_)\r\n\r\n```mcdoc\r\ndispatch minecraft:storage[\"windwaves_sea:chest_gui\"] to struct{\r\n    config?: struct{\r\n        [GuiConfigID]?: GuiConfig,\r\n    }\r\n}\r\n\r\n/// 配置ID。每个配置对应了一个页面\r\ntype GuiConfigID = #[id(registry=\"windwaves_sea:chest_gui_config_id\",definition=true)] string\r\n\r\n/// 每个配置项\r\nstruct GuiConfig {\r\n    /// 模式。可以为`normal`或`npc`\r\n    mode?: (\"normal\" | \"npc\"),\r\n    /// 本页面需要监听的槽位列表\r\n    slot_id?: [(#[match_regex=\"^[0-9]*$\"] string @ 1..)],\r\n    /// 对于每个槽位的设置\r\n    slot?: struct{\r\n        /// 任意槽位ID，如`1`\r\n        [(#[match_regex=\"^[0-9]*$\"] string @ 1..)]?: struct{\r\n            /// 本槽位上的物品\r\n            item?: ::java::world::item::ItemStack,\r\n            /// 本槽位上的点击事件\r\n            click_event?: struct{\r\n                /// 点击事件的动作类型，可以为`run_command`（执行任意命令）或`show_ui`（跳转到其他页面）\r\n                action?: (\"run_command\"|\"show_ui\"),\r\n                value?: windwaves_sea:action[[action]]\r\n                //(#[command] string | #[id=\"windwaves_sea:chest_gui_config_id\"] string)\r\n            }\r\n        }\r\n    }\r\n}\r\ndispatch windwaves_sea:action[\"run_command\"] to #[command] string\r\ndispatch windwaves_sea:action[\"show_ui\"] to #[id=\"windwaves_sea:chest_gui_config_id\"] string\r\n```\r\n:::\r\n\r\n::: details 查看示例\r\n```mcfunction\r\ndata merge storage windwaves_sea:chest_gui {\\\r\nconfig:{\\\r\n    \"test\":{\\\r\n        \"mode\":\"npc\",\\\r\n        \"slot_id\":[\"1\"],\\\r\n        \"slot\":{\\\r\n                \"1\":{\\\r\n                    \"item\":{\\\r\n                        \"id\": \"minecraft:diamond\",\\\r\n                        \"components\":{},\\\r\n                        \"count\": 1 \\\r\n                    },\\\r\n                    \"click_event\":{\\\r\n                        \"action\":\"show_ui\", \\\r\n                        \"value\":\"test1\" \\\r\n                    }\\\r\n                }\\\r\n        }\\\r\n    }\\\r\n}\\\r\n}\r\n```\r\n:::\r\n\r\n## 命令说明\r\n\r\n### 生成运输矿车GUI\r\n```mcfunction\r\nfunction chest_gui:command/summon {name:\"name\",x:1,y:1,z:1}\r\n```\r\n\r\n生成运输矿车GUI，需先写入配置，name为上方配置中的配置名称（下文相同）。x、y、z均为坐标值。\r\n\r\n### 清除运输矿车GUI\r\n```mcfunction\r\nfunction chest_gui:command/remove {name:\"name\"}\r\n```\r\n\r\n### 删除配置( 同时清除运输矿车GUI )\r\n```mcfunction\r\nfunction chest_gui:command/delete_setting {name:\"name\"}\r\n```",
+        "projectUrl": "https://github.com/WindWavesSea/Chest-Minecart-GUI",
+        "legacyPath": "/wheel/resources/ChestMinecartGUI.html"
+      },
+      "discovery": {
+        "repositoryArchived": false,
+        "githubUrls": [
+          "https://github.com/WindWavesSea/Chest-Minecart-GUI"
+        ],
+        "downloadUrls": []
+      },
+      "status": "ready-for-cli-audit",
+      "blockers": []
+    },
+    {
+      "legacyId": "wheel/resources/CustomCollisionBox.md",
+      "legacyFile": "wheel/resources/CustomCollisionBox.md",
+      "legacyPath": "/wheel/resources/CustomCollisionBox.html",
+      "coordinate": "io.github.4tubborn:sbox",
+      "version": "0.3.1",
+      "license": "MIT",
+      "licenseBasisUrl": "https://github.com/4tubborn/sbox/blob/main/LICENSE",
+      "source": null,
+      "subdir": null,
+      "nestedZip": null,
+      "minecraft": "1.21.6~26.2",
+      "dependencies": [],
+      "site": {
+        "name": "Custom Collision Box",
+        "description": "创建自定义碰撞箱和交互箱，同时提供基本的管理功能",
+        "cover": "https://vanillalibrary.mcfpp.top/datapack-index/wheel/customcollisionbox.png",
+        "authors": [
+          {
+            "name": "斑海awa",
+            "avatarUrl": "https://vanillalibrary.mcfpp.top/datapack-index/_authors/%E6%96%91%E6%B5%B7awa.jpg",
+            "links": [
+              {
+                "label": "Bilibili",
+                "url": "https://space.bilibili.com/3537117779068957"
+              },
+              {
+                "label": "Github",
+                "url": "https://github.com/4tubborn"
+              }
+            ]
+          }
+        ],
+        "tags": [
+          "碰撞箱",
+          "交互箱"
+        ],
+        "gameVersions": [
+          "1.21.6~26.2"
+        ],
+        "dependencyNotes": null,
+        "details": "## 依赖\r\n\r\n> [!IMPORTANT]\r\n> 本库需要[Bookshelf](/datapack-index/wheel/resources/bookshelf)的[Link](https://modrinth.com/datapack/bookshelf-link)模块作为前置。\r\n\r\n# 简述\r\n\r\n封装了一些简易的API以快速创建和管理AABB轴对齐碰撞箱/交互箱。\r\n\r\n阅读其官方说明文件 ([Github](https://github.com/4tubborn/sbox/wiki)) 以获取更多信息。",
+        "projectUrl": "https://github.com/4tubborn/sbox",
+        "legacyPath": "/wheel/resources/CustomCollisionBox.html"
+      },
+      "discovery": {
+        "repositoryArchived": false,
+        "githubUrls": [
+          "https://github.com/4tubborn/sbox/wiki"
+        ],
+        "downloadUrls": []
+      },
+      "status": "blocked",
+      "blockers": [
+        "missing-exact-version-tag-or-release"
+      ]
+    },
+    {
+      "legacyId": "wheel/resources/DFL_Functions.md",
+      "legacyFile": "wheel/resources/DFL_Functions.md",
+      "legacyPath": "/wheel/resources/DFL_Functions.html",
+      "coordinate": "io.github.touchcontroller:datapack-function-library",
+      "version": "1.0.0",
+      "license": "GPL-3.0-only",
+      "licenseBasisUrl": "https://github.com/TouchController/E1epack/blob/main/LICENSE",
+      "source": {
+        "type": "github-archive",
+        "repository": "TouchController/E1epack",
+        "ref": "datapack-function-library_v1.0.0"
+      },
+      "subdir": "subprojects/datapack-function-library",
+      "nestedZip": null,
+      "minecraft": "1.21+",
+      "dependencies": [],
+      "site": {
+        "name": "DFL数据包函数支持库",
+        "description": "提供一些杂项函数封装",
+        "cover": null,
+        "authors": [
+          {
+            "name": "TouchController",
+            "avatarUrl": "https://vanillalibrary.mcfpp.top/datapack-index/_authors/TouchController.png",
+            "links": [
+              {
+                "label": "GitHub",
+                "url": "https://github.com/TouchController"
+              },
+              {
+                "label": "MC百科",
+                "url": "https://www.mcmod.cn/author/37790.html"
+              }
+            ]
+          },
+          {
+            "name": "白象_elephant",
+            "avatarUrl": "https://vanillalibrary.mcfpp.top/datapack-index/_authors/WhiteElephant.png",
+            "links": [
+              {
+                "label": "GitHub",
+                "url": "https://github.com/WhiteElephant-abc"
+              },
+              {
+                "label": "Bilibili",
+                "url": "https://space.bilibili.com/1836643444"
+              }
+            ]
+          },
+          {
+            "name": "fifth_light",
+            "avatarUrl": "https://vanillalibrary.mcfpp.top/datapack-index/_authors/fifth_light.png",
+            "links": [
+              {
+                "label": "GitHub",
+                "url": "https://github.com/fifth-light"
+              },
+              {
+                "label": "Bilibili",
+                "url": "https://space.bilibili.com/16044930"
+              }
+            ]
+          }
+        ],
+        "tags": [
+          "杂项"
+        ],
+        "gameVersions": [
+          "1.21+"
+        ],
+        "dependencyNotes": null,
+        "details": "本数据包为开发者提供了一些杂项实用的函数，多为单条命令或宏命令的函数封装，例如快速开启死亡榜，铁块电梯，获取时间，修改玩家最大生命值等。\r\n\r\n请阅读其官方说明文件（[Github](https://github.com/TouchController/E1epack/tree/main/subprojects/datapack-function-library) | [MC百科](https://www.mcmod.cn/class/17244.html) | [Modrinth](https://modrinth.com/datapack/datapack-function-library)）以获取更多信息。",
+        "projectUrl": "https://github.com/TouchController/E1epack",
+        "legacyPath": "/wheel/resources/DFL_Functions.html"
+      },
+      "discovery": {
+        "repositoryArchived": false,
+        "githubUrls": [
+          "https://github.com/TouchController/E1epack/tree/main/subprojects/datapack-function-library"
+        ],
+        "downloadUrls": []
+      },
+      "status": "blocked",
+      "blockers": [
+        "pinned-cli:selected-version-has-no-pack-mcmeta"
+      ]
+    },
+    {
+      "legacyId": "wheel/resources/Deco_Creater_kit.md",
+      "legacyFile": "wheel/resources/Deco_Creater_kit.md",
+      "legacyPath": "/wheel/resources/Deco_Creater_kit.html",
+      "coordinate": "io.github.cr-019:dc",
+      "version": "2.1.4",
+      "license": "GPL-3.0-only",
+      "licenseBasisUrl": "https://github.com/CR-019/dc/blob/master/LICENSE",
+      "source": {
+        "type": "github-archive",
+        "repository": "CR-019/dc",
+        "ref": "2.1.4"
+      },
+      "subdir": null,
+      "nestedZip": null,
+      "minecraft": "1.21+",
+      "dependencies": [],
+      "site": {
+        "name": "Deco Creater kit",
+        "description": "简单交互性装饰模型支持库",
+        "cover": "https://vanillalibrary.mcfpp.top/datapack-index/wheel/Deco_Creater_kit.png",
+        "authors": [
+          {
+            "name": "CR_019",
+            "avatarUrl": "https://vanillalibrary.mcfpp.top/datapack-index/_authors/cr_019.png",
+            "links": [
+              {
+                "label": "Bilibili",
+                "url": "https://space.bilibili.com/85292644"
+              },
+              {
+                "label": "Github",
+                "url": "https://github.com/CR-019"
+              }
+            ]
+          }
+        ],
+        "tags": [
+          "交互",
+          "装饰模型"
+        ],
+        "gameVersions": [
+          "1.21+"
+        ],
+        "dependencyNotes": null,
+        "details": "dc是一个轻量级的装饰模型支持库，能够方便的添加简单的可交互模型，并且支持简单的事件（移动，旋转，坐）和自定义触发方式。拥有较好的常态性能。\r\n\r\n阅读其官方说明文件（[Github](https://github.com/CR-019/dc) | [MC百科](https://www.mcmod.cn/class/14646.html) | [红石中继站](https://www.mczwlt.net/resource/keaujtms)）以获取使用说明与更多信息。",
+        "projectUrl": "https://github.com/CR-019/dc",
+        "legacyPath": "/wheel/resources/Deco_Creater_kit.html"
+      },
+      "discovery": {
+        "repositoryArchived": false,
+        "githubUrls": [
+          "https://github.com/CR-019/dc"
+        ],
+        "downloadUrls": []
+      },
+      "status": "ready-for-cli-audit",
+      "blockers": []
+    },
+    {
+      "legacyId": "wheel/resources/Firework.md",
+      "legacyFile": "wheel/resources/Firework.md",
+      "legacyPath": "/wheel/resources/Firework.html",
+      "coordinate": "io.github.mxpea:firework-datapacks",
+      "version": "1.2.1",
+      "license": "MIT",
+      "licenseBasisUrl": "https://github.com/Mxpea/FIREWORK--datapacks/blob/main/LICENSE",
+      "source": {
+        "type": "github-release-asset",
+        "repository": "Mxpea/FIREWORK--datapacks",
+        "ref": "v1.2.1",
+        "asset": "FIREWORK.-1.2.1.zip"
+      },
+      "subdir": null,
+      "nestedZip": null,
+      "minecraft": "1.21.11",
+      "dependencies": [],
+      "site": {
+        "name": "FIREWORK!",
+        "description": "烟花与粒子效果特效库",
+        "cover": "https://vanillalibrary.mcfpp.top/datapack-index/wheel/Mxpea_fireworks.png",
+        "authors": [
+          {
+            "name": "Mxpea",
+            "avatarUrl": "https://vanillalibrary.mcfpp.top/datapack-index/_authors/Mxpea.jpg",
+            "links": [
+              {
+                "label": "Bilibili",
+                "url": "https://space.bilibili.com/1036717393"
+              }
+            ]
+          }
+        ],
+        "tags": [
+          "视效",
+          "粒子"
+        ],
+        "gameVersions": [
+          "1.21.11"
+        ],
+        "dependencyNotes": null,
+        "details": "一个用于 Minecraft (1.21.11 环境) 的烟花/粒子效果库，提供大量基于函数的特效、字形和烟花召唤逻辑\r\n\r\n> [!IMPORTANT]\r\n> 需要前置：[Mxpea's Multiplayer Motion API](/datapack-index/wheel/resources/Mxpea_Motion_API.html)\r\n\r\n## 主要功能\r\n- 颜色与彩虹循环\r\n  - 周期逻辑：[firework:tick](https://github.com/Mxpea/FIREWORK--datapacks/blob/main/firework/data/firework/function/tick.mcfunction)\r\n  - 彩虹色生成：[firework:effects/rainbow/rainbow_color_gen](https://github.com/Mxpea/FIREWORK--datapacks/blob/main/firework/data/firework/function/effects/rainbow/rainbow_color_gen.mcfunction)\r\n  - 随机烟花生成\r\n  - 主入口：[firework:run/ran_firework](https://github.com/Mxpea/FIREWORK--datapacks/blob/main/firework/data/firework/function/run/ran_firework.mcfunction)\r\n  - 子流程：目录 effects/fireworks_ran/（如 ran_color, ran_color_fade, ran_trail, ran_twinkle, ran_firework_summon, ran_type）\r\n- 粒子 / 像素 / 字符\r\n  - 像素生成：[firework:pixel_square/pixel_gen](https://github.com/Mxpea/FIREWORK--datapacks/blob/main/firework/data/firework/function/pixel_square/pixel_gen.mcfunction)\r\n  - 默认尺寸：[firework:pixel_square/size_default](https://github.com/Mxpea/FIREWORK--datapacks/blob/main/firework/data/firework/function/pixel_square/size_default.mcfunction)\r\n  - 字符集合：目录 letters/（示例：[firework:letters/a](https://github.com/Mxpea/FIREWORK--datapacks/blob/main/firework/data/firework/function/letters/a.mcfunction)）\r\n- 下落方块与环形排布\r\n  - 下落方块：[firework:effects/ran_falling_block/ran_fallingblock_gen](https://github.com/Mxpea/FIREWORK--datapacks/blob/main/firework/data/firework/function/effects/ran_falling_block/ran_fallingblock_gen.mcfunction)\r\n  - 环形工具：[firework:effects/ring/math](https://github.com/Mxpea/FIREWORK--datapacks/blob/main/firework/data/firework/function/effects/ring/math.mcfunction)、[firework:effects/ring/poz](https://github.com/Mxpea/FIREWORK--datapacks/blob/main/firework/data/firework/function/effects/ring/poz.mcfunction)\r\n- 射线与工具支持\r\n  - 射线流程：目录 ray/（ray_gen, ray_step_facing, ray_step_go, ray_step_target, ray_uuid_transform）\r\n  - UUID 工具：[firework:gu/convert](https://github.com/Mxpea/FIREWORK--datapacks/blob/main/firework/data/firework/function/gu/convert.mcfunction)、[firework:gu/generate](https://github.com/Mxpea/FIREWORK--datapacks/blob/main/firework/data/firework/function/gu/generate.mcfunction)、[firework:tools/uuid_get](https://github.com/Mxpea/FIREWORK--datapacks/blob/main/firework/data/firework/function/tools/uuid_get.mcfunction)",
+        "projectUrl": "https://github.com/Mxpea/FIREWORK--datapacks",
+        "legacyPath": "/wheel/resources/Firework.html"
+      },
+      "discovery": {
+        "repositoryArchived": false,
+        "githubUrls": [
+          "https://github.com/Mxpea/FIREWORK--datapacks/blob/main/firework/data/firework/function/tick.mcfunction",
+          "https://github.com/Mxpea/FIREWORK--datapacks/blob/main/firework/data/firework/function/effects/rainbow/rainbow_color_gen.mcfunction",
+          "https://github.com/Mxpea/FIREWORK--datapacks/blob/main/firework/data/firework/function/run/ran_firework.mcfunction",
+          "https://github.com/Mxpea/FIREWORK--datapacks/blob/main/firework/data/firework/function/pixel_square/pixel_gen.mcfunction",
+          "https://github.com/Mxpea/FIREWORK--datapacks/blob/main/firework/data/firework/function/pixel_square/size_default.mcfunction",
+          "https://github.com/Mxpea/FIREWORK--datapacks/blob/main/firework/data/firework/function/letters/a.mcfunction",
+          "https://github.com/Mxpea/FIREWORK--datapacks/blob/main/firework/data/firework/function/effects/ran_falling_block/ran_fallingblock_gen.mcfunction",
+          "https://github.com/Mxpea/FIREWORK--datapacks/blob/main/firework/data/firework/function/effects/ring/math.mcfunction",
+          "https://github.com/Mxpea/FIREWORK--datapacks/blob/main/firework/data/firework/function/effects/ring/poz.mcfunction",
+          "https://github.com/Mxpea/FIREWORK--datapacks/blob/main/firework/data/firework/function/gu/convert.mcfunction",
+          "https://github.com/Mxpea/FIREWORK--datapacks/blob/main/firework/data/firework/function/gu/generate.mcfunction",
+          "https://github.com/Mxpea/FIREWORK--datapacks/blob/main/firework/data/firework/function/tools/uuid_get.mcfunction"
+        ],
+        "downloadUrls": []
+      },
+      "status": "ready-for-cli-audit",
+      "blockers": []
+    },
+    {
+      "legacyId": "wheel/resources/Floating_UI.md",
+      "legacyFile": "wheel/resources/Floating_UI.md",
+      "legacyPath": "/wheel/resources/Floating_UI.html",
+      "coordinate": "io.github.alumopper:floating-ui",
+      "version": "1.0.0-beta1",
+      "license": null,
+      "licenseBasisUrl": null,
+      "source": {
+        "type": "github-archive",
+        "repository": "Alumopper/Floating-UI",
+        "ref": "1.0-beta1"
+      },
+      "subdir": null,
+      "nestedZip": null,
+      "minecraft": "1.21.9 || 1.21.10",
+      "dependencies": [],
+      "site": {
+        "name": "Floating UI",
+        "description": "功能强大的重量级UI框架",
+        "cover": null,
+        "authors": [
+          {
+            "name": "Alumopper",
+            "avatarUrl": "https://vanillalibrary.mcfpp.top/datapack-index/_authors/alumopper.jpg",
+            "links": [
+              {
+                "label": "Bilibili",
+                "url": "https://space.bilibili.com/280394409"
+              },
+              {
+                "label": "GitHub",
+                "url": "https://github.com/Alumopper"
+              }
+            ]
+          }
+        ],
+        "tags": [
+          "UI",
+          "展示实体"
+        ],
+        "gameVersions": [
+          "1.21.9",
+          "1.21.10"
+        ],
+        "dependencyNotes": null,
+        "details": "Floating UI是一个基于展示实体实现的重量级UI框架，允许你使用纯原版的方式在Minecraft中创建一个浮空可交互UI。\r\n\r\n在使用Floating UI之前，你需要安装[小豆的数学库](https://github.com/xiaodou8593/math2.0)和[小豆的事件队列](https://github.com/xiaodou8593/timelist)。Floating UI使用小豆的数学库进行计算，使用小豆的事件队列托管事件的定时触发效果。\r\n\r\n### 快速开始\r\n\r\n要创建一个UI，最简单的方式是使用函数`floating_ui:.player_new_ui`。这个函数将会在执行者前方四格远的地方生成一个面向玩家的UI界面。在调用这个函数之前，你需要传入UI的布局数据，例如：\r\n\r\n```mcfunction\r\n\r\n# 玩家执行\r\n\r\ndata modify floating_ui:input data set value {\\\r\n    \"type\":\"panel\",\\\r\n    \"size\":[5f,5f],\\\r\n    \"child\":[\\\r\n        {\\\r\n            \"type\":\"button\",\\\r\n            \"y\":0.3,\\\r\n            \"size\":[2.5f,2.5f],\\\r\n            \"item\":{\"id\":\"apple\"}\r\n        }\r\n    ]\r\n}\r\n\r\nfunction floating_ui:.player_new_ui\r\n```\r\n\r\n将UI关闭最简单的方法是`.player_dispose_ui`。这将会清除执行者玩家拥有的所有UI。",
+        "projectUrl": "https://github.com/Alumopper/Floating-UI",
+        "legacyPath": "/wheel/resources/Floating_UI.html"
+      },
+      "discovery": {
+        "repositoryArchived": false,
+        "githubUrls": [
+          "https://github.com/xiaodou8593/math2.0",
+          "https://github.com/xiaodou8593/timelist"
+        ],
+        "downloadUrls": []
+      },
+      "status": "blocked",
+      "blockers": [
+        "missing-spdx-license"
+      ]
+    },
+    {
+      "legacyId": "wheel/resources/ForceloadLib.md",
+      "legacyFile": "wheel/resources/ForceloadLib.md",
+      "legacyPath": "/wheel/resources/ForceloadLib.html",
+      "coordinate": "io.github.cmdred:forceloadlib",
+      "version": "1.1.1",
+      "license": "MIT",
+      "licenseBasisUrl": "https://github.com/CMDred/ForceloadLib/blob/main/LICENSE",
+      "source": null,
+      "subdir": null,
+      "nestedZip": null,
+      "minecraft": "1.21.5~1.21.11",
+      "dependencies": [],
+      "site": {
+        "name": "ForceloadLib",
+        "description": "区块forceload兼容方案",
+        "cover": "https://vanillalibrary.mcfpp.top/datapack-index/wheel/ForceloadLib.png",
+        "authors": [
+          {
+            "name": "SilicatYT",
+            "avatarUrl": "https://vanillalibrary.mcfpp.top/datapack-index/_authors/SilicatYT.png",
+            "links": [
+              {
+                "label": "GitHub",
+                "url": "https://github.com/SilicatYT"
+              }
+            ]
+          },
+          {
+            "name": "CMDred",
+            "avatarUrl": "https://vanillalibrary.mcfpp.top/datapack-index/_authors/CMDred.png",
+            "links": [
+              {
+                "label": "Github",
+                "url": "https://github.com/CMDred"
+              },
+              {
+                "label": "YouTube",
+                "url": "https://www.youtube.com/channel/UCOciQE1CLCQmmxVveggt2Lg"
+              }
+            ]
+          }
+        ],
+        "tags": [
+          "区块",
+          "兼容",
+          "区块加载"
+        ],
+        "gameVersions": [
+          "1.21.5~1.21.11"
+        ],
+        "dependencyNotes": null,
+        "details": "本库提供了一个区块强加载的兼容手段，避免多个数据包互相复写对方的强加载区块。\r\n\r\n阅读其官方说明文件（[Github](https://github.com/CMDred/ForceloadLib) | [Modrinth](https://modrinth.com/datapack/forceloadlib)）以获取详细信息。",
+        "projectUrl": "https://github.com/CMDred/ForceloadLib",
+        "legacyPath": "/wheel/resources/ForceloadLib.html"
+      },
+      "discovery": {
+        "repositoryArchived": false,
+        "githubUrls": [
+          "https://github.com/CMDred/ForceloadLib"
+        ],
+        "downloadUrls": []
+      },
+      "status": "blocked",
+      "blockers": [
+        "missing-exact-version-tag-or-release"
+      ]
+    },
+    {
+      "legacyId": "wheel/resources/Kaer_MathLib.md",
+      "legacyFile": "wheel/resources/Kaer_MathLib.md",
+      "legacyPath": "/wheel/resources/Kaer_MathLib.html",
+      "coordinate": "io.github.kaer-3058:large_number",
+      "version": "1.19.0",
+      "license": "MIT",
+      "licenseBasisUrl": "https://github.com/kaer-3058/large_number/blob/main/LICENSE",
+      "source": null,
+      "subdir": null,
+      "nestedZip": null,
+      "minecraft": "1.21.3",
+      "dependencies": [],
+      "site": {
+        "name": "卡儿数学库",
+        "description": "一个功能完备，持续更新的数学库。除了常用的初等数学工具之外，也涉及到很多加密解密、图像渲染的内容。是数据包作者进行快速计算或高精度计算的不二之选。",
+        "cover": null,
+        "authors": [
+          {
+            "name": "卡儿3058",
+            "avatarUrl": "https://vanillalibrary.mcfpp.top/datapack-index/_authors/%E5%8D%A1%E5%84%BF3058.jpg",
+            "links": [
+              {
+                "label": "Bilibili",
+                "url": "https://space.bilibili.com/314579543"
+              },
+              {
+                "label": "Github",
+                "url": "https://github.com/kaer-3058"
+              }
+            ]
+          }
+        ],
+        "tags": [
+          "数学",
+          "计算",
+          "高性能"
+        ],
+        "gameVersions": [
+          "1.21.3"
+        ],
+        "dependencyNotes": null,
+        "details": "[查看本库使用说明](https://github.com/kaer-3058/large_number/wiki/%E5%8D%A1%E5%84%BF%E7%9A%84%E6%95%B0%E5%AD%A6%E5%BA%93-Wiki%E2%80%90%E4%B8%AD%E6%96%87)\r\n\r\n它集结了大量MC命令和高等数学的成果，在MC函数宏时代下发展出来的一个库。\r\n\r\n一开始是做超级锻造台时，为了解决用MC命令扣除玩家的前N级经验。\r\n\r\n我做这个库的意图就是为了让mcf的开发多一种可依赖的库。不再让开发者一想到mcf没有原生的数学运算就感到无从下手。\r\n\r\n本数学库搭载了最先进最强大的数值计算系统，为MC数据包建立了科学计算方面的业界顶级的数学前置库。包含了四万多条命令，拥有几乎完备的命令接口。可以说你能想到的数值计算的需求这里都有。\r\n\r\n目前包含了24个大类：三角函数、整数四则、数组四则、浮点四则、浮点运算、开方、开立方、测距、小工具、几何、列表、概率、数理、指数函数、对数函数、阶乘-伽玛函数、线性代数、科学计算、科学计算+粒子图形、特殊函数、数论、微积分、傅里叶分析、粒子图形。\r\n\r\n从2023年8月第一个版本诞生，本数学库已开发了一年半多的时日。我把我几乎所有的业余时间都投入到了开发这个库里。它诞生时还叫大数运算。2024年1月1日发布了v.1.6版本，正式把中文名定为\"卡儿的数学库\"，但命名空间仍沿用了\"large_number\"。\r\n\r\n我就是要做别人不会做的事，这样再有人踏入这片区域时，不会再感叹这里是一片蛮荒。显然我的努力已经有了成效，大家以前在畅想的在MC里做科学计算，如今都已经成为了现实。在github用中文搜索mcfunction语言的自然对数、科学计算会搜到我的东西，我就是这方面的先行者。",
+        "projectUrl": "https://github.com/kaer-3058/large_number",
+        "legacyPath": "/wheel/resources/Kaer_MathLib.html"
+      },
+      "discovery": {
+        "repositoryArchived": false,
+        "githubUrls": [
+          "https://github.com/kaer-3058/large_number/wiki/%E5%8D%A1%E5%84%BF%E7%9A%84%E6%95%B0%E5%AD%A6%E5%BA%93-Wiki%E2%80%90%E4%B8%AD%E6%96%87"
+        ],
+        "downloadUrls": []
+      },
+      "status": "blocked",
+      "blockers": [
+        "missing-exact-version-tag-or-release"
+      ]
+    },
+    {
+      "legacyId": "wheel/resources/Mxpea_Motion_API.md",
+      "legacyFile": "wheel/resources/Mxpea_Motion_API.md",
+      "legacyPath": "/wheel/resources/Mxpea_Motion_API.html",
+      "coordinate": "io.github.mxpea:mxpea-s-multiplayer-motion-api",
+      "version": "1.3.1",
+      "license": "MIT",
+      "licenseBasisUrl": "https://github.com/Mxpea/Mxpea-s-Multiplayer-Motion-API/blob/main/LICENSE",
+      "source": {
+        "type": "github-release-asset",
+        "repository": "Mxpea/Mxpea-s-Multiplayer-Motion-API",
+        "ref": "v1.3.1",
+        "asset": "Mxpea.s.Motion.API.V1.3.1.zip"
+      },
+      "subdir": null,
+      "nestedZip": null,
+      "minecraft": "1.20.2-1.21.11",
+      "dependencies": [],
+      "site": {
+        "name": "Mxpea's Multiplayer Motion API",
+        "description": "简单的修改非玩家实体动量的数据包",
+        "cover": null,
+        "authors": [
+          {
+            "name": "Mxpea",
+            "avatarUrl": "https://vanillalibrary.mcfpp.top/datapack-index/_authors/Mxpea.jpg",
+            "links": [
+              {
+                "label": "Bilibili",
+                "url": "https://space.bilibili.com/1036717393"
+              }
+            ]
+          }
+        ],
+        "tags": [
+          "动量",
+          "Motion"
+        ],
+        "gameVersions": [
+          "1.20.2-1.21.11"
+        ],
+        "dependencyNotes": null,
+        "details": "添加了一些操作非玩家实体Motion的便捷接口，为实体添加不同的tag可以以多种方式控制实体的动量。\r\n\r\n由于使用使用标签作为接口，本库的`#tick`函数中有多条`@e[tag=`<tag>`]`检测，若使用者希望节省性能，可以关闭将其移除`#tick`并在添加tag后手动调用函数。\r\n\r\n## 用法\r\n\r\n以下说明可能已经过时。请以[官方文档](https://github.com/Mxpea/Mxpea-s-Multiplayer-Motion-API/tree/v1.3.0)为准。\r\n\r\n为实体添加如下 Tag 标签即可让该实体向你面向的方向扔出：\r\n\r\n`mot`：向你的视线处发射实体；\r\n\r\n`random_mot`，`random_mot_mid`，`random_mot_big`：为发射增添随机性，此三种是不同的预设，当然，你也可以在数据包文件中自定义随机性；\r\n\r\n`random_exp`：向随机方向发射实体，一次性对多个实体应用可以让他看起来像是爆炸；\r\n\r\n`trace`：向最近的玩家发射实体；\r\n\r\n`away`：向远离最近的玩家的方向发射实体；\r\n\r\n`one_random_mot`：向随机方向发射实体,但它无法为同时对于多个实体提供不同的随机。",
+        "projectUrl": "https://github.com/Mxpea/Mxpea-s-Multiplayer-Motion-API",
+        "legacyPath": "/wheel/resources/Mxpea_Motion_API.html"
+      },
+      "discovery": {
+        "repositoryArchived": false,
+        "githubUrls": [
+          "https://github.com/Mxpea/Mxpea-s-Multiplayer-Motion-API/tree/v1.3.0"
+        ],
+        "downloadUrls": []
+      },
+      "status": "ready-for-cli-audit",
+      "blockers": []
+    },
+    {
+      "legacyId": "wheel/resources/Neg-Space.md",
+      "legacyFile": "wheel/resources/Neg-Space.md",
+      "legacyPath": "/wheel/resources/Neg-Space.html",
+      "coordinate": "io.github.amberwat:negativespacefont",
+      "version": "5.2.0",
+      "license": "CC-BY-4.0",
+      "licenseBasisUrl": "https://github.com/AmberWat/NegativeSpaceFont/blob/master/LICENSE.txt",
+      "source": {
+        "type": "github-release-asset",
+        "repository": "AmberWat/NegativeSpaceFont",
+        "ref": "v5.2",
+        "asset": "NegativeSpaceFont5_2.zip"
+      },
+      "subdir": null,
+      "nestedZip": null,
+      "minecraft": "1.13+",
+      "dependencies": [],
+      "site": {
+        "name": "Negative Space Font",
+        "description": "便捷地在文本中添加负空格",
+        "cover": "https://vanillalibrary.mcfpp.top/datapack-index/wheel/Neg-Space.png",
+        "authors": [
+          {
+            "name": "Amber",
+            "avatarUrl": "https://vanillalibrary.mcfpp.top/datapack-index/_authors/Amber.png",
+            "links": [
+              {
+                "label": "GitHub",
+                "url": "https://github.com/AmberWat"
+              }
+            ]
+          }
+        ],
+        "tags": [
+          "资源包",
+          "字体",
+          "负空格"
+        ],
+        "gameVersions": [
+          "1.13+"
+        ],
+        "dependencyNotes": null,
+        "details": "Negative Space Font资源包允许你在多个版本中在文本内添加负空格，将接下来的文本整体向左侧偏移，以允许多变的视觉效果，或控制文本片段的总长度。\r\n\r\n该资源包添加了大量的翻译键`{\"translate\": \"space.`<space>`\"}`只要将``<space>``替换为任意数值即可直接成为对应偏移的空格。例如：`{\"translate\": \"space.-11\"}`为负11偏移的空格。\r\n\r\n阅读其官方说明文件（[Github](https://github.com/AmberWat/NegativeSpaceFont/blob/master/README.md)）以获取更多信息。",
+        "projectUrl": "https://github.com/AmberWat/NegativeSpaceFont",
+        "legacyPath": "/wheel/resources/Neg-Space.html"
+      },
+      "discovery": {
+        "repositoryArchived": false,
+        "githubUrls": [
+          "https://github.com/AmberWat/NegativeSpaceFont/blob/master/README.md"
+        ],
+        "downloadUrls": []
+      },
+      "status": "blocked",
+      "blockers": [
+        "pinned-cli:upstream-zip-mixes-data-and-assets"
+      ]
+    },
+    {
+      "legacyId": "wheel/resources/Nutlet.md",
+      "legacyFile": "wheel/resources/Nutlet.md",
+      "legacyPath": "/wheel/resources/Nutlet.html",
+      "coordinate": "io.github.pickleaf:nutlet-mcdatapack",
+      "version": "2.1.1",
+      "license": "LGPL-2.1-only",
+      "licenseBasisUrl": "https://github.com/PickLeaf/Nutlet-MCDatapack/blob/MC26.x/LICENSE",
+      "source": {
+        "type": "github-release-asset",
+        "repository": "PickLeaf/Nutlet-MCDatapack",
+        "ref": "V2.1.1-MC26.x",
+        "asset": "Nutlet_V2.1.1.zip"
+      },
+      "subdir": null,
+      "nestedZip": null,
+      "minecraft": "1.21.1~26.2",
+      "dependencies": [],
+      "site": {
+        "name": "Nutlet（小坚果）",
+        "description": "用于创建简单多方块机器的API与杂项前置",
+        "cover": "https://vanillalibrary.mcfpp.top/datapack-index/wheel/Nutlet_pack.png",
+        "authors": [
+          {
+            "name": "刘拾叶",
+            "avatarUrl": "https://vanillalibrary.mcfpp.top/datapack-index/_authors/PickLeaf.png",
+            "links": [
+              {
+                "label": "Bilibili",
+                "url": "https://space.bilibili.com/20790251"
+              },
+              {
+                "label": "GitHub",
+                "url": "https://github.com/PickLeaf"
+              }
+            ]
+          }
+        ],
+        "tags": [
+          "多方块结构",
+          "投影",
+          "机器"
+        ],
+        "gameVersions": [
+          "1.21.1~26.2"
+        ],
+        "dependencyNotes": null,
+        "details": "一个用于创建简单多方块机器的API，包含\r\n - 简易的增强`schedule`(可以通过命令存储转存NBT)\r\n - 创建临时投影(展示实体，即使区块卸载也会定时消失)\r\n - 根据方块朝向调整命令上下文执行角度(为了使多方块机器能不同朝向放置)\r\n - UUID转换(从数组格式至连字符格式)\r\n - 执行位置亮度获取\r\n - 游戏内可修改的配置项注册。\r\n额外添加了一个带有自定义附魔的书，可以在书中写入文本调用对应函数。这样可以不用进度或射线追踪获取玩家左键的方块，用于多方块机器的创建及投影显示。可以通过#nutlet:spells函数标签添加注册用的函数,并在注册用的函数中注册书调用用的函数及其对应文本。\r\n\r\n阅读其官方说明文件([Github](https://github.com/PickLeaf/Nutlet-MCDatapack))或查看[展示视频](https://www.bilibili.com/video/BV1fPcizJESJ/)以获取更多信息。",
+        "projectUrl": "https://github.com/PickLeaf/Nutlet-MCDatapack",
+        "legacyPath": "/wheel/resources/Nutlet.html"
+      },
+      "discovery": {
+        "repositoryArchived": false,
+        "githubUrls": [
+          "https://github.com/PickLeaf/Nutlet-MCDatapack"
+        ],
+        "downloadUrls": []
+      },
+      "status": "blocked",
+      "blockers": [
+        "pinned-cli:upstream-zip-mixes-data-and-assets"
+      ]
+    },
+    {
+      "legacyId": "wheel/resources/Per-Player-Displays.md",
+      "legacyFile": "wheel/resources/Per-Player-Displays.md",
+      "legacyPath": "/wheel/resources/Per-Player-Displays.html",
+      "coordinate": "io.github.cmdred:per-player-displays",
+      "version": "1.3.0",
+      "license": "MIT",
+      "licenseBasisUrl": "https://github.com/CMDred/Per-Player-Displays/blob/main/LICENSE",
+      "source": null,
+      "subdir": null,
+      "nestedZip": null,
+      "minecraft": "1.21~1.21.4",
+      "dependencies": [],
+      "site": {
+        "name": "Per Player Displays",
+        "description": "创建仅特定玩家可见的展示实体",
+        "cover": null,
+        "authors": [
+          {
+            "name": "SilicatYT",
+            "avatarUrl": "https://vanillalibrary.mcfpp.top/datapack-index/_authors/SilicatYT.png",
+            "links": [
+              {
+                "label": "GitHub",
+                "url": "https://github.com/SilicatYT"
+              }
+            ]
+          },
+          {
+            "name": "CMDred",
+            "avatarUrl": "https://vanillalibrary.mcfpp.top/datapack-index/_authors/CMDred.png",
+            "links": [
+              {
+                "label": "Github",
+                "url": "https://github.com/CMDred"
+              },
+              {
+                "label": "YouTube",
+                "url": "https://www.youtube.com/channel/UCOciQE1CLCQmmxVveggt2Lg"
+              }
+            ]
+          }
+        ],
+        "tags": [
+          "展示实体",
+          "UI"
+        ],
+        "gameVersions": [
+          "1.21~1.21.4"
+        ],
+        "dependencyNotes": null,
+        "details": "本库通过在玩家非常近的位置（\"视网膜上\"）创建可见距离极小的展示实体，以实现只为特定玩家显示展示实体的功能\r\n\r\n阅读其官方说明文件（[Github](https://github.com/CMDred/Per-Player-Displays) | [Modrinth](https://modrinth.com/datapack/per-player-displays)）以获取详细信息。",
+        "projectUrl": "https://github.com/CMDred/Per-Player-Displays",
+        "legacyPath": "/wheel/resources/Per-Player-Displays.html"
+      },
+      "discovery": {
+        "repositoryArchived": false,
+        "githubUrls": [
+          "https://github.com/CMDred/Per-Player-Displays"
+        ],
+        "downloadUrls": []
+      },
+      "status": "blocked",
+      "blockers": [
+        "missing-exact-version-tag-or-release"
+      ]
+    },
+    {
+      "legacyId": "wheel/resources/PlayerDataExpansion.md",
+      "legacyFile": "wheel/resources/PlayerDataExpansion.md",
+      "legacyPath": "/wheel/resources/PlayerDataExpansion.html",
+      "coordinate": "io.github.bybycyann:playerdataexpansion",
+      "version": "1.0.0",
+      "license": "MIT",
+      "licenseBasisUrl": "https://github.com/Bybycyann/PlayerDataExpansion/blob/main/LICENSE",
+      "source": {
+        "type": "github-release-asset",
+        "repository": "Bybycyann/PlayerDataExpansion",
+        "ref": "v1.0.0",
+        "asset": "PlayerDataExpansion-datapack-v1.0.0-mc1.20.3-26.1.zip"
+      },
+      "subdir": null,
+      "nestedZip": null,
+      "minecraft": "1.20.2+",
+      "dependencies": [],
+      "site": {
+        "name": "Player Data Expansion",
+        "description": "在storage中创建玩家专有数据空间",
+        "cover": null,
+        "authors": [
+          {
+            "name": "七柏",
+            "avatarUrl": "https://vanillalibrary.mcfpp.top/datapack-index/_authors/%E4%B8%83%E6%9F%8F.jpg",
+            "links": [
+              {
+                "label": "Bilibili",
+                "url": "https://space.bilibili.com/405830542"
+              }
+            ]
+          }
+        ],
+        "tags": [
+          "玩家数据",
+          "数据"
+        ],
+        "gameVersions": [
+          "1.20.2+"
+        ],
+        "dependencyNotes": null,
+        "details": "以 UUID 作为唯一身份识别码创建的一套玩家数据系统,，旨在便利数据包编写顺带兼顾部分性能需求。\r\n\r\n阅读其官方说明文件 ([Github](https://github.com/Bybycyann/PlayerDataExpansion)) 以获取更多信息。\r\n\r\n以下给出简单使用方法，可能过时。\r\n\r\n\r\n## 函数\r\n\r\n|        函数        |                             功能                             |           参数            |\r\n| :----------------: | :----------------------------------------------------------: | :-----------------------: |\r\n| `#pde:data.cache`  | 读取玩家数据至 `pde:io output[-1].data` 并检查时间戳标记, 若不在同一tick则更新 `pde:io player.data.`<index>`.data.CACHE.data` 并同步至 `pde:io output[-1].data.CAHCE.data` | {player: (\"this\"\\|index)} |\r\n|   `#pde:data.or`   |           读取玩家数据至 `pde:io output[-1].data`            | {player: (\"this\"\\|index)} |\r\n|   `#pde:data.rw`   | 同时创建两个目标玩家数据的备份在 `pde:io input[-1].data` 和 `pde:io output[-1].data` | {player: (\"this\"\\|index)} |\r\n| `#pde:data.update` | 立即更新 `pde:input[-1]` 的数据, 而非统一在 1tick 后更新.\n**安全检查**: 为防止越界操作, 仅当执行者与 `input[-1]` 操作对应目标的索引号一致时允许推送数据 |             -             |\r\n| `#pde:data.reset`  |                 重置索引与所有玩家数据(危险)                 |             -             |\r\n\r\n## 示例\r\n\r\n- **读取玩家UUID和Name**\r\n\r\n  ```mcfunction\r\n  # As player:\r\n\r\n  function #pde:data.or {player: \"this\"}\r\n  \tdata modify storage xxx:xxx uuid set from storage pde:io output[-1].data.CONST.uuid\r\n  \tdata modify storage xxx:xxx name set from storage pde:io output[-1].data.CONST.name\r\n  ```\r\n\r\n- **向索引为2的玩家存储中修改数据和写入数据**\r\n\r\n  ```mcfunction\r\n  function #pde:data.rw {player: 2}\r\n  \tdata modify storage pde:io input[-1].example set value \"test\"\r\n  \tdata modify storage pde:io input[-1] merge {aaa: \"bbb\"}\r\n  ```\r\n\r\n- **向自己的存储中写入新数据并立即更新**\r\n\r\n  ```mcfunction\r\n  function #pde:data.rw {player: \"this\"}\r\n  \tdata modify storage pde:io input[-1] merge {new: 1b}\r\n  function #pde:data.update\r\n  ```\r\n\r\n- **访问玩家数据缓存**\r\n\r\n  ```mcfunction\r\n  function #pde:data.cache {player: \"this\"}\r\n  \tdata get modify storage pde:io output[-1].data.CACHE.data.Health\r\n  ```",
+        "projectUrl": "https://github.com/Bybycyann/PlayerDataExpansion",
+        "legacyPath": "/wheel/resources/PlayerDataExpansion.html"
+      },
+      "discovery": {
+        "repositoryArchived": false,
+        "githubUrls": [
+          "https://github.com/Bybycyann/PlayerDataExpansion"
+        ],
+        "downloadUrls": []
+      },
+      "status": "ready-for-cli-audit",
+      "blockers": []
+    },
+    {
+      "legacyId": "wheel/resources/Player_Input.md",
+      "legacyFile": "wheel/resources/Player_Input.md",
+      "legacyPath": "/wheel/resources/Player_Input.html",
+      "coordinate": "io.github.mulverinex:player_input",
+      "version": "0.1.1",
+      "license": "MIT",
+      "licenseBasisUrl": "https://github.com/MulverineX/player_input/blob/main/LICENSE",
+      "source": {
+        "type": "github-release-asset",
+        "repository": "MulverineX/player_input",
+        "ref": "v0.1.1",
+        "asset": "player_input.zip"
+      },
+      "subdir": null,
+      "nestedZip": null,
+      "minecraft": "1.21.2+",
+      "dependencies": [],
+      "site": {
+        "name": "Player Input",
+        "description": "玩家输入监视器",
+        "cover": "https://vanillalibrary.mcfpp.top/datapack-index/wheel/Player_Input.png",
+        "authors": [
+          {
+            "name": "MulverineX",
+            "avatarUrl": "https://vanillalibrary.mcfpp.top/datapack-index/_authors/MulverineX.png",
+            "links": [
+              {
+                "label": "GitHub",
+                "url": "https://github.com/MulverineX"
+              }
+            ]
+          }
+        ],
+        "tags": [
+          "玩家输入"
+        ],
+        "gameVersions": [
+          "1.21.2+"
+        ],
+        "dependencyNotes": null,
+        "details": "本库可以通过谓词的`input`字段监视玩家的键盘输入，并在输入变化时（按下，抬起，抖动等）时触发指定的函数标签。阅读仓库内的说明文件，或[Smithed网站](https://smithed.net/packs/player_input?tab=readme)上的说明以获取详细信息。",
+        "projectUrl": "https://github.com/MulverineX/player_input",
+        "legacyPath": "/wheel/resources/Player_Input.html"
+      },
+      "discovery": {
+        "repositoryArchived": false,
+        "githubUrls": [],
+        "downloadUrls": []
+      },
+      "status": "ready-for-cli-audit",
+      "blockers": []
+    },
+    {
+      "legacyId": "wheel/resources/Player_Motion.md",
+      "legacyFile": "wheel/resources/Player_Motion.md",
+      "legacyPath": "/wheel/resources/Player_Motion.html",
+      "coordinate": "io.github.mulverinex:player_motion",
+      "version": "1.4.4",
+      "license": "MIT",
+      "licenseBasisUrl": "https://github.com/MulverineX/player_motion/blob/main/LICENSE",
+      "source": {
+        "type": "github-release-asset",
+        "repository": "MulverineX/player_motion",
+        "ref": "v1.4.4",
+        "asset": "player_motion.zip"
+      },
+      "subdir": null,
+      "nestedZip": null,
+      "minecraft": "1.21.2~26.2",
+      "dependencies": [],
+      "site": {
+        "name": "Player Motion",
+        "description": "使用魔咒精确操控玩家动量",
+        "cover": "https://vanillalibrary.mcfpp.top/datapack-index/wheel/Player_Motion.png",
+        "authors": [
+          {
+            "name": "MulverineX",
+            "avatarUrl": "https://vanillalibrary.mcfpp.top/datapack-index/_authors/MulverineX.png",
+            "links": [
+              {
+                "label": "GitHub",
+                "url": "https://github.com/MulverineX"
+              }
+            ]
+          },
+          {
+            "name": "BigPapi",
+            "avatarUrl": "https://vanillalibrary.mcfpp.top/datapack-index/_authors/BigPapi.png",
+            "links": [
+              {
+                "label": "GitHub",
+                "url": "https://github.com/BigPapi13"
+              }
+            ]
+          }
+        ],
+        "tags": [
+          "动量"
+        ],
+        "gameVersions": [
+          "1.21.2~26.2"
+        ],
+        "dependencyNotes": null,
+        "details": "在1.21.10以及之前，本库通过精确地在高空制造爆炸的方式修改玩家的动量。\r\n\r\n在1.21.11之后，本库使用魔咒的`apply_impulse`效果为玩家施加动量。\r\n\r\n阅读仓库内的说明文件以获取详细信息。\r\n\r\n简易的使用方法：\r\n\r\n### 在局部坐标上修改动量（`^ ^ ^`）\r\n\r\n```mcfunction\r\n# Left/Right\r\nscoreboard players set $x player_motion.api.launch 500\r\n# Above/Below\r\nscoreboard players set $y player_motion.api.launch 12000\r\n# Forward/Backward\r\nscoreboard players set $z player_motion.api.launch -3125\r\n\r\nfunction player_motion:api/launch_local_xyz\r\n```\r\n- `$x`, `$y`, `$z` 的单位为方块/一万游戏刻。例：`$z`=`10000`将会将玩家向其面向的方向施加1方块/游戏刻的动量。\r\n- 必须以目标玩家的身份，在其当前位置执行。\r\n\r\n### 在相对坐标上修改动量（`~ ~ ~`）\r\n\r\n```mcfunction\r\nscoreboard players set $x player_motion.api.launch 500\r\nscoreboard players set $y player_motion.api.launch 12000\r\nscoreboard players set $z player_motion.api.launch -3125\r\n\r\nfunction player_motion:api/launch_global_xyz\r\n```",
+        "projectUrl": "https://github.com/MulverineX/player_motion",
+        "legacyPath": "/wheel/resources/Player_Motion.html"
+      },
+      "discovery": {
+        "repositoryArchived": false,
+        "githubUrls": [],
+        "downloadUrls": []
+      },
+      "status": "ready-for-cli-audit",
+      "blockers": []
+    },
+    {
+      "legacyId": "wheel/resources/SK_Dialog_Box.md",
+      "legacyFile": "wheel/resources/SK_Dialog_Box.md",
+      "legacyPath": "/wheel/resources/SK_Dialog_Box.html",
+      "coordinate": "io.github.sksama:sk_dialog_box",
+      "version": "1.0.0",
+      "license": null,
+      "licenseBasisUrl": null,
+      "source": null,
+      "subdir": null,
+      "nestedZip": null,
+      "minecraft": "1.21.5 || 1.21.8",
+      "dependencies": [],
+      "site": {
+        "name": "SK Dialog Box",
+        "description": "Galgame对话框前置包",
+        "cover": null,
+        "authors": [
+          {
+            "name": "SK_SAMA_",
+            "avatarUrl": "https://vanillalibrary.mcfpp.top/datapack-index/_authors/sk.jpg",
+            "links": [
+              {
+                "label": "Bilibili",
+                "url": "https://space.bilibili.com/1546917549"
+              },
+              {
+                "label": "GitHub",
+                "url": "https://github.com/ymqlgthbSakuraDream"
+              },
+              {
+                "label": "Website",
+                "url": "https://ymqlgthbsakuradream.github.io"
+              }
+            ]
+          }
+        ],
+        "tags": [
+          "UI",
+          "展示实体"
+        ],
+        "gameVersions": [
+          "1.21.5",
+          "1.21.8"
+        ],
+        "dependencyNotes": null,
+        "details": "本项目旨在通过简单的方式创建类似Galgame的对话框，且**支持多人并行使用**。\r\n\r\n[>> 展示视频 <<](https://www.bilibili.com/video/BV17HurzQETr/)\r\n\r\n阅读其[官方开发文档](https://ymqlgthbsakuradream.github.io/posts/mc/skdbox/index.html)以获取更多信息。\r\n\r\n### 前置\r\n* [Negative Space Font](/datapack-index/wheel/resources/Neg-Space.html)\r\n* SK API\r\n\r\n![展示图片](https://ymqlgthbsakuradream.github.io/posts/mc/skdbox/index/20250707235217.png)\r\n![展示图片](https://ymqlgthbsakuradream.github.io/posts/mc/skdbox/index/20250707235138.png)\r\n![展示图片](https://ymqlgthbsakuradream.github.io/posts/mc/skdbox/index/20250708003913.png)\r\n![展示图片](https://ymqlgthbsakuradream.github.io/posts/mc/skdbox/index/20250708003930.png)",
+        "projectUrl": null,
+        "legacyPath": "/wheel/resources/SK_Dialog_Box.html"
+      },
+      "discovery": {
+        "repositoryArchived": null,
+        "githubUrls": [],
+        "downloadUrls": []
+      },
+      "status": "blocked",
+      "blockers": [
+        "missing-download-source"
+      ]
+    },
+    {
+      "legacyId": "wheel/resources/ScoreFixer.md",
+      "legacyFile": "wheel/resources/ScoreFixer.md",
+      "legacyPath": "/wheel/resources/ScoreFixer.html",
+      "coordinate": "io.github.cmdred:scorefixer",
+      "version": "1.3.1",
+      "license": "MIT",
+      "licenseBasisUrl": "https://github.com/CMDred/ScoreFixer/blob/main/LICENSE",
+      "source": null,
+      "subdir": null,
+      "nestedZip": null,
+      "minecraft": "1.21.2~26.2",
+      "dependencies": [],
+      "site": {
+        "name": "ScoreFixer",
+        "description": "在玩家变更ID时为其保留记分板上的分数",
+        "cover": "https://vanillalibrary.mcfpp.top/datapack-index/wheel/ScoreFixer.png",
+        "authors": [
+          {
+            "name": "SilicatYT",
+            "avatarUrl": "https://vanillalibrary.mcfpp.top/datapack-index/_authors/SilicatYT.png",
+            "links": [
+              {
+                "label": "GitHub",
+                "url": "https://github.com/SilicatYT"
+              }
+            ]
+          },
+          {
+            "name": "CMDred",
+            "avatarUrl": "https://vanillalibrary.mcfpp.top/datapack-index/_authors/CMDred.png",
+            "links": [
+              {
+                "label": "Github",
+                "url": "https://github.com/CMDred"
+              },
+              {
+                "label": "YouTube",
+                "url": "https://www.youtube.com/channel/UCOciQE1CLCQmmxVveggt2Lg"
+              }
+            ]
+          }
+        ],
+        "tags": [
+          "记分板"
+        ],
+        "gameVersions": [
+          "1.21.2~26.2"
+        ],
+        "dependencyNotes": null,
+        "details": "Minecraft中，玩家分数使用其ID而非UUID记录。这使得玩家在变更ID后会丢失其所有的分数。本库可以解决此问题。它能够在玩家变更ID时自动迁移其分数，也可以读取下线玩家的分数。\r\n\r\n阅读其官方说明文件（[Github](https://github.com/CMDred/ScoreFixer) | [Modrinth](https://modrinth.com/datapack/score-fixer)）以获取详细信息。",
+        "projectUrl": "https://github.com/CMDred/ScoreFixer",
+        "legacyPath": "/wheel/resources/ScoreFixer.html"
+      },
+      "discovery": {
+        "repositoryArchived": false,
+        "githubUrls": [
+          "https://github.com/CMDred/ScoreFixer"
+        ],
+        "downloadUrls": []
+      },
+      "status": "blocked",
+      "blockers": [
+        "missing-exact-version-tag-or-release"
+      ]
+    },
+    {
+      "legacyId": "wheel/resources/Sidebar_UI.md",
+      "legacyFile": "wheel/resources/Sidebar_UI.md",
+      "legacyPath": "/wheel/resources/Sidebar_UI.html",
+      "coordinate": "io.github.dahesor:sidebar-ui",
+      "version": "1.0.0",
+      "license": "GPL-3.0-only",
+      "licenseBasisUrl": "https://github.com/Dahesor/Sidebar-UI/blob/main/LICENSE",
+      "source": {
+        "type": "github-release-asset",
+        "repository": "Dahesor/Sidebar-UI",
+        "ref": "v1.0.0",
+        "asset": "Sidebar.UI.Datapack.zip"
+      },
+      "subdir": null,
+      "nestedZip": null,
+      "minecraft": "1.21.11-26.2",
+      "dependencies": [],
+      "site": {
+        "name": "Sidebar-UI",
+        "description": "使用记分板显示槽位sidebar来提供一个加强版本的侧边栏UI",
+        "cover": null,
+        "authors": [
+          {
+            "name": "Dahesor",
+            "avatarUrl": "https://vanillalibrary.mcfpp.top/datapack-index/_authors/dahesor.jpg",
+            "links": [
+              {
+                "label": "Bilibili",
+                "url": "https://space.bilibili.com/436796403"
+              },
+              {
+                "label": "GitHub",
+                "url": "https://github.com/Dahesor"
+              }
+            ]
+          }
+        ],
+        "tags": [
+          "UI",
+          "侧边栏"
+        ],
+        "gameVersions": [
+          "1.21.11-26.2"
+        ],
+        "dependencyNotes": null,
+        "details": "本库使用记分板显示槽位sidebar来提供一个加强版本的侧边栏UI。借助本数据包你可以轻松地用sidebar显示一些文字和图案：\r\n![image.png](https://github.com/user-attachments/assets/14f86739-21f8-46eb-9539-808e929df68a)\r\n\r\n阅读其官方说明文件（[Github](https://github.com/Dahesor/Sidebar-UI) | [红石中继站](https://www.mczwlt.net/resource/tlzz2akp)）以获取更多信息。",
+        "projectUrl": "https://github.com/Dahesor/Sidebar-UI",
+        "legacyPath": "/wheel/resources/Sidebar_UI.html"
+      },
+      "discovery": {
+        "repositoryArchived": false,
+        "githubUrls": [
+          "https://github.com/user-attachments/assets/14f86739-21f8-46eb-9539-808e929df68a",
+          "https://github.com/Dahesor/Sidebar-UI"
+        ],
+        "downloadUrls": []
+      },
+      "status": "ready-for-cli-audit",
+      "blockers": []
+    },
+    {
+      "legacyId": "wheel/resources/Simple_NPC.md",
+      "legacyFile": "wheel/resources/Simple_NPC.md",
+      "legacyPath": "/wheel/resources/Simple_NPC.html",
+      "coordinate": "io.github.windwavessea:simple-npc",
+      "version": "1.0.0",
+      "license": "MIT",
+      "licenseBasisUrl": "https://github.com/WindWavesSea/Simple-NPC/blob/main/LICENSE",
+      "source": {
+        "type": "github-release-asset",
+        "repository": "WindWavesSea/Simple-NPC",
+        "ref": "V1.0.0",
+        "asset": "Simple_NPC_Data_Pack_v1.0.0.zip"
+      },
+      "subdir": null,
+      "nestedZip": null,
+      "minecraft": "1.21.9+",
+      "dependencies": [],
+      "site": {
+        "name": "简单NPC",
+        "description": "简便地制作原版NPC",
+        "cover": "https://vanillalibrary.mcfpp.top/datapack-index/wheel/simple_npc_cover.png",
+        "authors": [
+          {
+            "name": "洛风澜_Sea",
+            "avatarUrl": "https://vanillalibrary.mcfpp.top/datapack-index/_authors/%E6%B4%9B%E9%A3%8E%E6%BE%9C_Sea.png",
+            "links": [
+              {
+                "label": "Bilibili",
+                "url": "https://space.bilibili.com/3493092078389380"
+              },
+              {
+                "label": "Github",
+                "url": "https://github.com/WindWavesSea"
+              }
+            ]
+          }
+        ],
+        "tags": [
+          "NPC",
+          "实体"
+        ],
+        "gameVersions": [
+          "1.21.9+"
+        ],
+        "dependencyNotes": null,
+        "details": "此库使原版配置NPC更加简单，只需要写storage并执行生成函数即可配置一个属于你的NPC。\r\n\r\n支持以下功能：\r\n\r\n* 自定义NPC上方的悬浮字。\r\n* 自定义NPC皮肤。\r\n* 右键NPC运行指令或函数。\r\n\r\n以下说明可能过时，请以其[官方文档](https://github.com/WindWavesSea/Simple-NPC/blob/main/README.md)为准。\r\n\r\n## Storage结构\r\n### 默认结构(不开启自定义配置)\r\n\r\n\r\n`name`（compound） 此键名需和name标签一致。\r\n- `name`（string，必填）NPC名称。\r\n- `zone`（string，必填）NPC生成的区域。\r\n- `config`（compound） 配置选项。\r\n  - `custom_settings`（bool，必填）自定义配置。\r\n  - `look_player`（bool）NPC是否看向玩家。\r\n  - `default_orientation`（string）默认朝向( 如果使用look_player此项为必填)。\r\n- `text`（compound，必填）悬浮字。\r\n  - `pos`（compound，必填）坐标。\r\n    - `x`（float，必填） x坐标。\r\n    - `y`（float，必填） y坐标。\r\n    - `z`（float，必填） z坐标。\r\n  - `text`（list，必填） 内含[文本组件](https://zh.minecraft.wiki/w/文本组件)。\r\n- `npc`（compound，必填）玩家模型配置。\r\n  - `pos`（compound，必填）坐标。\r\n    - `x`（float，必填） x坐标。\r\n    - `y`（float，必填） y坐标。\r\n    - `z`（float，必填） z坐标。\r\n  - `model`（string，必填） 玩家模型类型。\r\n  - `texture`（string，必填） 玩家皮肤<命名空间>:textures/<路径>.png或皮肤链接。\r\n- `right_click`（compound）右键NPC执行。\r\n  - `command`（string）右键执行的指令( 与function任选其一配置)。\r\n  - `function`（string）右键执行的函数( 与command任选其一配置)。\r\n\r\n\r\n\r\n### 自定义配置结构(开启自定义配置)\r\n\r\n\r\n`name`（compound） 此键名需和name标签一致。\r\n- `name`（string，必填）NPC名称。\r\n- `zone`（string，必填）NPC生成的区域。\r\n- `config`（compound） 配置选项。\r\n  - `custom_settings`（bool，必填）自定义配置( 应该为true )。\r\n  - `look_player`（bool）NPC是否看向玩家。\r\n  - `default_orientation`（string）默认朝向(如果使用look_player此项为必填)。\r\n- `text`（compound，必填）悬浮字。\r\n  - `pos`（compound，必填）坐标。\r\n    - `x`（float，必填） x坐标。\r\n    - `y`（float，必填） y坐标。\r\n    - `z`（float，必填） z坐标。\r\n  - `data`（compound，必填） 参看文本展示实体的[实体数据](https://zh.minecraft.wiki/w/展示实体#实体数据)配置\r\n- `npc`（compound，必填）玩家模型配置。\r\n  - `pos`（compound，必填）坐标。\r\n    - `x`（float，必填） x坐标。\r\n    - `y`（float，必填） y坐标。\r\n    - `z`（float，必填） z坐标。\r\n  - `data`（compound，必填） 参看玩家模型[实体数据](https://zh.minecraft.wiki/w/玩家模型#实体数据)配置\r\n- `right_click`（compound）右键NPC执行。\r\n  - `command`（string）右键执行的指令(与function任选其一配置)。\r\n  - `function`（string）右键执行的函数(与command任选其一配置)。\r\n\r\n\r\n\r\n### 示例storage\r\n\r\n默认配置\r\n```mcfunction\r\ndata modify storage windwaves_sea:npc root.npc_setting merge value {\\\r\n    test:{\\\r\n        name:\"test\",\\\r\n        zone:\"test\",\\\r\n        config:{\\\r\n            custom_settings:false,\\\r\n            look_player:true\\\r\n        },\\\r\n        text:{\\\r\n            pos:{x:1,y:1,z:1},\\\r\n            text:[{text:\"1\"}]\\\r\n        },\\\r\n        npc:{\\\r\n            pos:{x:1,y:1,z:1},\\\r\n            model:\"wide\",\\\r\n            texture:\"lobby:npc/start_game\",\\\r\n            rotation:[180,0]\\\r\n        },\\\r\n        right_click:{\\\r\n            command:\"\",\\(function:\"\"\\)\r\n        }\\\r\n    }\\\r\n}\r\n```\r\n自定义配置\r\n```mcfunction\r\ndata modify storage windwaves_sea:npc root.npc_setting merge value {\\\r\n    test_custom:{\\\r\n        name:\"test_custom\",\\\r\n        zone:\"test\",\\\r\n        config:{\\\r\n            custom_settings:true,\\\r\n            look_player:true,\\\r\n            default_orientation:\"north\" \\\r\n        },\\\r\n        text:{\\\r\n            pos:{x:1,y:1,z:1},\\\r\n            data:{}\\\r\n        },\\\r\n        npc:{\\\r\n            pos:{x:1,y:1,z:1},\\\r\n            data:{}\\\r\n        },\\\r\n        right_click:{\\\r\n            function:\"\"\\(command:\"\"\\)\r\n        }\\\r\n    }\\\r\n}\r\n```\r\n### 指令解析\r\n\r\n#### 生成NPC\r\n```mcfunction\r\nfunction npc:summon {name:\"name\"}\r\n```\r\n\r\n生成NPC，需先写入配置，不可重复生成，name为上方配置中的NPC名称（下文相同）。\r\n\r\n#### 清除NPC\r\n```mcfunction\r\nfunction npc:remove/npc {name:\"name\"}\r\n```\r\n\r\n### 删除配置( 同时清除NPC )\r\n```mcfunction\r\nfunction npc:remove/setting {name:\"name\"}\r\n```\r\n\r\n---\r\n## 下载\r\nQQ群：117464315\r\n\r\nGithub：https://github.com/WindWavesSea/Simple-NPC/\r\n\r\nModrinth: https://modrinth.com/datapack/simple-npc",
+        "projectUrl": "https://github.com/WindWavesSea/Simple-NPC",
+        "legacyPath": "/wheel/resources/Simple_NPC.html"
+      },
+      "discovery": {
+        "repositoryArchived": false,
+        "githubUrls": [
+          "https://github.com/WindWavesSea/Simple-NPC/blob/main/README.md",
+          "https://github.com/WindWavesSea/Simple-NPC/"
+        ],
+        "downloadUrls": []
+      },
+      "status": "blocked",
+      "blockers": [
+        "pinned-cli:upstream-pack-mcmeta-is-invalid-json"
+      ]
+    },
+    {
+      "legacyId": "wheel/resources/StringLib.md",
+      "legacyFile": "wheel/resources/StringLib.md",
+      "legacyPath": "/wheel/resources/StringLib.html",
+      "coordinate": "io.github.cmdred:stringlib",
+      "version": "0.1.0",
+      "license": "MIT",
+      "licenseBasisUrl": "https://github.com/CMDred/StringLib/blob/main/LICENSE",
+      "source": {
+        "type": "github-archive",
+        "repository": "CMDred/StringLib",
+        "ref": "0.1.0"
+      },
+      "subdir": null,
+      "nestedZip": null,
+      "minecraft": "1.21.5~1.21.8",
+      "dependencies": [],
+      "site": {
+        "name": "StringLib",
+        "description": "字符串操作库",
+        "cover": "https://vanillalibrary.mcfpp.top/datapack-index/wheel/StringLib.png",
+        "authors": [
+          {
+            "name": "SilicatYT",
+            "avatarUrl": "https://vanillalibrary.mcfpp.top/datapack-index/_authors/SilicatYT.png",
+            "links": [
+              {
+                "label": "GitHub",
+                "url": "https://github.com/SilicatYT"
+              }
+            ]
+          },
+          {
+            "name": "CMDred",
+            "avatarUrl": "https://vanillalibrary.mcfpp.top/datapack-index/_authors/CMDred.png",
+            "links": [
+              {
+                "label": "Github",
+                "url": "https://github.com/CMDred"
+              },
+              {
+                "label": "YouTube",
+                "url": "https://www.youtube.com/channel/UCOciQE1CLCQmmxVveggt2Lg"
+              }
+            ]
+          }
+        ],
+        "tags": [
+          "字符串"
+        ],
+        "gameVersions": [
+          "1.21.5~1.21.8"
+        ],
+        "dependencyNotes": null,
+        "details": "本库提供了大量字符串操作手段，比如拼接，大小写，搜索，切割，插入等。注意本库无法处理带有转义字符的字符串。\r\n\r\n不同功能的使用方式均被写入对应函数`stringlib:util/...`的注释中。阅读其官方说明文件（[Github](https://github.com/CMDred/StringLib) | [Modrinth](https://modrinth.com/datapack/stringlib)）以获取详细信息。",
+        "projectUrl": "https://github.com/CMDred/StringLib",
+        "legacyPath": "/wheel/resources/StringLib.html"
+      },
+      "discovery": {
+        "repositoryArchived": false,
+        "githubUrls": [
+          "https://github.com/CMDred/StringLib"
+        ],
+        "downloadUrls": []
+      },
+      "status": "ready-for-cli-audit",
+      "blockers": []
+    },
+    {
+      "legacyId": "wheel/resources/TL_lite.md",
+      "legacyFile": "wheel/resources/TL_lite.md",
+      "legacyPath": "/wheel/resources/TL_lite.html",
+      "coordinate": "io.github.xuanyu1725:tl_lite",
+      "version": "1.0.0",
+      "license": null,
+      "licenseBasisUrl": null,
+      "source": null,
+      "subdir": null,
+      "nestedZip": null,
+      "minecraft": "1.21.11+",
+      "dependencies": [],
+      "site": {
+        "name": "轻量级场景对话框",
+        "description": "轻量级场景对话框前置",
+        "cover": null,
+        "authors": [
+          {
+            "name": "轩宇1725",
+            "avatarUrl": "https://vanillalibrary.mcfpp.top/datapack-index/_authors/%E8%BD%A9%E5%AE%871725.jpg",
+            "links": [
+              {
+                "label": "Bilibili",
+                "url": "https://space.bilibili.com/104432208"
+              }
+            ]
+          }
+        ],
+        "tags": [
+          "对话框",
+          "对话框",
+          "动画"
+        ],
+        "gameVersions": [
+          "1.21.11+"
+        ],
+        "dependencyNotes": null,
+        "details": "轻量级的场景对话框前置，高度可自定义，支持文本组件。\r\n\r\n - 让文本逐个出现的打字机动画，可自定义\r\n - 支持文本组件样式\r\n - 可自定义音效\r\n\r\n灵感项目：[https://modrinth.com/datapack/title-writer/version/1.2](https://modrinth.com/datapack/title-writer/version/1.2)\r\n\r\n\r\n阅读其官方说明文件（[Github](https://github.com/XuanYu1725/TL_lite)）以获取详细信息。",
+        "projectUrl": "https://github.com/XuanYu1725/TL_lite",
+        "legacyPath": "/wheel/resources/TL_lite.html"
+      },
+      "discovery": {
+        "repositoryArchived": false,
+        "githubUrls": [
+          "https://github.com/XuanYu1725/TL_lite"
+        ],
+        "downloadUrls": []
+      },
+      "status": "blocked",
+      "blockers": [
+        "missing-exact-version-tag-or-release",
+        "missing-spdx-license"
+      ]
+    },
+    {
+      "legacyId": "wheel/resources/TheSaltsTextEffect.md",
+      "legacyFile": "wheel/resources/TheSaltsTextEffect.md",
+      "legacyPath": "/wheel/resources/TheSaltsTextEffect.html",
+      "coordinate": "io.github.thesalts:text_effects",
+      "version": "1.1.5",
+      "license": "MIT",
+      "licenseBasisUrl": "https://github.com/TheSalts/Text_Effects/blob/main/LICENSE",
+      "source": null,
+      "subdir": null,
+      "nestedZip": null,
+      "minecraft": "1.21.10-26.1",
+      "dependencies": [],
+      "site": {
+        "name": "The Salt's Text Effect",
+        "description": "着色器制作的动态文字效果",
+        "cover": "https://vanillalibrary.mcfpp.top/datapack-index/wheel/TheSaltTextEffect.gif",
+        "authors": [
+          {
+            "name": "The Salts",
+            "avatarUrl": "https://vanillalibrary.mcfpp.top/datapack-index/_authors/The_Salts.png",
+            "links": [
+              {
+                "label": "GitHub",
+                "url": "https://github.com/TheSalts"
+              }
+            ]
+          }
+        ],
+        "tags": [
+          "字体",
+          "着色器",
+          "资源包"
+        ],
+        "gameVersions": [
+          "1.21.10-26.1"
+        ],
+        "dependencyNotes": null,
+        "details": "本资源包可以向游戏中的任意文字添加动态的效果，比如扭曲，抖动，弹跳等。\r\n\r\n想要查看如何使用，查阅其官方说明([GitHub](https://github.com/TheSalts/Text_Effects))。\r\n\r\n![效果示意](/public/wheel/TheSaltTextEffect.gif)",
+        "projectUrl": "https://github.com/TheSalts/Text_Effects",
+        "legacyPath": "/wheel/resources/TheSaltsTextEffect.html"
+      },
+      "discovery": {
+        "repositoryArchived": false,
+        "githubUrls": [
+          "https://github.com/TheSalts/Text_Effects"
+        ],
+        "downloadUrls": []
+      },
+      "status": "blocked",
+      "blockers": [
+        "missing-exact-version-tag-or-release"
+      ]
+    },
+    {
+      "legacyId": "wheel/resources/TimeLib.md",
+      "legacyFile": "wheel/resources/TimeLib.md",
+      "legacyPath": "/wheel/resources/TimeLib.html",
+      "coordinate": "io.github.cmdred:timelib",
+      "version": "2.3.1",
+      "license": "MIT",
+      "licenseBasisUrl": "https://github.com/CMDred/TimeLib/blob/main/LICENSE",
+      "source": null,
+      "subdir": null,
+      "nestedZip": null,
+      "minecraft": "1.21~1.21.8",
+      "dependencies": [],
+      "site": {
+        "name": "TimeLib",
+        "description": "使用玩家头颅的签名信息获取现实时间",
+        "cover": "https://vanillalibrary.mcfpp.top/datapack-index/wheel/TimeLib.png",
+        "authors": [
+          {
+            "name": "SilicatYT",
+            "avatarUrl": "https://vanillalibrary.mcfpp.top/datapack-index/_authors/SilicatYT.png",
+            "links": [
+              {
+                "label": "GitHub",
+                "url": "https://github.com/SilicatYT"
+              }
+            ]
+          },
+          {
+            "name": "BananaRedPanda",
+            "avatarUrl": "https://vanillalibrary.mcfpp.top/datapack-index/_authors/BananaRedPanda.png",
+            "links": [
+              {
+                "label": "YouTube",
+                "url": "https://www.youtube.com/channel/UCOciQE1CLCQmmxVveggt2Lg"
+              }
+            ]
+          },
+          {
+            "name": "CMDred",
+            "avatarUrl": "https://vanillalibrary.mcfpp.top/datapack-index/_authors/CMDred.png",
+            "links": [
+              {
+                "label": "Github",
+                "url": "https://github.com/CMDred"
+              },
+              {
+                "label": "YouTube",
+                "url": "https://www.youtube.com/channel/UCOciQE1CLCQmmxVveggt2Lg"
+              }
+            ]
+          }
+        ],
+        "tags": [
+          "展示实体",
+          "UI"
+        ],
+        "gameVersions": [
+          "1.21~1.21.8"
+        ],
+        "dependencyNotes": null,
+        "details": "本库使用玩家头颅的签名信息获取现实时间。1.21.9或更高的版本已无法使用。\r\n\r\n阅读其官方说明文件（[Github](https://github.com/CMDred/TimeLib) | [Modrinth](https://modrinth.com/datapack/timelib)）以获取详细信息。",
+        "projectUrl": "https://github.com/CMDred/TimeLib",
+        "legacyPath": "/wheel/resources/TimeLib.html"
+      },
+      "discovery": {
+        "repositoryArchived": false,
+        "githubUrls": [
+          "https://github.com/CMDred/TimeLib"
+        ],
+        "downloadUrls": []
+      },
+      "status": "blocked",
+      "blockers": [
+        "missing-exact-version-tag-or-release"
+      ]
+    },
+    {
+      "legacyId": "wheel/resources/Traditional-to-Simplified.md",
+      "legacyFile": "wheel/resources/Traditional-to-Simplified.md",
+      "legacyPath": "/wheel/resources/Traditional-to-Simplified.html",
+      "coordinate": "io.github.rain156:traditional-to-simplified",
+      "version": "0.0.2",
+      "license": "MIT",
+      "licenseBasisUrl": "https://github.com/Rain156/Traditional-to-Simplified/blob/main/LICENSE",
+      "source": null,
+      "subdir": null,
+      "nestedZip": null,
+      "minecraft": "1.20+",
+      "dependencies": [],
+      "site": {
+        "name": "中文繁转简字体",
+        "description": "直接在字体层面将繁体中文转换为简体中文",
+        "cover": "https://vanillalibrary.mcfpp.top/datapack-index/wheel/Traditional-to-Simplified.png",
+        "authors": [
+          {
+            "name": "Rain_G",
+            "avatarUrl": "https://vanillalibrary.mcfpp.top/datapack-index/_authors/Rain_G.jpg",
+            "links": [
+              {
+                "label": "GitHub",
+                "url": "https://github.com/Rain156"
+              },
+              {
+                "label": "Bilibili",
+                "url": "https://space.bilibili.com/349137092"
+              }
+            ]
+          }
+        ],
+        "tags": [
+          "资源包",
+          "字体"
+        ],
+        "gameVersions": [
+          "1.20+"
+        ],
+        "dependencyNotes": null,
+        "details": "此处提供了一个`unifont.zip`文件，可以直接在字体层面将繁体中文转换为简体中文。",
+        "projectUrl": "https://github.com/Rain156/Traditional-to-Simplified",
+        "legacyPath": "/wheel/resources/Traditional-to-Simplified.html"
+      },
+      "discovery": {
+        "repositoryArchived": false,
+        "githubUrls": [],
+        "downloadUrls": []
+      },
+      "status": "blocked",
+      "blockers": [
+        "missing-exact-version-tag-or-release"
+      ]
+    },
+    {
+      "legacyId": "wheel/resources/UIN.md",
+      "legacyFile": "wheel/resources/UIN.md",
+      "legacyPath": "/wheel/resources/UIN.html",
+      "coordinate": "io.github.ououn:uin",
+      "version": "2.0.2+0",
+      "license": "MIT",
+      "licenseBasisUrl": "https://github.com/ououn/UIN/blob/master/LICENSE",
+      "source": {
+        "type": "github-archive",
+        "repository": "ououn/UIN",
+        "ref": "v2.0.2.0"
+      },
+      "subdir": null,
+      "nestedZip": null,
+      "minecraft": "1.14.4-1.18.2",
+      "dependencies": [],
+      "site": {
+        "name": "UIN——标签分类",
+        "description": "提供大量的实用标签，为方块，物品，和实体类型提供多种分类",
+        "cover": null,
+        "authors": [
+          {
+            "name": "ououn",
+            "avatarUrl": "https://vanillalibrary.mcfpp.top/datapack-index/_authors/ououn.png",
+            "links": [
+              {
+                "label": "GitHub",
+                "url": "https://github.com/ououn"
+              }
+            ]
+          }
+        ],
+        "tags": [
+          "标签"
+        ],
+        "gameVersions": [
+          "1.14.4-1.18.2"
+        ],
+        "dependencyNotes": null,
+        "details": "UIN标签分类数据包提供了大量的方块，物品，和实体类型标签以供数据包使用。（例如，所有红石元件，所有燃料物品，所有没有方块状态的方块等）。",
+        "projectUrl": "https://github.com/ououn/UIN",
+        "legacyPath": "/wheel/resources/UIN.html"
+      },
+      "discovery": {
+        "repositoryArchived": false,
+        "githubUrls": [],
+        "downloadUrls": []
+      },
+      "status": "ready-for-cli-audit",
+      "blockers": []
+    },
+    {
+      "legacyId": "wheel/resources/Useful Predicates.md",
+      "legacyFile": "wheel/resources/Useful Predicates.md",
+      "legacyPath": "/wheel/resources/Useful Predicates.html",
+      "coordinate": "io.github.hereafterdestruction:useful-predicates",
+      "version": "1.0.0",
+      "license": null,
+      "licenseBasisUrl": null,
+      "source": null,
+      "subdir": null,
+      "nestedZip": null,
+      "minecraft": "~1.20.4",
+      "dependencies": [],
+      "site": {
+        "name": "Useful Predicates",
+        "description": "提供大量的实用谓词",
+        "cover": null,
+        "authors": [
+          {
+            "name": "HereAfterDestruction",
+            "avatarUrl": null,
+            "links": []
+          }
+        ],
+        "tags": [
+          "谓词"
+        ],
+        "gameVersions": [
+          "~1.20.4"
+        ],
+        "dependencyNotes": null,
+        "details": "[本库](https://github.com/HereAfterDestruction/Useful-Predicates)提供了海量的谓词，可以检查当前生物群系，维度，方块属性，结构，天气，亮度，各种实体子谓词，等等等。",
+        "projectUrl": "https://github.com/HereAfterDestruction/Useful-Predicates",
+        "legacyPath": "/wheel/resources/Useful Predicates.html"
+      },
+      "discovery": {
+        "repositoryArchived": false,
+        "githubUrls": [
+          "https://github.com/HereAfterDestruction/Useful-Predicates"
+        ],
+        "downloadUrls": []
+      },
+      "status": "blocked",
+      "blockers": [
+        "missing-exact-version-tag-or-release",
+        "missing-spdx-license"
+      ]
+    },
+    {
+      "legacyId": "wheel/resources/VVE.md",
+      "legacyFile": "wheel/resources/VVE.md",
+      "legacyPath": "/wheel/resources/VVE.html",
+      "coordinate": "io.github.xiaodou8593:vve3.0",
+      "version": "3.0.3",
+      "license": "MIT",
+      "licenseBasisUrl": "https://github.com/xiaodou8593/vve3.0/blob/main/LICENSE",
+      "source": {
+        "type": "github-archive",
+        "repository": "xiaodou8593/vve3.0",
+        "ref": "v3.0.3"
+      },
+      "subdir": null,
+      "nestedZip": null,
+      "minecraft": "1.21.5-26.2",
+      "dependencies": [],
+      "site": {
+        "name": "VVE薇薇伊物理引擎",
+        "description": "原版高性能物理引擎",
+        "cover": "https://vanillalibrary.mcfpp.top/datapack-index/wheel/vve.png",
+        "authors": [
+          {
+            "name": "小豆8593",
+            "avatarUrl": "https://vanillalibrary.mcfpp.top/datapack-index/_authors/%E5%B0%8F%E8%B1%868593.jpg",
+            "links": [
+              {
+                "label": "Bilibili",
+                "url": "https://space.bilibili.com/206987540"
+              },
+              {
+                "label": "GitHub",
+                "url": "https://github.com/xiaodou8593"
+              }
+            ]
+          }
+        ],
+        "tags": [
+          "物理引擎"
+        ],
+        "gameVersions": [
+          "1.21.5-26.2"
+        ],
+        "dependencyNotes": null,
+        "details": "> [!IMPORTANT]\r\n> 薇薇伊需要[小豆数学库](./xiaodou_math)和[小豆线性代数库](./math3.0_lalib)作为前置\r\n\r\nVVE（Vanilla Vehicle Engine）是一款由小豆8593（`xiaodou123`）开发的原版 Minecraft 物理引擎数据包，以性能和实用性为主。\r\n\r\n请阅读其[说明文档](https://github.com/xiaodou8593/vve3.0)以获知如何使用。\r\n\r\nVVE支持设计质点物理模型，刚体物理模型，和静止不动的介质（如斜坡）。\\\r\nVVE支持惯性张量计算，有对性能的精确把控，可以支持上百个物理体同时模拟。\\\r\n使用VVE可以制作诸如手雷，载具，骰子（或者模拟路易十六变成滚动的脑袋）等可以旋转，移动，反弹，并对重力和水中浮力等做出响应的实体。\r\n\r\n - 介绍视频：https://www.bilibili.com/video/BV13Egx6pEHf\r\n - 用途展示，路易十六脑袋滚动：https://www.bilibili.com/video/BV19CKL6SEVz",
+        "projectUrl": "https://github.com/xiaodou8593/vve3.0",
+        "legacyPath": "/wheel/resources/VVE.html"
+      },
+      "discovery": {
+        "repositoryArchived": false,
+        "githubUrls": [
+          "https://github.com/xiaodou8593/vve3.0"
+        ],
+        "downloadUrls": []
+      },
+      "status": "ready-for-cli-audit",
+      "blockers": []
+    },
+    {
+      "legacyId": "wheel/resources/VanillaVideoPlayer.md",
+      "legacyFile": "wheel/resources/VanillaVideoPlayer.md",
+      "legacyPath": "/wheel/resources/VanillaVideoPlayer.html",
+      "coordinate": "io.github.windwavessea:minecraft-vanilla-video-player",
+      "version": "1.0.0",
+      "license": "MIT",
+      "licenseBasisUrl": "https://github.com/WindWavesSea/Minecraft-Vanilla-Video-Player/blob/main/LICENSE",
+      "source": {
+        "type": "github-release-asset",
+        "repository": "WindWavesSea/Minecraft-Vanilla-Video-Player",
+        "ref": "rv1.0.0",
+        "asset": "vanilla_video_player_datapack_rv1.0.0.zip"
+      },
+      "subdir": null,
+      "nestedZip": null,
+      "minecraft": "1.21.11+",
+      "dependencies": [],
+      "site": {
+        "name": "Vanilla Video Player",
+        "description": "基于数据包与资源包的视频播放前置",
+        "cover": null,
+        "authors": [
+          {
+            "name": "洛风澜_Sea",
+            "avatarUrl": "https://vanillalibrary.mcfpp.top/datapack-index/_authors/%E6%B4%9B%E9%A3%8E%E6%BE%9C_Sea.png",
+            "links": [
+              {
+                "label": "Bilibili",
+                "url": "https://space.bilibili.com/3493092078389380"
+              },
+              {
+                "label": "Github",
+                "url": "https://github.com/WindWavesSea"
+              }
+            ]
+          }
+        ],
+        "tags": [
+          "视频",
+          "GUI"
+        ],
+        "gameVersions": [
+          "1.21.11+"
+        ],
+        "dependencyNotes": null,
+        "details": "以下使用说明可能不是最新，请以Github中的文档为准。\r\n\r\n## 使用说明\r\n### 视频要求\r\n-  使用加速游戏刻播放60帧视频\r\n-  使用插帧播放60帧视频\r\n\r\n### 数据包内配置\r\n- 参数解析\r\n###\t原理\r\n\r\n## 视频要求\r\n\r\n需要为图片序列(.png格式）\r\n\r\n### 使用加速游戏刻播放60帧视频 ###\r\n\r\n视频最好为20帧的，如果使用60帧的视频需要将[tick](http://https://zh.minecraft.wiki/w/%E5%91%BD%E4%BB%A4/tick)设置为60\r\n\r\n    /tick rate 60\r\n设置目标[游戏刻](https://zh.minecraft.wiki/w/%E5%88%BB?variant=zh-cn#%E6%B8%B8%E6%88%8F%E5%88%BB)速率。\r\n\r\n### 使用插帧播放60帧视频 ###\r\n\r\n视频配置中frame_rate是原视频帧率，如果视频为60帧可以这样配置\r\n\r\n    frame_rate:60\r\n\r\n## 数据包内配置\r\n### 参数解析\r\n#### frame_zero\r\n查看第一个图片的变化一般为全0，查看最后一个0前面有几个0，将这些0写到frame_zero里，如video0000.png应该将000写如，\r\n如下\r\n     {frame_zero:\"000\"}\r\n#### frame(帧数)\r\n用来控制玩家目前播放的视频帧(图片)\r\n例如{frame:1}\r\n#### path（路径)\r\n用来指定视频输出的物品文件位置\r\n例如\r\n     {video:text_video/}\r\n\r\n#### name (视频名称)\r\n用来匹配帧号前的名称,**注意: 如果使用blender请按照情况填写blender_name**\r\n例如 video0000.png 数字前面的video就是名称，因此此处应该这样写\r\n     {name:\"video\"}\r\n名称建议越短越好(因为使用宏，字符越少性能消耗越少)\r\n\r\n#### blender\r\n使用blender输出的图片序列请开启此选项\r\n\t{blender:\"true/false\"}\r\n\r\n#### blender_name\r\n使用blender请留空(不用blender无限填写)\r\n**如果帧号前有名称请按照上方视频名称提到的方式填写**\r\n\t{blender_name:\"\"}\r\n\r\n#### frame_rate(帧率)\r\n用于**自定义帧率**, **只支持服务器**使用，服务器使用需要设置\r\n       function-permission-level=3\r\n如果**不是服务器也需要填写视频实际帧率用于自适应帧率**，如果服务器需要使用请**自行在start/start_macros0开启$tick rate $(frame_rate)将号删除即可**，**如果需要还原游戏刻请在stop里写上$tick rate 20**\r\n#### sound(视频声音)\r\n**需要开启sound_switch才能使用**\r\n如果视频有声音需要在此写上sounds.json定义的视频声音播放 参考playsound来写\r\n#### sound_switch(声音是否启用)\r\n输入false/true来控制声音是否开启/视频是否需要播放声音                 {sound_switch:\"false/true\"}\r\n#### max_frame(最大帧数)\r\n视频的最大帧数\r\n\r\n### 示例\r\n#### 视频播放配置\r\n##### Function\r\n```mcfunction\r\n    data merge storage video:video_text \\\r\n\t{\\\r\n\tframe_zero:\"000\",\\\r\n\tframe:\"0\",\\\r\n\tpath:\"animation:video_text/\",\\\r\n\tname:\"video\",\\\r\n\tframe_rate:\"60\",\\\r\n\tsound:\"animation:video_text\",\\\r\n\tsound_switch:true,\\\r\n\tmax_frame:6739,\\\r\n\tblender:\"false\",\\\r\n\tblender_name:\"\",\\\r\n\t}\r\n\r\n\tscoreboard players set #video_text video_frame 6739\r\n```\r\n##### 资源包配置\r\n#### sounds.json\r\n```json\r\n{\r\n    \"video_text\":{\r\n        \"sounds\":[\r\n            {\r\n                \"name\": \"animation:video/video_text\",\r\n                \"stream\": true,\r\n              \t\"volume\": 0.8,\r\n               \t\"weight\": 1\r\n            }\r\n      \t]\r\n   \t},\r\n\t\"\":{\r\n        \"name\": \"\",\r\n        \"stream\": true,\r\n        \"volume\": 0.8,\r\n        \"weight\": 1\r\n\t}\r\n}\r\n\r\n```\r\n其中**video_text**应写在sound配置项中\r\n\r\n\t{sound:\"video_text\"}\r\n\r\n你可以添加很多这种配置来添加新的视频声音\r\n事例下方为空白模板\r\n\r\n更多配置内容可以看\r\n[JAVA版声音事件](https://zh.minecraft.wiki/w/Java%E7%89%88%E5%A3%B0%E9%9F%B3%E4%BA%8B%E4%BB%B6)\r\n\r\n你可以在[资源包](https://zh.minecraft.wiki/w/%E8%B5%84%E6%BA%90%E5%8C%85)内的纹理文件夹里新建一个名为Video的视频文件夹存放图片序列\r\n     video/video_text/video0000.png\r\n     video/video_text/video....\r\n如果**命名空间**为video\r\n那么**path**可以这样写\r\n     {video:video/video_text}\r\n\r\n## 原理\r\n### **可以参考**\r\n\r\n### 装备遮罩（camera_overlay）的一点研究\r\n\r\n##### by CR_019\r\n\r\n[点击查看](https://vanillalibrary.mcfpp.top/datapack-index/resources/dust/2/2-%E8%A3%85%E5%A4%87%E9%81%AE%E7%BD%A9.html)\r\n\r\n# 指令\r\n\r\n## 播放\r\n\r\n### 使用/function播放\r\n\r\n\t/function animations:start {video_name:\"video_name\"}\r\n\r\n### video_name就是上文data中写入的字符串\r\n\r\n## 终止播放\r\n\t/function animations:stop\r\n\r\n## 暂停播放\r\n\t/function animations:pause\r\n\r\n## 继续播放\r\n\t/function animations:continue_play\r\n\r\n## 删除单个玩家的播放设置\r\n\tfunction animations:player_video_play/storages/delete/delete_player {name:\"name\"}\r\n\r\n**name**为玩家名\r\n\r\n## 删除所有玩家的播放设置\r\n\tfunction animations:player_video_play/storages/delete/all_storages/delete",
+        "projectUrl": "https://github.com/WindWavesSea/Minecraft-Vanilla-Video-Player",
+        "legacyPath": "/wheel/resources/VanillaVideoPlayer.html"
+      },
+      "discovery": {
+        "repositoryArchived": false,
+        "githubUrls": [],
+        "downloadUrls": []
+      },
+      "status": "ready-for-cli-audit",
+      "blockers": []
+    },
+    {
+      "legacyId": "wheel/resources/WireframeDisplay.md",
+      "legacyFile": "wheel/resources/WireframeDisplay.md",
+      "legacyPath": "/wheel/resources/WireframeDisplay.html",
+      "coordinate": "io.github.halbfettkaese:wireframedisplay",
+      "version": "1.1.0",
+      "license": "MIT",
+      "licenseBasisUrl": "https://github.com/HalbFettKaese/WireframeDisplay/blob/main/LICENSE",
+      "source": null,
+      "subdir": null,
+      "nestedZip": null,
+      "minecraft": "1.21-1.21.4",
+      "dependencies": [],
+      "site": {
+        "name": "WireframeDisplay",
+        "description": "允许简便地创建一个类原版线框",
+        "cover": "https://vanillalibrary.mcfpp.top/datapack-index/wheel/WireframeDisplay.png",
+        "authors": [
+          {
+            "name": "HalbFettKaese",
+            "avatarUrl": "https://vanillalibrary.mcfpp.top/datapack-index/_authors/HalbFettKaese.png",
+            "links": [
+              {
+                "label": "GitHub",
+                "url": "https://github.com/HalbFettKaese"
+              }
+            ]
+          }
+        ],
+        "tags": [
+          "资源包",
+          "着色器"
+        ],
+        "gameVersions": [
+          "1.21-1.21.4"
+        ],
+        "dependencyNotes": null,
+        "details": "一个允许展示实体显示线框的小型资源包。\r\n\r\n阅读其官方说明文件（[Github](https://github.com/HalbFettKaese/WireframeDisplay)）以获取详细信息。\r\n\r\n示例：\r\n```mcfunction\r\n# 生成白色线框(类似F3 + B):\r\n/execute align xyz run summon item_display ~ ~ ~ {item: {id:\"coal\",components: {\"minecraft:item_model\":\"wireframe:wireframe_white\"}}, transformation:{scale:[1f,1f,1f],left_rotation:[0f,0f,0f, 1f],right_rotation:[0f,0f,0f,1f],translation:[0.5,0.5,0.5]}}\r\n\r\n# 使用custom_model_data生成红色线框:\r\n/execute align xyz run summon item_display ~ ~ ~ {item: {id:\"coal\",components: {\"minecraft:item_model\":\"wireframe:wireframe_white\",custom_model_data:{colors:[[1,0,0]]}}}, transformation:{scale:[1f,1f,1f],left_rotation:[0f,0f,0f, 1f],right_rotation:[0f,0f,0f,1f],translation:[0.5,0.5,0.5]}}\r\n\r\n# 生成较粗的白色线框\r\n/execute align xyz run summon item_display ~ ~ ~ {item: {id:\"coal\",components: {\"minecraft:item_model\":\"wireframe:wireframe_white_thick\"}} ,transformation:{scale:[1f,1f,1f],left_rotation:[0f,0f,0f, 1f],right_rotation:[0f,0f,0f,1f],translation:[0.5,0.5,0.5]}}\r\n\r\n# 生成黑色线框(类似玩家选择方块时的指示器)\r\n/execute align xyz run summon item_display ~ ~ ~ {item: {id:\"coal\",components: {\"minecraft:item_model\":\"wireframe:wireframe_black\"}}, transformation:{scale:[1f,1f,1f],left_rotation:[0f,0f,0f, 1f],right_rotation:[0f,0f,0f,1f],translation:[0.5,0.5,0.5]}}\r\n```",
+        "projectUrl": "https://github.com/HalbFettKaese/WireframeDisplay",
+        "legacyPath": "/wheel/resources/WireframeDisplay.html"
+      },
+      "discovery": {
+        "repositoryArchived": false,
+        "githubUrls": [
+          "https://github.com/HalbFettKaese/WireframeDisplay"
+        ],
+        "downloadUrls": []
+      },
+      "status": "blocked",
+      "blockers": [
+        "missing-exact-version-tag-or-release"
+      ]
+    },
+    {
+      "legacyId": "wheel/resources/bookshelf.md",
+      "legacyFile": "wheel/resources/bookshelf.md",
+      "legacyPath": "/wheel/resources/bookshelf.html",
+      "coordinate": "io.github.mcbookshelf:bookshelf",
+      "version": "4.1.1",
+      "license": "MPL-2.0",
+      "licenseBasisUrl": "https://github.com/mcbookshelf/bookshelf/blob/master/LICENSE",
+      "source": {
+        "type": "github-release-asset",
+        "repository": "mcbookshelf/bookshelf",
+        "ref": "v4.1.1",
+        "asset": "bookshelf-suite-26.2-v4.1.1.zip"
+      },
+      "subdir": null,
+      "nestedZip": null,
+      "minecraft": "1.21~26.2",
+      "dependencies": [],
+      "site": {
+        "name": "Bookshelf",
+        "description": "以模块化的方式支持大量不同的可选功能",
+        "cover": "https://vanillalibrary.mcfpp.top/datapack-index/wheel/bookshelf.png",
+        "authors": [
+          {
+            "name": "Bookshelf",
+            "avatarUrl": "https://vanillalibrary.mcfpp.top/datapack-index/_authors/bookshelf.png",
+            "links": [
+              {
+                "label": "Github",
+                "url": "https://github.com/mcbookshelf"
+              }
+            ]
+          }
+        ],
+        "tags": [
+          "多功能"
+        ],
+        "gameVersions": [
+          "1.21~26.2"
+        ],
+        "dependencyNotes": null,
+        "details": "Bookshelf是一个支持大量不同功能的底层库，包括射线追踪，数学计算，生命值控制，定时任务，debug输出，碰撞箱判断等等。开发者可以有选择地安装需要的功能。\r\n\r\n请在其[官方网站](https://docs.mcbookshelf.dev/en/latest/)上获取更多信息。\r\n\r\n本库有正在翻译中的[中文文档](https://docs.mcbookshelf.dev/zh-cn/master/)。",
+        "projectUrl": "https://github.com/mcbookshelf/bookshelf",
+        "legacyPath": "/wheel/resources/bookshelf.html"
+      },
+      "discovery": {
+        "repositoryArchived": false,
+        "githubUrls": [],
+        "downloadUrls": []
+      },
+      "status": "ready-for-cli-audit",
+      "blockers": []
+    },
+    {
+      "legacyId": "wheel/resources/dabsu.md",
+      "legacyFile": "wheel/resources/dabsu.md",
+      "legacyPath": "/wheel/resources/dabsu.html",
+      "coordinate": "io.github.dahesor:dabsu",
+      "version": "1.0.7",
+      "license": "Apache-2.0",
+      "licenseBasisUrl": "https://github.com/Dahesor/DaBsu-Batch-Spawner-Utils/blob/main/LICENSE",
+      "source": {
+        "type": "github-release-asset",
+        "repository": "Dahesor/DaBsu",
+        "ref": "v1.0.7",
+        "asset": "DaBsu.v1.0.7.zip"
+      },
+      "subdir": null,
+      "nestedZip": null,
+      "minecraft": "1.21.6~26.2",
+      "dependencies": [],
+      "site": {
+        "name": "大别墅",
+        "description": "刷怪笼管理工具以及批量操作前置",
+        "cover": "https://vanillalibrary.mcfpp.top/datapack-index/wheel/dabsu.png",
+        "authors": [
+          {
+            "name": "Dahesor",
+            "avatarUrl": "https://vanillalibrary.mcfpp.top/datapack-index/_authors/dahesor.jpg",
+            "links": [
+              {
+                "label": "Bilibili",
+                "url": "https://space.bilibili.com/436796403"
+              },
+              {
+                "label": "GitHub",
+                "url": "https://github.com/Dahesor"
+              }
+            ]
+          }
+        ],
+        "tags": [
+          "刷怪笼"
+        ],
+        "gameVersions": [
+          "1.21.6~26.2"
+        ],
+        "dependencyNotes": null,
+        "details": "大别墅是一个重量级的刷怪笼管理前置，可以快捷，批量地修改，管理世界中的刷怪笼。它拥有可视化的编辑界面，也允许作为前置对世界中的刷怪笼执行编辑。\r\n\r\n阅读其官方说明文件（[Github](https://github.com/Dahesor/DaBsu) | [红石中继站](https://www.mczwlt.net/resource/hacscexr)）以获取更多信息。",
+        "projectUrl": "https://github.com/Dahesor/DaBsu",
+        "legacyPath": "/wheel/resources/dabsu.html"
+      },
+      "discovery": {
+        "repositoryArchived": false,
+        "githubUrls": [
+          "https://github.com/Dahesor/DaBsu"
+        ],
+        "downloadUrls": []
+      },
+      "status": "blocked",
+      "blockers": [
+        "pinned-cli:root-pack-is-ambiguous-with-version-warning-pack"
+      ]
+    },
+    {
+      "legacyId": "wheel/resources/dam.md",
+      "legacyFile": "wheel/resources/dam.md",
+      "legacyPath": "/wheel/resources/dam.html",
+      "coordinate": "io.github.dahesor:actionbar-mixer-for-minecraft",
+      "version": "1.3.3",
+      "license": "Unlicense",
+      "licenseBasisUrl": "https://github.com/Dahesor/Actionbar-Mixer-for-Minecraft/blob/main/LICENSE",
+      "source": {
+        "type": "github-release-asset",
+        "repository": "Dahesor/Actionbar-Mixer-for-Minecraft",
+        "ref": "v1.3.3",
+        "asset": "Actionbar-Mixer.v1.3.3.zip"
+      },
+      "subdir": null,
+      "nestedZip": null,
+      "minecraft": "1.21~26.3",
+      "dependencies": [],
+      "site": {
+        "name": "Actionbar Mixer",
+        "description": "允许组合不同的文本组件片段一起显示在actionbar上",
+        "cover": null,
+        "authors": [
+          {
+            "name": "Dahesor",
+            "avatarUrl": "https://vanillalibrary.mcfpp.top/datapack-index/_authors/dahesor.jpg",
+            "links": [
+              {
+                "label": "Bilibili",
+                "url": "https://space.bilibili.com/436796403"
+              },
+              {
+                "label": "GitHub",
+                "url": "https://github.com/Dahesor"
+              }
+            ]
+          }
+        ],
+        "tags": [
+          "文本组件",
+          "UI",
+          "actionbar"
+        ],
+        "gameVersions": [
+          "1.21~26.3"
+        ],
+        "dependencyNotes": null,
+        "details": "本库允许你组合不同的文本组件片段一起显示在actionbar上。这并不是兼容用库，而是功能库。\r\n\r\n阅读其官方说明文件（[Github](https://github.com/Dahesor/Actionbar-Mixer-for-Minecraft/blob/main/README.md) | [红石中继站](https://www.mczwlt.net/resource/3ou8njeh)）以获取更多信息。\r\n\r\n## 示例：\r\n\r\n玩家应该会在 actionbar 上看到 `Hello`：\r\n```mcfunction\r\ndata modify storage dah:actbar new set value {id:\"test:1\",text:{\"text\":\"Hello\"},order:1}\r\nfunction dah.actbar_mixer:new/insert\r\n```\r\n\r\n再次重复上述命令，这次使用 `{id:\"test:2\",text:{\"text\":\"World!\"},order:3}`，玩家应该会看到 `Hello World!`。\r\n\r\n然后运行如下命令，玩家应该会看到 `Hey! Hello World`：\r\n```mcfunction\r\ndata modify storage dah:actbar new set value {id:\"test:1\",text:{\"text\":\"Hey!\"}}\r\nfunction dah.actbar_mixer:new/prepend\r\n```\r\n\r\n接着运行如下命令，玩家应看到 `Hey! Hello Beautiful World`：\r\n```mcfunction\r\ndata modify storage dah:actbar new set value {id:\"test:beautiful\",text:{\"text\":\"Beautiful\"},order:2}\r\nfunction dah.actbar_mixer:new/insert\r\n```\r\n\r\n之后运行如下命令，玩家应看到 `Hey! Hello Great World`：\r\n```mcfunction\r\ndata modify storage dah:actbar new set value {id:\"test:beautiful\",text:{\"text\":\"Great\"},order:2}\r\nfunction dah.actbar_mixer:new/update_id\r\n```",
+        "projectUrl": "https://github.com/Dahesor/Actionbar-Mixer-for-Minecraft",
+        "legacyPath": "/wheel/resources/dam.html"
+      },
+      "discovery": {
+        "repositoryArchived": false,
+        "githubUrls": [
+          "https://github.com/Dahesor/Actionbar-Mixer-for-Minecraft/blob/main/README.md"
+        ],
+        "downloadUrls": []
+      },
+      "status": "ready-for-cli-audit",
+      "blockers": []
+    },
+    {
+      "legacyId": "wheel/resources/dbs.md",
+      "legacyFile": "wheel/resources/dbs.md",
+      "legacyPath": "/wheel/resources/dbs.html",
+      "coordinate": "io.github.dahesor:d-better-schedule",
+      "version": "1.3.0",
+      "license": "MIT",
+      "licenseBasisUrl": "https://github.com/Dahesor/D-Better-Schedule/blob/main/LICENSE",
+      "source": {
+        "type": "github-release-asset",
+        "repository": "Dahesor/D-Better-Schedule",
+        "ref": "v1.3.0",
+        "asset": "D-Better-Schedule.v1.3.zip"
+      },
+      "subdir": null,
+      "nestedZip": null,
+      "minecraft": "1.21.5~26.3",
+      "dependencies": [],
+      "site": {
+        "name": "D更好的Schedule",
+        "description": "保留上下文的定时任务，并灵活处理执行时实体不存在的问题",
+        "cover": "https://vanillalibrary.mcfpp.top/datapack-index/wheel/dbs.png",
+        "authors": [
+          {
+            "name": "Dahesor",
+            "avatarUrl": "https://vanillalibrary.mcfpp.top/datapack-index/_authors/dahesor.jpg",
+            "links": [
+              {
+                "label": "Bilibili",
+                "url": "https://space.bilibili.com/436796403"
+              },
+              {
+                "label": "GitHub",
+                "url": "https://github.com/Dahesor"
+              }
+            ]
+          }
+        ],
+        "tags": [
+          "定时任务"
+        ],
+        "gameVersions": [
+          "1.21.5~26.3"
+        ],
+        "dependencyNotes": null,
+        "details": "DBS(D-Better-Schedule)库提供了一个可以保留命令上下文的schedule命令。它可以记录当前的执行者，执行位置，执行朝向，以及在大部分情况下，记录执行维度。在一段时间后还原这些上下文并执行任意命令。若执行时，目标执行者不再存在（死亡，卸载，或是下线），本库也可灵活处理。\r\n\r\n阅读其[官方说明文件](https://github.com/Dahesor/D-Better-Schedule)以获取更多信息\r\n\r\n示例:\r\n```mcfunction\r\n# 1秒后将执行者传送回当前位置。\r\ndata modify storage dah.sch:new new set value {run:\"tp ~ ~ ~\",time:20}\r\nfunction dah.sch:new\r\n\r\n# 1秒后将当前位置设置为石头。尝试获取维度，且输出日志。\r\ndata modify storage dah.sch:new new set value {run:\"setblock ~ ~ ~ stone\",time:20,flags:[\"debug\",\"try_dimension\"]}\r\nfunction dah.sch:new\r\n\r\n# 在10秒或移除该玩家的属性修饰器。若玩家在10秒内下线，则等到玩家上线后再移除。\r\ndata modify storage dah.sch:new new set value {run:\"attribute @s attack_damage modifier remove foo:bar\",time:200,offline:\"delay\"}\r\nfunction dah.sch:new\r\n```",
+        "projectUrl": "https://github.com/Dahesor/D-Better-Schedule",
+        "legacyPath": "/wheel/resources/dbs.html"
+      },
+      "discovery": {
+        "repositoryArchived": false,
+        "githubUrls": [
+          "https://github.com/Dahesor/D-Better-Schedule"
+        ],
+        "downloadUrls": []
+      },
+      "status": "ready-for-cli-audit",
+      "blockers": []
+    },
+    {
+      "legacyId": "wheel/resources/dfh.md",
+      "legacyFile": "wheel/resources/dfh.md",
+      "legacyPath": "/wheel/resources/dfh.html",
+      "coordinate": "io.github.dahesor:dfh",
+      "version": "1.1.0",
+      "license": "MIT",
+      "licenseBasisUrl": "https://github.com/Dahesor/DFH/blob/main/LICENSE",
+      "source": {
+        "type": "github-release-asset",
+        "repository": "Dahesor/DFH",
+        "ref": "v1.1.0",
+        "asset": "DFH.Datapack.v1.1.zip"
+      },
+      "subdir": null,
+      "nestedZip": null,
+      "minecraft": "1.21.11~26.3",
+      "dependencies": [],
+      "site": {
+        "name": "大废物",
+        "description": "HUD绘制与可监听原版生命值变化的虚拟生命值操作库",
+        "cover": "https://vanillalibrary.mcfpp.top/datapack-index/wheel/dfh.png",
+        "authors": [
+          {
+            "name": "Dahesor",
+            "avatarUrl": "https://vanillalibrary.mcfpp.top/datapack-index/_authors/dahesor.jpg",
+            "links": [
+              {
+                "label": "Bilibili",
+                "url": "https://space.bilibili.com/436796403"
+              },
+              {
+                "label": "GitHub",
+                "url": "https://github.com/Dahesor"
+              }
+            ]
+          }
+        ],
+        "tags": [
+          "UI",
+          "生命值",
+          "虚拟生命值",
+          "HUD"
+        ],
+        "gameVersions": [
+          "1.21.11~26.3"
+        ],
+        "dependencyNotes": null,
+        "details": "大废物是一个使用actionbar绘制玩家HUD的库。它还可以使用记分板形式的虚拟生命值，且保留接受原版生命值信号的功能。\r\n\r\n这使得你可以使用记分板命令任意更改玩家的生命值，并在同时拦截原版的生命变动并在它们生效前任意修改它们。\r\n\r\n## 依赖\r\n\r\n> [!IMPORTANT]\r\n> 大废物需要版本v1.3.2或更高的[Actionbar Mixer 混合器](./dam)作为前置以管理多个状态栏文本片段。\r\n\r\n虽然大废物使用了状态栏，但只要遵守Actionbar Mixer的规则，你就仍然可以使用actionbar显示任意零宽度的文本片段。查看Actionbar Mixer的说明文档以获取详细信息。\r\n\r\n## 使用说明\r\n\r\n阅读其[文档](https://github.com/Dahesor/DFH/blob/main/readme/ZH_CN.MD)以获取使用说明",
+        "projectUrl": "https://github.com/Dahesor/DFH",
+        "legacyPath": "/wheel/resources/dfh.html"
+      },
+      "discovery": {
+        "repositoryArchived": false,
+        "githubUrls": [
+          "https://github.com/Dahesor/DFH/blob/main/readme/ZH_CN.MD"
+        ],
+        "downloadUrls": []
+      },
+      "status": "ready-for-cli-audit",
+      "blockers": []
+    },
+    {
+      "legacyId": "wheel/resources/dlm.md",
+      "legacyFile": "wheel/resources/dlm.md",
+      "legacyPath": "/wheel/resources/dlm.html",
+      "coordinate": "io.github.dahesor:leopard-cat",
+      "version": "1.0.0",
+      "license": "MIT",
+      "licenseBasisUrl": "https://github.com/Dahesor/Leopard-Cat/blob/main/LICENSE",
+      "source": null,
+      "subdir": null,
+      "nestedZip": null,
+      "minecraft": "1.21.5+",
+      "dependencies": [],
+      "site": {
+        "name": "大脸猫",
+        "description": "工单制forceload操作与兼容库",
+        "cover": null,
+        "authors": [
+          {
+            "name": "Dahesor",
+            "avatarUrl": "https://vanillalibrary.mcfpp.top/datapack-index/_authors/dahesor.jpg",
+            "links": [
+              {
+                "label": "Bilibili",
+                "url": "https://space.bilibili.com/436796403"
+              },
+              {
+                "label": "GitHub",
+                "url": "https://github.com/Dahesor"
+              }
+            ]
+          }
+        ],
+        "tags": [
+          "区块",
+          "forceload",
+          "区块加载"
+        ],
+        "gameVersions": [
+          "1.21.5+"
+        ],
+        "dependencyNotes": null,
+        "details": "大脸猫为原版的forceload命令加装了外壳。使用大脸猫时，所有的forceload指令都应当通过大脸猫下达。\r\n\r\n用户可以创建请求以加载特定的区块，或指定长方形范围内的多个区块。一个区块上只要挂有至少一个请求，就会被持续加载。\r\n\r\nMinecraft的forceload命令是异步的，这意味着在执行forceload后区块可能不会立刻完成加载。大脸猫允许用户提供一个on_load命令列表，在请求的区块全部加载完成后自动执行这些命令。\r\n\r\n每个请求也可以指定自己的生命周期。\r\n\r\n## 使用说明\r\n\r\n阅读其[文档](https://github.com/Dahesor/Leopard-Cat/blob/main/docs/zh_cn.md)以获取使用说明",
+        "projectUrl": "https://github.com/Dahesor/Leopard-Cat",
+        "legacyPath": "/wheel/resources/dlm.html"
+      },
+      "discovery": {
+        "repositoryArchived": false,
+        "githubUrls": [
+          "https://github.com/Dahesor/Leopard-Cat/blob/main/docs/zh_cn.md"
+        ],
+        "downloadUrls": []
+      },
+      "status": "blocked",
+      "blockers": [
+        "missing-exact-version-tag-or-release"
+      ]
+    },
+    {
+      "legacyId": "wheel/resources/dnt.md",
+      "legacyFile": "wheel/resources/dnt.md",
+      "legacyPath": "/wheel/resources/dnt.html",
+      "coordinate": "io.github.dahesor:dnt-dahesor-nbt-transformer",
+      "version": "2.0.0",
+      "license": "Unlicense",
+      "licenseBasisUrl": "https://github.com/Dahesor/DNT-Dahesor-NBT-Transformer/blob/main/LICENSE",
+      "source": null,
+      "subdir": null,
+      "nestedZip": null,
+      "minecraft": "1.21.5~26.3",
+      "dependencies": [],
+      "site": {
+        "name": "DNT - NBT操作库",
+        "description": "安全字符串拼接，NBT转JSON等SNBT与字符串操作",
+        "cover": null,
+        "authors": [
+          {
+            "name": "Dahesor",
+            "avatarUrl": "https://vanillalibrary.mcfpp.top/datapack-index/_authors/dahesor.jpg",
+            "links": [
+              {
+                "label": "Bilibili",
+                "url": "https://space.bilibili.com/436796403"
+              },
+              {
+                "label": "GitHub",
+                "url": "https://github.com/Dahesor"
+              }
+            ]
+          }
+        ],
+        "tags": [
+          "NBT",
+          "字符串"
+        ],
+        "gameVersions": [
+          "1.21.5~26.3"
+        ],
+        "dependencyNotes": null,
+        "details": "本库允许提供了一些操作SNBT的工具。它可以拼接任意字符串，支持转义字符；也可以将一个NBT结构转换为等价的JSON结构。\r\n\r\n阅读其官方说明文件（[Github](https://github.com/Dahesor/DNT-Dahesor-NBT-Transformer) | [红石中继站](https://www.mczwlt.net/resource/ryzp7bof)）以获取更多信息。\r\n\r\n\r\n**拼接示例：**\r\n\r\n输入：[`\"Hello\"`,`\" single ' quote\"`,`\" and \\\\ back slash\"`]\r\n\r\n输出：`\"Hello single ' quote and \\\\ back slash\"`\r\n\r\n**NBT转JSON示例：**\r\n\r\n输入：\r\n```snbt\r\n{equipment:{mainhand:{id:\"diamond\",components:{\"minecraft:item_name\":{text:\"what\\\"\\\"''ha>?\",italic:true},\"!attribute_modifiers\":{},custom_data:{'Cool\"\\'\\\\Name':Yeah...}}}}}\r\n```\r\n输出：\r\n```json\r\n{\"equipment\":{\"mainhand\":{\"components\":{\"!attribute_modifiers\":{},\"custom_data\":{\"Cool\\\"'\\\\Name\":\"Yeah...\"},\"minecraft:item_name\":{\"italic\":true,\"text\":\"what\\\"\\\"''ha>?\"}},\"id\":\"diamond\"}}}\r\n ```",
+        "projectUrl": "https://github.com/Dahesor/DNT-Dahesor-NBT-Transformer",
+        "legacyPath": "/wheel/resources/dnt.html"
+      },
+      "discovery": {
+        "repositoryArchived": false,
+        "githubUrls": [
+          "https://github.com/Dahesor/DNT-Dahesor-NBT-Transformer"
+        ],
+        "downloadUrls": []
+      },
+      "status": "blocked",
+      "blockers": [
+        "missing-exact-version-tag-or-release"
+      ]
+    },
+    {
+      "legacyId": "wheel/resources/doom.schedule.md",
+      "legacyFile": "wheel/resources/doom.schedule.md",
+      "legacyPath": "/wheel/resources/doom.schedule.html",
+      "coordinate": "io.github.doomdecapitator:doom.schedule",
+      "version": "2.1.0",
+      "license": "MIT",
+      "licenseBasisUrl": "https://github.com/DoomDecapitator/doom.schedule/blob/main/LICENSE",
+      "source": {
+        "type": "github-release-asset",
+        "repository": "DoomDecapitator/doom.schedule",
+        "ref": "v2.1",
+        "asset": "doom.schedule.v2.zip"
+      },
+      "subdir": null,
+      "nestedZip": null,
+      "minecraft": "1.20.5+",
+      "dependencies": [],
+      "site": {
+        "name": "Doom.Schedule",
+        "description": "提供带上下文与离线检测的任务队列",
+        "cover": null,
+        "authors": [
+          {
+            "name": "Doom_Decapitator",
+            "avatarUrl": "https://vanillalibrary.mcfpp.top/datapack-index/_authors/d_d.png",
+            "links": [
+              {
+                "label": "Bilibili",
+                "url": "https://space.bilibili.com/40077963"
+              }
+            ]
+          }
+        ],
+        "tags": [
+          "定时任务"
+        ],
+        "gameVersions": [
+          "1.20.5+"
+        ],
+        "dependencyNotes": null,
+        "details": "doom.schedule 是一个面向 Minecraft 原版服务端的数据包调度框架。它在不依赖 Mod 的前提下，提供了基于 game time 的任务队列、执行上下文冻结、目标离线检测与自动恢复、以及失败重试等特性。\r\n\r\n阅读其[官方说明文件](https://github.com/DoomDecapitator/doom.schedule)以获取更多信息。",
+        "projectUrl": "https://github.com/DoomDecapitator/doom.schedule",
+        "legacyPath": "/wheel/resources/doom.schedule.html"
+      },
+      "discovery": {
+        "repositoryArchived": false,
+        "githubUrls": [
+          "https://github.com/DoomDecapitator/doom.schedule"
+        ],
+        "downloadUrls": []
+      },
+      "status": "ready-for-cli-audit",
+      "blockers": []
+    },
+    {
+      "legacyId": "wheel/resources/ehid.md",
+      "legacyFile": "wheel/resources/ehid.md",
+      "legacyPath": "/wheel/resources/ehid.html",
+      "coordinate": "io.github.gibbsly:ehid",
+      "version": "1.0.0",
+      "license": "Unlicense",
+      "licenseBasisUrl": "https://github.com/gibbsly/ehid/blob/main/LICENSE",
+      "source": null,
+      "subdir": null,
+      "nestedZip": null,
+      "minecraft": "1.21.5+",
+      "dependencies": [],
+      "site": {
+        "name": "ehid",
+        "description": "二进制实体ID与攻击检测系统",
+        "cover": null,
+        "authors": [
+          {
+            "name": "gibbsly",
+            "avatarUrl": "https://vanillalibrary.mcfpp.top/datapack-index/_authors/gibbsly.png",
+            "links": [
+              {
+                "label": "Github",
+                "url": "https://github.com/gibbsly"
+              }
+            ]
+          }
+        ],
+        "tags": [
+          "攻击检测",
+          "实体ID"
+        ],
+        "gameVersions": [
+          "1.21.5+"
+        ],
+        "dependencyNotes": null,
+        "details": "ehid为实体分配二进制形式的ID，并使用进度检测以确定玩家攻击或杀死的实体，或是攻击或杀死了玩家的实体。\r\n\r\n阅读其Github仓库内的说明文件以了解如何使用。",
+        "projectUrl": "https://github.com/gibbsly/ehid",
+        "legacyPath": "/wheel/resources/ehid.html"
+      },
+      "discovery": {
+        "repositoryArchived": false,
+        "githubUrls": [],
+        "downloadUrls": []
+      },
+      "status": "blocked",
+      "blockers": [
+        "missing-exact-version-tag-or-release"
+      ]
+    },
+    {
+      "legacyId": "wheel/resources/fast_bitwise_ops.md",
+      "legacyFile": "wheel/resources/fast_bitwise_ops.md",
+      "legacyPath": "/wheel/resources/fast_bitwise_ops.html",
+      "coordinate": "io.github.triton365:fast_bitwise_ops",
+      "version": "1.1.0",
+      "license": "Unlicense",
+      "licenseBasisUrl": "https://github.com/Triton365/fast_bitwise_ops/blob/main/LICENSE",
+      "source": null,
+      "subdir": null,
+      "nestedZip": null,
+      "minecraft": "1.21+",
+      "dependencies": [],
+      "site": {
+        "name": "Fast Bitwise OPs",
+        "description": "利用浮点数误差快速进行位操作",
+        "cover": null,
+        "authors": [
+          {
+            "name": "Triton365",
+            "avatarUrl": "https://vanillalibrary.mcfpp.top/datapack-index/_authors/Triton365.jpg",
+            "links": [
+              {
+                "label": "GitHub",
+                "url": "https://github.com/Triton365"
+              }
+            ]
+          }
+        ],
+        "tags": [
+          "位操作",
+          "逻辑门"
+        ],
+        "gameVersions": [
+          "1.21+"
+        ],
+        "dependencyNotes": null,
+        "details": "本库利用浮点数误差快速地进行位操作。支持and, or, xor, nand, nor, xnor运算。\r\n\r\n## 使用说明\r\n\r\n阅读其官方说明文件（[Github](https://github.com/Triton365/fast_bitwise_ops)）以获取详细信息。\r\n\r\n示例：\r\n```mcfunction\r\nscoreboard players set #input1 fast_bitwise `<INPUT1>`\r\nscoreboard players set #input2 fast_bitwise `<INPUT2>`\r\nfunction fast_bitwise:(and|or|xor|nand|nor|xnor)\r\nscoreboard players get #output fast_bitwise\r\n```\r\n分别在计分板`fast_bitwise`的`#input1`与`#input2`中输入参数，执行一个函数，数据包就会进行32位的指定位运算，并将结果输出至`#output`中。",
+        "projectUrl": "https://github.com/Triton365/fast_bitwise_ops",
+        "legacyPath": "/wheel/resources/fast_bitwise_ops.html"
+      },
+      "discovery": {
+        "repositoryArchived": false,
+        "githubUrls": [
+          "https://github.com/Triton365/fast_bitwise_ops"
+        ],
+        "downloadUrls": []
+      },
+      "status": "blocked",
+      "blockers": [
+        "missing-exact-version-tag-or-release"
+      ]
+    },
+    {
+      "legacyId": "wheel/resources/fptrick_impulse.md",
+      "legacyFile": "wheel/resources/fptrick_impulse.md",
+      "legacyPath": "/wheel/resources/fptrick_impulse.html",
+      "coordinate": "io.github.triton365:fptrick_impulse",
+      "version": "0.2.1",
+      "license": null,
+      "licenseBasisUrl": null,
+      "source": {
+        "type": "url",
+        "url": "https://github.com/CR-019/datapack-index/raw/refs/heads/lib-hosting/libs/fptrick_impulse-2.zip"
+      },
+      "subdir": null,
+      "nestedZip": null,
+      "minecraft": "1.21.11",
+      "dependencies": [],
+      "site": {
+        "name": "Fptrick Impulse",
+        "description": "使用魔咒与浮点数黑魔法实现的玩家动量修改",
+        "cover": null,
+        "authors": [
+          {
+            "name": "Triton365",
+            "avatarUrl": "https://vanillalibrary.mcfpp.top/datapack-index/_authors/Triton365.jpg",
+            "links": [
+              {
+                "label": "GitHub",
+                "url": "https://github.com/Triton365"
+              }
+            ]
+          }
+        ],
+        "tags": [
+          "动量"
+        ],
+        "gameVersions": [
+          "1.21.11"
+        ],
+        "dependencyNotes": null,
+        "details": "本库使用1.21.11添加的魔咒效果，在相对坐标系内为玩家施加任意大小的动量。本库使用浮点数魔法将相对坐标系`(~x ~y ~z)`转换为局部坐标系`(^u ^v ^w)`。\r\n\r\n本库无官方分发处。请[点击此处下载](https://github.com/CR-019/datapack-index/raw/refs/heads/lib-hosting/libs/fptrick_impulse-2.zip)（[备用下载](https://gitee.com/Dahesor/server_resourcepacks/raw/lib/fptrick_impulse-2.zip)）。\r\n\r\n## 使用说明\r\n\r\n将x,y,z三个分量分别输入到`fptrick_impulse`计分板的`#x`,`#y`,`#z`。中，再以该玩家执行`function fptrick_impulse:launch_global`。",
+        "projectUrl": null,
+        "legacyPath": "/wheel/resources/fptrick_impulse.html"
+      },
+      "discovery": {
+        "repositoryArchived": null,
+        "githubUrls": [
+          "https://github.com/CR-019/datapack-index/raw/refs/heads/lib-hosting/libs/fptrick_impulse-2.zip"
+        ],
+        "downloadUrls": [
+          "https://github.com/CR-019/datapack-index/raw/refs/heads/lib-hosting/libs/fptrick_impulse-2.zip",
+          "https://gitee.com/Dahesor/server_resourcepacks/raw/lib/fptrick_impulse-2.zip"
+        ]
+      },
+      "status": "blocked",
+      "blockers": [
+        "missing-spdx-license"
+      ]
+    },
+    {
+      "legacyId": "wheel/resources/get_millis.md",
+      "legacyFile": "wheel/resources/get_millis.md",
+      "legacyPath": "/wheel/resources/get_millis.html",
+      "coordinate": "io.github.intsuc:get_millis",
+      "version": "1.0.0",
+      "license": "CC0-1.0",
+      "licenseBasisUrl": "https://github.com/intsuc/get_millis/blob/main/LICENSE",
+      "source": {
+        "type": "github-release-asset",
+        "repository": "intsuc/get_millis",
+        "ref": "v1.0.0",
+        "asset": "get_millis.zip"
+      },
+      "subdir": null,
+      "nestedZip": null,
+      "minecraft": "1.21+",
+      "dependencies": [],
+      "site": {
+        "name": "get_millis",
+        "description": "获取高精度现实时间",
+        "cover": null,
+        "authors": [
+          {
+            "name": "intsuc",
+            "avatarUrl": "https://vanillalibrary.mcfpp.top/datapack-index/_authors/intsuc.png",
+            "links": [
+              {
+                "label": "GitHub",
+                "url": "https://github.com/intsuc"
+              }
+            ]
+          }
+        ],
+        "tags": [
+          "时间",
+          "现实时间"
+        ],
+        "gameVersions": [
+          "1.21+"
+        ],
+        "dependencyNotes": null,
+        "details": "计算JVM的高精度时间，以毫秒为单位((System.nanoTime() / 1000000L) & 0x0000ffffffffffff)。\r\n\r\n## 使用说明\r\n\r\n阅读其官方说明文件（[Github](https://github.com/intsuc/get_millis)）以获取详细信息。\r\n\r\n示例：\r\n```mcfunction\r\nscoreboard objectives add example dummy\r\n\r\nexecute store result score #start example run function get_millis:api/get_and_resolve\r\n  # 执行任意花费时间的任务，如:\r\n  reload\r\n  reload\r\n  reload\r\nexecute store result score #end example run function get_millis:api/get_and_resolve\r\n\r\nscoreboard players operation #end example -= #start example\r\n# 输出经过的时间\r\ntellraw @a [\"Elapsed time: \", {score: {name: \"#end\", objective: \"example\"}, color: \"gold\"}, \" ms\"]\r\n```",
+        "projectUrl": "https://github.com/intsuc/get_millis",
+        "legacyPath": "/wheel/resources/get_millis.html"
+      },
+      "discovery": {
+        "repositoryArchived": false,
+        "githubUrls": [
+          "https://github.com/intsuc/get_millis"
+        ],
+        "downloadUrls": []
+      },
+      "status": "ready-for-cli-audit",
+      "blockers": []
+    },
+    {
+      "legacyId": "wheel/resources/gm.md",
+      "legacyFile": "wheel/resources/gm.md",
+      "legacyPath": "/wheel/resources/gm.html",
+      "coordinate": "io.github.gibbsly:gm",
+      "version": "1.0.0",
+      "license": "Unlicense",
+      "licenseBasisUrl": "https://github.com/gibbsly/gm/blob/main/LICENSE",
+      "source": null,
+      "subdir": null,
+      "nestedZip": null,
+      "minecraft": "1.21~26.3",
+      "dependencies": [],
+      "site": {
+        "name": "gm",
+        "description": "浮点数与三角函数数学库",
+        "cover": null,
+        "authors": [
+          {
+            "name": "gibbsly",
+            "avatarUrl": "https://vanillalibrary.mcfpp.top/datapack-index/_authors/gibbsly.png",
+            "links": [
+              {
+                "label": "Github",
+                "url": "https://github.com/gibbsly"
+              }
+            ]
+          }
+        ],
+        "tags": [
+          "浮点数",
+          "三角函数",
+          "数学"
+        ],
+        "gameVersions": [
+          "1.21~26.3"
+        ],
+        "dependencyNotes": null,
+        "details": "gm是一个可以进行浮点数与三角函数计算的简易数学库。\r\n\r\n## 单输入函数\r\n\r\n这些函数需要`{x:(number)}`作为宏输入。输出会被写入进storage `gm:io` `out`，同时也会作为int返回。\r\n\r\n### `gm:negate`\r\n\r\n> 取负数。`x * -1`\r\n\r\n### `gm:reciprocal`\r\n\r\n> 取倒数。`1 / x`\r\n\r\n### `gm:square`\r\n\r\n> 取平方。`x^2`\r\n\r\n### `gm:sqrt`\r\n\r\n> 取开方。`√x`\r\n\r\n### `gm:sin`\r\n\r\n> 取正弦。`sin(x)`\r\n\r\n### `gm:cos`\r\n\r\n> 取余弦。`cos(x)`\r\n\r\n### `gm:tan`\r\n\r\n> 取正切。`tan(x)`\r\n\r\n同时将sin的结果写入`storage gm._temp_:std var1`，cos的结果写入`storage gm._temp_:std var2`。\r\n\r\n### `gm:arcsin`\r\n\r\n> 取反正弦。`sin⁻¹(x)`\r\n\r\n`-90 ≤ sin⁻¹(x) ≤ 90`, `-1 ≤ x ≤ 1`\r\n\r\n### `gm:arccos`\r\n\r\n> 取反余弦。`cos⁻¹(x)`\r\n\r\n`0 ≤ cos⁻¹(x) ≤ 180`, `-1 ≤ x ≤ 1`\r\n\r\n### `gm:arctan`\r\n\r\n> 取反正切。`tan⁻¹(x)`\r\n\r\n`-90 ≤ tan⁻¹(x) ≤ 90`\r\n\r\n### `gm:round`\r\n\r\n> 取整`round(x)`\r\n\r\n取整至最近的整数。`0.5`会向上取整。\r\n\r\n### `gm:floor`\r\n\r\n> 向下取整。`floor(x)`\r\n\r\n### `gm:ceil`\r\n\r\n> 向上取整。`ceil(x)`\r\n\r\n## 双输入函数\r\n\r\n这些函数需要两个变量`{x:(number),y:(number)}`作为宏输入。输出会被写入进storage `gm:io` `out`，同时也会作为int返回。\r\n\r\n### `gm:add`\r\n\r\n> 相加。`x + y`\r\n\r\n### `gm:subtract`\r\n\r\n> 相减。`x - y`\r\n\r\n### `gm:multiply`\r\n\r\n> 相乘。`x * y`\r\n\r\n### `gm:divide`\r\n\r\n> 相除。\r\n\r\n#### 本函数有两个功能\r\n\r\n若`x`为数值\r\n\r\n> 求`x / y`\r\n\r\n若`x`为数组\r\n\r\n> 求`[0] / y, [1] / y, [2] / y`\r\n\r\n只使用x的前三个值。结果将作为数组输出值storage中。函数将会返回该数组的长度。\r\n\r\n### `gm:modulo`\r\n\r\n> 求余。`x % y`\r\n\r\ny不可为0\r\n\r\n### `gm:distance`\r\n\r\n> 获取`x`与`y`的距离\r\n\r\nx与y应当是数组而非单独的数值。任意不符合条件的输入会使输出为0。\r\n\r\n### `gm:arctan2`\r\n\r\n> `atan2(y, x)`\r\n\r\n和`tan⁻¹(y/x)`类似，但`-180 ≤ atan2(y, x) ≤ 180`。本函数有360°的输出范围而非180°。",
+        "projectUrl": "https://github.com/gibbsly/gm",
+        "legacyPath": "/wheel/resources/gm.html"
+      },
+      "discovery": {
+        "repositoryArchived": false,
+        "githubUrls": [],
+        "downloadUrls": []
+      },
+      "status": "blocked",
+      "blockers": [
+        "missing-exact-version-tag-or-release"
+      ]
+    },
+    {
+      "legacyId": "wheel/resources/gu.md",
+      "legacyFile": "wheel/resources/gu.md",
+      "legacyPath": "/wheel/resources/gu.html",
+      "coordinate": "io.github.gibbsly:gu",
+      "version": "1.0.0",
+      "license": "Unlicense",
+      "licenseBasisUrl": "https://github.com/gibbsly/gu/blob/main/LICENSE",
+      "source": {
+        "type": "github-release-asset",
+        "repository": "gibbsly/gu",
+        "ref": "v1.0",
+        "asset": "gu1.0.zip"
+      },
+      "subdir": null,
+      "nestedZip": null,
+      "minecraft": "1.21~26.3",
+      "dependencies": [],
+      "site": {
+        "name": "gu",
+        "description": "简易的UUID数组至十六进制字符串转换器",
+        "cover": null,
+        "authors": [
+          {
+            "name": "gibbsly",
+            "avatarUrl": "https://vanillalibrary.mcfpp.top/datapack-index/_authors/gibbsly.png",
+            "links": [
+              {
+                "label": "Github",
+                "url": "https://github.com/gibbsly"
+              }
+            ]
+          }
+        ],
+        "tags": [
+          "数学",
+          "UUID"
+        ],
+        "gameVersions": [
+          "1.21~26.3"
+        ],
+        "dependencyNotes": null,
+        "details": "gu是一个简易的底层库，可以将数组格式的UUID转换为带连字符的十六进制字符串格式。本库将允许你实现直接使用UUID选择实体，或是在实体未被加载时更改其分数等等功能。\r\n\r\n> `gu:generate` - 将执行者的UUID转换为带连字符的十六进制字符串格式后。将结果写入storage `gu:main out`\r\n\r\n> `gu:convert` - 给本宏函数提供类似`{UUID:[I;0,1,2,3]}`的输入，函数会将其转换为带连字符的十六进制字符串格式，并将结果写入storage `gu:main out`",
+        "projectUrl": "https://github.com/gibbsly/gu",
+        "legacyPath": "/wheel/resources/gu.html"
+      },
+      "discovery": {
+        "repositoryArchived": false,
+        "githubUrls": [],
+        "downloadUrls": []
+      },
+      "status": "ready-for-cli-audit",
+      "blockers": []
+    },
+    {
+      "legacyId": "wheel/resources/math3.0_lalib.md",
+      "legacyFile": "wheel/resources/math3.0_lalib.md",
+      "legacyPath": "/wheel/resources/math3.0_lalib.html",
+      "coordinate": "io.github.xiaodou8593:math3.0_lalib",
+      "version": "3.0.0",
+      "license": null,
+      "licenseBasisUrl": null,
+      "source": null,
+      "subdir": null,
+      "nestedZip": null,
+      "minecraft": "1.20.2+",
+      "dependencies": [],
+      "site": {
+        "name": "小豆线代数学库",
+        "description": "线性代数数学库",
+        "cover": null,
+        "authors": [
+          {
+            "name": "小豆8593",
+            "avatarUrl": "https://vanillalibrary.mcfpp.top/datapack-index/_authors/%E5%B0%8F%E8%B1%868593.jpg",
+            "links": [
+              {
+                "label": "Bilibili",
+                "url": "https://space.bilibili.com/206987540"
+              },
+              {
+                "label": "GitHub",
+                "url": "https://github.com/xiaodou8593"
+              }
+            ]
+          }
+        ],
+        "tags": [
+          "数学",
+          "线性代数",
+          "向量"
+        ],
+        "gameVersions": [
+          "1.20.2+"
+        ],
+        "dependencyNotes": null,
+        "details": "> [!IMPORTANT]\r\n> 线代数学库需要[小豆数学库](./xiaodou_math)作为前置\r\n\r\n小豆线代数学库3.0支持各种线性代数相关的数学计算与操作。想要了解如何使用各个函数，应该直接查看函数开头的注释。",
+        "projectUrl": "https://github.com/xiaodou8593/math3.0_lalib",
+        "legacyPath": "/wheel/resources/math3.0_lalib.html"
+      },
+      "discovery": {
+        "repositoryArchived": false,
+        "githubUrls": [],
+        "downloadUrls": []
+      },
+      "status": "blocked",
+      "blockers": [
+        "missing-exact-version-tag-or-release",
+        "missing-spdx-license"
+      ]
+    },
+    {
+      "legacyId": "wheel/resources/math3.1_dslib.md",
+      "legacyFile": "wheel/resources/math3.1_dslib.md",
+      "legacyPath": "/wheel/resources/math3.1_dslib.html",
+      "coordinate": "io.github.xiaodou8593:math3.1_dslib",
+      "version": "3.1.4",
+      "license": null,
+      "licenseBasisUrl": null,
+      "source": {
+        "type": "github-archive",
+        "repository": "xiaodou8593/math3.1_dslib",
+        "ref": "v3.1.4"
+      },
+      "subdir": null,
+      "nestedZip": null,
+      "minecraft": "1.21.4-26.2",
+      "dependencies": [],
+      "site": {
+        "name": "小豆数据结构库",
+        "description": "数据结构数学库",
+        "cover": null,
+        "authors": [
+          {
+            "name": "小豆8593",
+            "avatarUrl": "https://vanillalibrary.mcfpp.top/datapack-index/_authors/%E5%B0%8F%E8%B1%868593.jpg",
+            "links": [
+              {
+                "label": "Bilibili",
+                "url": "https://space.bilibili.com/206987540"
+              },
+              {
+                "label": "GitHub",
+                "url": "https://github.com/xiaodou8593"
+              }
+            ]
+          }
+        ],
+        "tags": [
+          "数学",
+          "数据结构"
+        ],
+        "gameVersions": [
+          "1.21.4-26.2"
+        ],
+        "dependencyNotes": null,
+        "details": "小豆数据结构库数学库3.1支持各种数据结构相关操作。想要了解如何使用各个函数，应该直接查看函数开头的注释与各个文件夹中的doc.txt。\r\n\r\n需要先安装[数学库主体](/datapack-index/wheel/resources/xiaodou_math.html)。",
+        "projectUrl": "https://github.com/xiaodou8593/math3.1_dslib",
+        "legacyPath": "/wheel/resources/math3.1_dslib.html"
+      },
+      "discovery": {
+        "repositoryArchived": false,
+        "githubUrls": [],
+        "downloadUrls": []
+      },
+      "status": "blocked",
+      "blockers": [
+        "missing-spdx-license"
+      ]
+    },
+    {
+      "legacyId": "wheel/resources/math3.1_gelib.md",
+      "legacyFile": "wheel/resources/math3.1_gelib.md",
+      "legacyPath": "/wheel/resources/math3.1_gelib.html",
+      "coordinate": "io.github.xiaodou8593:math3.1_gelib",
+      "version": "3.1.4",
+      "license": null,
+      "licenseBasisUrl": null,
+      "source": {
+        "type": "github-archive",
+        "repository": "xiaodou8593/math3.1_gelib",
+        "ref": "v3.1.4"
+      },
+      "subdir": null,
+      "nestedZip": null,
+      "minecraft": "1.21.4~26.2",
+      "dependencies": [],
+      "site": {
+        "name": "小豆图形库",
+        "description": "生成，操作，或绘制几何图形",
+        "cover": null,
+        "authors": [
+          {
+            "name": "小豆8593",
+            "avatarUrl": "https://vanillalibrary.mcfpp.top/datapack-index/_authors/%E5%B0%8F%E8%B1%868593.jpg",
+            "links": [
+              {
+                "label": "Bilibili",
+                "url": "https://space.bilibili.com/206987540"
+              },
+              {
+                "label": "GitHub",
+                "url": "https://github.com/xiaodou8593"
+              }
+            ]
+          }
+        ],
+        "tags": [
+          "数学",
+          "几何",
+          "图形"
+        ],
+        "gameVersions": [
+          "1.21.4~26.2"
+        ],
+        "dependencyNotes": null,
+        "details": "小豆图形库允许创建虚拟的几何图形并在空间中渲染它们。想要了解如何使用各个函数，应该直接查看函数开头的注释与各个文件夹中的doc.txt。\r\n\r\n需要先安装[数学库主体](/datapack-index/wheel/resources/xiaodou_math.html)。",
+        "projectUrl": "https://github.com/xiaodou8593/math3.1_gelib",
+        "legacyPath": "/wheel/resources/math3.1_gelib.html"
+      },
+      "discovery": {
+        "repositoryArchived": false,
+        "githubUrls": [],
+        "downloadUrls": []
+      },
+      "status": "blocked",
+      "blockers": [
+        "missing-spdx-license"
+      ]
+    },
+    {
+      "legacyId": "wheel/resources/objmc.md",
+      "legacyFile": "wheel/resources/objmc.md",
+      "legacyPath": "/wheel/resources/objmc.html",
+      "coordinate": "io.github.godlander:objmc",
+      "version": "1.0.0",
+      "license": "MIT",
+      "licenseBasisUrl": "https://github.com/Godlander/objmc/blob/main/LICENSE",
+      "source": null,
+      "subdir": null,
+      "nestedZip": null,
+      "minecraft": "~1.21.11",
+      "dependencies": [],
+      "site": {
+        "name": "ObjMC",
+        "description": "一个通过将顶点数据烘焙到纹理中，绕过我的世界Java版模型限制的工具",
+        "cover": null,
+        "authors": [
+          {
+            "name": "Godlander",
+            "avatarUrl": "https://vanillalibrary.mcfpp.top/datapack-index/_authors/Godlander.jpg",
+            "links": [
+              {
+                "label": "GitHub",
+                "url": "https://github.com/Godlander"
+              }
+            ]
+          }
+        ],
+        "tags": [
+          "外部软件",
+          "模型"
+        ],
+        "gameVersions": [
+          "~1.21.11"
+        ],
+        "dependencyNotes": null,
+        "details": "一个通过将顶点数据烘焙到纹理中，绕过我的世界Java版模型限制的外部工具。\r\n\r\n使用说明请见其[官方文档](https://github.com/Godlander/objmc/blob/main/README.md)。\r\n\r\n![展示图片](/public/wheel/objmc.png)",
+        "projectUrl": "https://github.com/Godlander/objmc",
+        "legacyPath": "/wheel/resources/objmc.html"
+      },
+      "discovery": {
+        "repositoryArchived": false,
+        "githubUrls": [
+          "https://github.com/Godlander/objmc/blob/main/README.md"
+        ],
+        "downloadUrls": []
+      },
+      "status": "blocked",
+      "blockers": [
+        "missing-exact-version-tag-or-release"
+      ]
+    },
+    {
+      "legacyId": "wheel/resources/timelist.md",
+      "legacyFile": "wheel/resources/timelist.md",
+      "legacyPath": "/wheel/resources/timelist.html",
+      "coordinate": "io.github.xiaodou8593:timelist",
+      "version": "1.0.0",
+      "license": null,
+      "licenseBasisUrl": null,
+      "source": {
+        "type": "github-archive",
+        "repository": "xiaodou8593/timelist",
+        "ref": "release_1.0.0"
+      },
+      "subdir": null,
+      "nestedZip": null,
+      "minecraft": "1.20.2+",
+      "dependencies": [],
+      "site": {
+        "name": "小豆的事件队列",
+        "description": "在指定时间后执行任意命令",
+        "cover": null,
+        "authors": [
+          {
+            "name": "小豆8593",
+            "avatarUrl": "https://vanillalibrary.mcfpp.top/datapack-index/_authors/%E5%B0%8F%E8%B1%868593.jpg",
+            "links": [
+              {
+                "label": "Bilibili",
+                "url": "https://space.bilibili.com/206987540"
+              },
+              {
+                "label": "GitHub",
+                "url": "https://github.com/xiaodou8593"
+              }
+            ]
+          }
+        ],
+        "tags": [
+          "定时任务"
+        ],
+        "gameVersions": [
+          "1.20.2+"
+        ],
+        "dependencyNotes": null,
+        "details": "小豆的事件队列允许创建定时事件。在指定的时间后以指定的实体，在指定的位置执行事件。查看仓库中的README文件以了解如何使用。",
+        "projectUrl": "https://github.com/xiaodou8593/timelist",
+        "legacyPath": "/wheel/resources/timelist.html"
+      },
+      "discovery": {
+        "repositoryArchived": false,
+        "githubUrls": [],
+        "downloadUrls": []
+      },
+      "status": "blocked",
+      "blockers": [
+        "missing-spdx-license"
+      ]
+    },
+    {
+      "legacyId": "wheel/resources/xiaodou_math.md",
+      "legacyFile": "wheel/resources/xiaodou_math.md",
+      "legacyPath": "/wheel/resources/xiaodou_math.html",
+      "coordinate": "io.github.xiaodou8593:math3.1",
+      "version": "3.1.4",
+      "license": null,
+      "licenseBasisUrl": null,
+      "source": {
+        "type": "github-archive",
+        "repository": "xiaodou8593/math3.1",
+        "ref": "v3.1.4"
+      },
+      "subdir": null,
+      "nestedZip": null,
+      "minecraft": "1.18~26.2",
+      "dependencies": [],
+      "site": {
+        "name": "小豆数学库",
+        "description": "小豆的数学库",
+        "cover": null,
+        "authors": [
+          {
+            "name": "小豆8593",
+            "avatarUrl": "https://vanillalibrary.mcfpp.top/datapack-index/_authors/%E5%B0%8F%E8%B1%868593.jpg",
+            "links": [
+              {
+                "label": "Bilibili",
+                "url": "https://space.bilibili.com/206987540"
+              },
+              {
+                "label": "GitHub",
+                "url": "https://github.com/xiaodou8593"
+              }
+            ]
+          }
+        ],
+        "tags": [
+          "数学"
+        ],
+        "gameVersions": [
+          "1.18~26.2"
+        ],
+        "dependencyNotes": null,
+        "details": "小豆数学库提供了大量对数学运算的支持。想要了解如何使用各个函数，应该直接查看函数开头的注释。\r\n\r\n2.0版本的小豆数学库仍在[此仓库](https://github.com/xiaodou8593/math2.0)保存。\r\n\r\n3.1版本的数学库，除了主体外，还有多个可选的子模块。",
+        "projectUrl": "https://github.com/xiaodou8593/math3.1",
+        "legacyPath": "/wheel/resources/xiaodou_math.html"
+      },
+      "discovery": {
+        "repositoryArchived": false,
+        "githubUrls": [
+          "https://github.com/xiaodou8593/math2.0"
+        ],
+        "downloadUrls": []
+      },
+      "status": "blocked",
+      "blockers": [
+        "missing-spdx-license"
+      ]
+    }
+  ]
+}

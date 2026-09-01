@@ -15,6 +15,10 @@ class FetchError(RuntimeError):
     pass
 
 
+class NotFoundError(FetchError):
+    pass
+
+
 def fetch_bytes(
     url: str,
     *,
@@ -40,6 +44,8 @@ def fetch_bytes(
                 raise FetchError("response exceeds size limit")
             body = response.read(max_bytes + 1)
     except HTTPError as exc:
+        if exc.code == 404:
+            raise NotFoundError("HTTP 404 while fetching repository data") from exc
         raise FetchError(f"HTTP {exc.code} while fetching repository data") from exc
     except (URLError, TimeoutError, OSError) as exc:
         raise FetchError(f"repository request failed: {exc}") from exc

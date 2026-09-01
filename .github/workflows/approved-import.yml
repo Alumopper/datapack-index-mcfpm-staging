@@ -80,9 +80,20 @@ jobs:
             --report "$RUNNER_TEMP/mcfpm-audit.json" \
             --error "$RUNNER_TEMP/mcfpm-audit-error.txt"
 
+      - name: Freeze the validated site metadata
+        id: create-site-metadata
+        if: steps.audit-mcfpm.outcome == 'success'
+        continue-on-error: true
+        run: |
+          node .github/scripts/create-site-metadata.mjs \
+            --config "$RUNNER_TEMP/import-params.json" \
+            --output "$RUNNER_TEMP/package.mcfpm-site.json" \
+            --report "$RUNNER_TEMP/mcfpm-audit.json" \
+            2>>"$RUNNER_TEMP/mcfpm-audit-error.txt"
+
       - name: Prepare the frozen candidate artifact
         id: package-candidate
-        if: steps.audit-mcfpm.outcome == 'success'
+        if: steps.create-site-metadata.outcome == 'success'
         continue-on-error: true
         run: |
           set -euo pipefail
@@ -91,6 +102,7 @@ jobs:
           cp "$RUNNER_TEMP/candidate.mcfpm-import" "$RUNNER_TEMP/mcfpm-audit-artifact/candidate.mcfpm-import"
           cp "$RUNNER_TEMP/mcfpm-audit.json" "$RUNNER_TEMP/mcfpm-audit-artifact/mcfpm-audit.json"
           cp "$RUNNER_TEMP/import-params.json" "$RUNNER_TEMP/mcfpm-audit-artifact/import-params.json"
+          cp "$RUNNER_TEMP/package.mcfpm-site.json" "$RUNNER_TEMP/mcfpm-audit-artifact/package.mcfpm-site.json"
 
       - name: Store the frozen candidate and audit report
         id: upload-candidate
@@ -111,7 +123,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           ISSUE_NUMBER: ${{ github.event.issue.number }}
           IMPORT_PARAMS: ${{ runner.temp }}/import-params.json
-          AUDIT_OK: ${{ steps.audit-mcfpm.outcome == 'success' && steps.package-candidate.outcome == 'success' && steps.upload-candidate.outcome == 'success' }}
+          AUDIT_OK: ${{ steps.audit-mcfpm.outcome == 'success' && steps.create-site-metadata.outcome == 'success' && steps.package-candidate.outcome == 'success' && steps.upload-candidate.outcome == 'success' }}
         run: |
           if [[ "$AUDIT_OK" == "true" ]]; then state=audit-passed; else state=audit-failed; fi
           node .github/scripts/update-import-issue.mjs \
@@ -122,7 +134,7 @@ jobs:
       - name: Keep failed audits from reaching the approval job
         if: always()
         env:
-          AUDIT_OK: ${{ steps.audit-mcfpm.outcome == 'success' && steps.package-candidate.outcome == 'success' && steps.upload-candidate.outcome == 'success' && steps.update-issue.outcome == 'success' }}
+          AUDIT_OK: ${{ steps.audit-mcfpm.outcome == 'success' && steps.create-site-metadata.outcome == 'success' && steps.package-candidate.outcome == 'success' && steps.upload-candidate.outcome == 'success' && steps.update-issue.outcome == 'success' }}
         run: |
           [[ "$AUDIT_OK" == "true" ]]
 
@@ -158,6 +170,7 @@ jobs:
         run: |
           node .github/scripts/verify-candidate-artifact.mjs \
             --candidate "$RUNNER_TEMP/mcfpm-import/candidate.mcfpm-import" \
+            --site-metadata "$RUNNER_TEMP/mcfpm-import/package.mcfpm-site.json" \
             --audit-report "$RUNNER_TEMP/mcfpm-import/mcfpm-audit.json" \
             2>"$RUNNER_TEMP/mcfpm-publish-error.txt"
 
@@ -207,13 +220,36 @@ jobs:
             --report "$RUNNER_TEMP/mcfpm-publish.json" \
             --error "$RUNNER_TEMP/mcfpm-publish-error.txt"
 
+      - name: Publish the frozen site metadata
+        id: publish-site-metadata
+        if: steps.publish-mcfpm.outcome == 'success'
+        continue-on-error: true
+        env:
+          NEXUS_REPOSITORY_URL: ${{ vars.NEXUS_REPOSITORY_URL }}
+          NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
+          NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
+        run: |
+          node .github/scripts/publish-site-metadata.mjs \
+            --metadata "$RUNNER_TEMP/mcfpm-import/package.mcfpm-site.json" \
+            --repository-url "$NEXUS_REPOSITORY_URL" \
+            --report "$RUNNER_TEMP/mcfpm-site-publish.json" \
+            --error "$RUNNER_TEMP/mcfpm-publish-error.txt"
+          node -e '
+            const fs = require("fs");
+            const packageReport = JSON.parse(fs.readFileSync(process.env.RUNNER_TEMP + "/mcfpm-publish.json"));
+            const siteReport = JSON.parse(fs.readFileSync(process.env.RUNNER_TEMP + "/mcfpm-site-publish.json"));
+            packageReport.siteMetadataSha256 = siteReport.siteMetadataSha256;
+            packageReport.siteMetadataStatus = siteReport.status;
+            fs.writeFileSync(process.env.RUNNER_TEMP + "/mcfpm-publish.json", JSON.stringify(packageReport, null, 2) + "\n");
+          '
+
       - name: Report publication result on the Issue
         id: update-issue
         if: always()
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           ISSUE_NUMBER: ${{ github.event.issue.number }}
-          PUBLISH_OK: ${{ steps.download-candidate.outcome == 'success' && steps.verify-candidate.outcome == 'success' && steps.download-mcfpm.outcome == 'success' && steps.publish-mcfpm.outcome == 'success' }}
+          PUBLISH_OK: ${{ steps.download-candidate.outcome == 'success' && steps.verify-candidate.outcome == 'success' && steps.download-mcfpm.outcome == 'success' && steps.publish-mcfpm.outcome == 'success' && steps.publish-site-metadata.outcome == 'success' }}
         run: |
           if [[ "$PUBLISH_OK" == "true" ]]; then state=publish-passed; else state=publish-failed; fi
           node .github/scripts/update-import-issue.mjs \
@@ -224,6 +260,6 @@ jobs:
       - name: Fail the run if publication did not complete
         if: always()
         env:
-          PUBLISH_OK: ${{ steps.download-candidate.outcome == 'success' && steps.verify-candidate.outcome == 'success' && steps.download-mcfpm.outcome == 'success' && steps.publish-mcfpm.outcome == 'success' && steps.update-issue.outcome == 'success' }}
+          PUBLISH_OK: ${{ steps.download-candidate.outcome == 'success' && steps.verify-candidate.outcome == 'success' && steps.download-mcfpm.outcome == 'success' && steps.publish-mcfpm.outcome == 'success' && steps.publish-site-metadata.outcome == 'success' && steps.update-issue.outcome == 'success' }}
         run: |
           [[ "$PUBLISH_OK" == "true" ]]

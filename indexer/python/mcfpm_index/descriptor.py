@@ -5,8 +5,9 @@ import json
 from typing import Any, Callable, Dict, List, Tuple
 from urllib.parse import urlparse
 
-from .http import fetch_bytes
+from .http import NotFoundError, fetch_bytes
 from .model import Candidate, ValidationError
+from .site_metadata import site_metadata_url, validate_site_metadata
 
 
 BytesFetcher = Callable[[str], Tuple[bytes, str]]
@@ -132,4 +133,13 @@ def fetch_and_validate_descriptor(
     get_bytes: BytesFetcher = fetch_bytes,
 ) -> Dict[str, Any]:
     body, final_url = get_bytes(candidate.descriptor_url)
-    return validate_descriptor(candidate, body, final_url)
+    descriptor = validate_descriptor(candidate, body, final_url)
+    descriptor["site"] = None
+    if candidate.source == "nexus":
+        try:
+            site_body, site_final_url = get_bytes(site_metadata_url(candidate))
+        except NotFoundError:
+            pass
+        else:
+            descriptor["site"] = validate_site_metadata(candidate, site_body, site_final_url)
+    return descriptor

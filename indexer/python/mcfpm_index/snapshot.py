@@ -10,6 +10,7 @@ from typing import Any, Callable, Dict, Iterable, List, Optional
 
 from .descriptor import fetch_and_validate_descriptor
 from .model import Candidate, semver_key
+from .site_metadata import site_summary
 
 
 DescriptorLoader = Callable[[Candidate], Dict[str, Any]]
@@ -56,6 +57,7 @@ def build_snapshot(
                 "types": sorted({kind for version in versions for kind in version["types"]}),
                 "licenses": sorted({version["license"] for version in versions}),
                 "description": latest.get("description"),
+                "display": site_summary(latest.get("site")),
                 "versions": versions,
             }
         )

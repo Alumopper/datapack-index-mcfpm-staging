@@ -33,6 +33,16 @@ def package(group, name, source, trust, requirement):
         "types": ["minecraft.datapack"],
         "licenses": ["MIT"],
         "description": None,
+        "display": {
+            "name": f"Display {name}",
+            "description": "A displayed package",
+            "coverUrl": None,
+            "authors": [{"name": "Example", "avatarUrl": None, "links": []}],
+            "tags": ["utility"],
+            "gameVersions": ["1.21"],
+            "projectUrl": None,
+            "legacyPath": None,
+        },
         "versions": [item_version],
     }
 
@@ -84,6 +94,10 @@ class ApiTests(unittest.TestCase):
         self.assertEqual(["b.example:beta"], [item["coordinate"] for item in filtered["items"]])
         _, detail = self.get("/v1/packages/b.example/beta/1.0.0")
         self.assertEqual("nexus", detail["source"])
+
+    def test_display_metadata_is_in_list_summary(self):
+        _, payload = self.get("/v1/packages?q=Display%20beta")
+        self.assertEqual("Display beta", payload["items"][0]["display"]["name"])
 
     def test_etag_returns_not_modified(self):
         response, _ = self.get("/v1/status")
