@@ -1,0 +1,12 @@
+[Unit]
+Description=Periodically pull Maven Central Mcfpm candidates
+
+[Timer]
+OnBootSec=10m
+OnUnitActiveSec=6h
+RandomizedDelaySec=10m
+Persistent=true
+Unit=mcfpm-central-pull.service
+
+[Install]
+WantedBy=timers.target

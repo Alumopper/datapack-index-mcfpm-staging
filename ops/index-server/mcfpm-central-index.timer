@@ -1,0 +1,11 @@
+[Unit]
+Description=Daily Maven Central full-index refresh for Mcfpm
+
+[Timer]
+OnCalendar=*-*-* 03:15:00
+RandomizedDelaySec=1h
+Persistent=true
+Unit=mcfpm-central-index.service
+
+[Install]
+WantedBy=timers.target

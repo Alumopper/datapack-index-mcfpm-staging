@@ -1,0 +1,14 @@
+[Unit]
+Description=Refresh Mcfpm candidates from the Maven Central repository index
+Documentation=https://maven.apache.org/repository/central-index.html
+Wants=network-online.target
+After=network-online.target docker.service
+Requires=docker.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/docker run --rm --name mcfpm-central-index-update --network bridge --memory 2g --cpus 1.5 --volume /var/lib/mcfpm-index:/data:rw mcfpm-central-index:0.1.0 --cache /data/maven-cache --state /data/central-candidates.tsv --output /data/central-full.json
+TimeoutStartSec=12h
+Nice=10
+IOSchedulingClass=idle
+UMask=0027
