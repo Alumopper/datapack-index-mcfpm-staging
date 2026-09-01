@@ -1,0 +1,27 @@
+[Unit]
+Description=Pull the verified Maven Central candidate file from the index host
+Wants=network-online.target
+After=network-online.target
+Before=mcfpm-index-refresh.service
+
+[Service]
+Type=oneshot
+User=mcfpm-index
+Group=mcfpm-index
+WorkingDirectory=/opt/mcfpm-package-index
+Environment=PYTHONPATH=/opt/mcfpm-package-index/indexer/python
+ExecStart=/bin/sh /opt/mcfpm-package-index/ops/api-server/pull-central-index.sh
+TimeoutStartSec=15m
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+ReadWritePaths=/var/lib/mcfpm-package-index
+LockPersonality=true
+MemoryDenyWriteExecute=true
+UMask=0077

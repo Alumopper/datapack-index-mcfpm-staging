@@ -1,0 +1,12 @@
+[Unit]
+Description=Frequent Nexus and Central Search refresh for Mcfpm
+
+[Timer]
+OnBootSec=2m
+OnUnitActiveSec=15m
+RandomizedDelaySec=1m
+Persistent=true
+Unit=mcfpm-index-refresh.service
+
+[Install]
+WantedBy=timers.target

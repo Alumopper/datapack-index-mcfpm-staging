@@ -1,0 +1,32 @@
+[Unit]
+Description=Mcfpm read-only package index API
+Wants=network-online.target
+After=network-online.target mcfpm-index-refresh.service
+
+[Service]
+Type=simple
+User=mcfpm-index
+Group=mcfpm-index
+WorkingDirectory=/opt/mcfpm-package-index
+Environment=PYTHONPATH=/opt/mcfpm-package-index/indexer/python
+ExecStart=/usr/bin/python3 -m mcfpm_index.api --snapshot /var/lib/mcfpm-package-index/snapshot.json --host 127.0.0.1 --port 8770
+Restart=on-failure
+RestartSec=5s
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+IPAddressDeny=any
+IPAddressAllow=localhost
+LockPersonality=true
+MemoryDenyWriteExecute=true
+UMask=0027
+LimitNOFILE=4096
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,34 @@
+name: Test package index
+
+on:
+  pull_request:
+    paths:
+      - "indexer/**"
+      - "ops/api-server/**"
+      - "ops/index-server/mcfpm-central-index.*"
+      - ".github/workflows/index-tests.yml"
+  push:
+    branches: [master]
+    paths:
+      - "indexer/**"
+      - "ops/api-server/**"
+      - "ops/index-server/mcfpm-central-index.*"
+      - ".github/workflows/index-tests.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out trusted source
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          persist-credentials: false
+
+      - name: Test the collector and HTTP API
+        run: PYTHONPATH=indexer/python python3 -m unittest discover -s indexer/python/tests -v
+
+      - name: Build and test the pinned Java 21 Central scanner
+        run: docker build --progress=plain -t mcfpm-central-index:test indexer/central-index
