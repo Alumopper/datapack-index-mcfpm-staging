@@ -17,6 +17,7 @@ const HEADINGS = [
   "标签",
   "依赖项",
   "详情",
+  "可发布内容类型",
   "来源类型",
   "GitHub 仓库",
   "GitHub tag/commit",
@@ -41,6 +42,7 @@ const REQUIRED_HEADINGS = new Set([
   "支持的游戏版本",
   "标签",
   "详情",
+  "可发布内容类型",
   "来源类型",
   "Maven 坐标（GROUP:NAME）",
   "SPDX 许可证",
@@ -172,6 +174,12 @@ function parseIssue(event) {
     "普通 HTTPS ZIP": "url",
   }[sourceTypeValue];
   if (!sourceType) fail("来源类型无效");
+  const contentTypeValue = value(fields, "可发布内容类型", true);
+  const contentType = {
+    "数据包": "datapack",
+    "资源包": "resourcepack",
+  }[contentTypeValue];
+  if (!contentType) fail("可发布内容类型无效；模组不能上传 Nexus");
 
   const githubRepository = optional(fields, "GitHub 仓库");
   const githubRef = optional(fields, "GitHub tag/commit");
@@ -216,6 +224,7 @@ function parseIssue(event) {
   return {
     template: "new_wheel-v1",
     sourceType,
+    contentType,
     repository: githubRepository,
     ref: githubRef,
     asset: githubAsset,

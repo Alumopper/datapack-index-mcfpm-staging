@@ -11,8 +11,8 @@ test("round two pins current commits and records direct MIT attestations", () =>
   const prepared = prepareManifest(structuredClone(manifest));
   const entries = new Map(prepared.entries.map((entry) => [entry.coordinate, entry]));
 
-  assert.equal(prepared.readyCount, 41);
-  assert.equal(prepared.blockedCount, 14);
+  assert.equal(prepared.readyCount, 42);
+  assert.equal(prepared.blockedCount, 13);
   assert.deepEqual(entries.get("io.github.dartcat25:cem-s").source, {
     type: "github-archive",
     repository: "DartCat25/CEM-S",
@@ -24,4 +24,10 @@ test("round two pins current commits and records direct MIT attestations", () =>
   assert.equal(entries.get("io.github.dartcat25:cem-s").subdir, "1.20.5");
   assert.equal(entries.get("io.github.dahesor:leopard-cat").status, "blocked");
   assert.match(entries.get("io.github.dahesor:leopard-cat").blockers[0], /root-pack-cannot-be-selected/);
+  assert.equal(entries.get("io.github.dahesor:dabsu").status, "ready-for-cli-audit");
+  assert.equal(entries.get("io.github.dahesor:dabsu").rootPack, true);
+  assert.equal(entries.get("io.github.dahesor:dabsu").minecraft, "1.21.11");
+  assert.equal(entries.get("io.github.anvil-dev:anisum").status, "blocked");
+  assert.equal(entries.get("io.github.anvil-dev:anisum").contentType, "mod");
+  assert.ok(entries.get("io.github.anvil-dev:anisum").blockers.includes("unsupported-content-type:mod"));
 });

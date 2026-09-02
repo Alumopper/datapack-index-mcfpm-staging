@@ -35,3 +35,7 @@ Add these Environment variables:
 The audit job reads only the fixed Mcfpm release version and checksum. It never receives Nexus credentials. The publish job references `nexus-production`, so GitHub holds it at the Environment gate before making Environment secrets available.
 
 The workflow checks out `master` explicitly and does not execute the Issue body as shell source. Issue values are parsed into JSON and passed to Mcfpm as an argv array by the checked-in Node runner.
+
+Mcfpm publication accepts Minecraft data packs and resource packs only. Mods remain static catalog entries: the Issue form has no mod option, and the legacy audit and publisher both reject entries marked `contentType: mod` or tagged `模组`/`mod`.
+
+The legacy DaBSu migration is the sole `rootPack` exception. Its official archive contains an overlay with another `pack.mcmeta`, so Mcfpm first audits that pinned release asset through the overlay selector. `McfpmRootCandidate.java` then verifies the independently downloaded bytes against both the manifest SHA-256 and Mcfpm's source hash before freezing the root data pack. This helper requires JDK 17, available through `JAVA_HOME_17_X64` on GitHub-hosted runners.

@@ -44,6 +44,7 @@ function buildCommand(config, candidatePath) {
   addOption(argumentsList, "--package", config.package);
   addOption(argumentsList, "--version", config.version);
   addOption(argumentsList, "--license", config.license);
+  addOption(argumentsList, "--type", config.contentType);
   addOption(argumentsList, "--subdir", config.subdir);
   addOption(argumentsList, "--nested-zip", config.nestedZip);
   addOption(argumentsList, "--minecraft", config.minecraft);
