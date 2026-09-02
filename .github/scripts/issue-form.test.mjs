@@ -12,6 +12,8 @@ test("the Wheel submission is a GitHub-recognized issue form", () => {
 	const source = fs.readFileSync(formPath, "utf8");
 	assert.match(source, /^name: 提交新 Wheel$/m);
 	assert.match(source, /^description: .+$/m);
+	assert.match(source, /^title: "\[Wheel\] "$/m);
+	assert.doesNotMatch(source, /^title:\s*(?:""|''|null)?\s*$/m);
 	assert.match(source, /^body:$/m);
 	assert.match(source, /<!-- mcfpm-import-template: new_wheel-v1 -->/);
 	assert.match(source, /^\s+- type: checkboxes$/m);
