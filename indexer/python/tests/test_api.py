@@ -32,6 +32,7 @@ def package(group, name, source, trust, requirement):
         "sources": [source],
         "types": ["minecraft.datapack"],
         "licenses": ["MIT"],
+        "minecraftRequirements": [requirement],
         "description": None,
         "display": {
             "name": f"Display {name}",
@@ -84,6 +85,7 @@ class ApiTests(unittest.TestCase):
         response, first = self.get("/v1/packages?limit=1")
         self.assertEqual(2, first["total"])
         self.assertEqual("a.example:alpha", first["items"][0]["coordinate"])
+        self.assertEqual(["minecraft >=1.20"], first["items"][0]["minecraftRequirements"])
         self.assertNotIn("versions", first["items"][0])
         _, second = self.get("/v1/packages?limit=1&cursor=" + first["nextCursor"])
         self.assertEqual("b.example:beta", second["items"][0]["coordinate"])

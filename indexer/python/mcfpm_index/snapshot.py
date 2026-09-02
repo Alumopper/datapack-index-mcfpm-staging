@@ -56,6 +56,11 @@ def build_snapshot(
                 "sources": sorted({version["source"] for version in versions}),
                 "types": sorted({kind for version in versions for kind in version["types"]}),
                 "licenses": sorted({version["license"] for version in versions}),
+                "minecraftRequirements": sorted({
+                    requirement
+                    for version in versions
+                    for requirement in version.get("minecraftRequirements", [])
+                }),
                 "description": latest.get("description"),
                 "display": site_summary(latest.get("site")),
                 "versions": versions,
