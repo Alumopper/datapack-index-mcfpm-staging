@@ -73,6 +73,12 @@ class DescriptorAndSnapshotTests(unittest.TestCase):
         self.assertEqual(hashlib.sha256(body).hexdigest(), result["descriptorSha256"])
         self.assertEqual("community", result["trust"])
         self.assertEqual(["minecraft.datapack"], result["types"])
+        self.assertEqual(["minecraft >=1.21"], result["minecraftRequirements"])
+
+        value = descriptor()
+        value["minecraft"] = "1.21.4+"
+        with_root_requirement = validate_descriptor(candidate(), json.dumps(value).encode(), candidate().descriptor_url)
+        self.assertEqual(["1.21.4+", "minecraft >=1.21"], with_root_requirement["minecraftRequirements"])
 
     def test_descriptor_coordinate_mismatch_is_rejected(self):
         value = descriptor()
@@ -148,6 +154,7 @@ class DescriptorAndSnapshotTests(unittest.TestCase):
         self.assertEqual("2.0.0", snapshot["packages"][0]["latestVersion"])
         self.assertEqual("reviewed", snapshot["packages"][0]["trust"])
         self.assertEqual("Demo library", snapshot["packages"][0]["display"]["name"])
+        self.assertEqual(["minecraft >=1.21"], snapshot["packages"][0]["minecraftRequirements"])
         self.assertEqual(1, len(snapshot["rejected"]))
 
     def test_snapshot_write_is_valid_utf8_json(self):

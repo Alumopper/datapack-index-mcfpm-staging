@@ -78,6 +78,9 @@ def validate_descriptor(candidate: Candidate, body: bytes, final_url: str) -> Di
     types = set()
     classifiers = set()
     requirements = []
+    minecraft = descriptor.get("minecraft")
+    if minecraft is not None:
+        requirements.append(_bounded_string(minecraft, "minecraft requirement", 256))
     upstream_urls = []
     for artifact in artifacts:
         if not isinstance(artifact, dict):

@@ -3,8 +3,8 @@
   "generatedAt": "2026-09-01T19:01:39.983Z",
   "legacyCount": 55,
   "entryCount": 55,
-  "readyCount": 20,
-  "blockedCount": 35,
+  "readyCount": 41,
+  "blockedCount": 14,
   "entries": [
     {
       "legacyId": "wheel/resources/Anisum.md",
@@ -257,8 +257,12 @@
       "version": "1.0.0",
       "license": "MIT",
       "licenseBasisUrl": "https://github.com/DartCat25/CEM-S/blob/main/LICENSE",
-      "source": null,
-      "subdir": null,
+      "source": {
+        "type": "github-archive",
+        "repository": "DartCat25/CEM-S",
+        "ref": "fb82f20698e8972f241574a9390413f385c8bddb"
+      },
+      "subdir": "1.20.5",
       "nestedZip": null,
       "minecraft": "1.17-1.21.7",
       "dependencies": [],
@@ -299,10 +303,8 @@
         ],
         "downloadUrls": []
       },
-      "status": "blocked",
-      "blockers": [
-        "missing-exact-version-tag-or-release"
-      ]
+      "status": "ready-for-cli-audit",
+      "blockers": []
     },
     {
       "legacyId": "wheel/resources/Cartographer.md",
@@ -424,7 +426,11 @@
       "version": "0.3.1",
       "license": "MIT",
       "licenseBasisUrl": "https://github.com/4tubborn/sbox/blob/main/LICENSE",
-      "source": null,
+      "source": {
+        "type": "github-archive",
+        "repository": "4tubborn/sbox",
+        "ref": "032af44081a987ab7c303777b0043f15cf0113b5"
+      },
       "subdir": null,
       "nestedZip": null,
       "minecraft": "1.21.6~26.2",
@@ -468,10 +474,8 @@
         ],
         "downloadUrls": []
       },
-      "status": "blocked",
-      "blockers": [
-        "missing-exact-version-tag-or-release"
-      ]
+      "status": "ready-for-cli-audit",
+      "blockers": []
     },
     {
       "legacyId": "wheel/resources/DFL_Functions.md",
@@ -693,8 +697,8 @@
       "legacyPath": "/wheel/resources/Floating_UI.html",
       "coordinate": "io.github.alumopper:floating-ui",
       "version": "1.0.0-beta1",
-      "license": null,
-      "licenseBasisUrl": null,
+      "license": "MIT",
+      "licenseBasisUrl": "https://github.com/Alumopper/datapack-index-mcfpm-staging/blob/master/.github/migrations/legacy-license-attestations.md#floating-ui",
       "source": {
         "type": "github-archive",
         "repository": "Alumopper/Floating-UI",
@@ -745,10 +749,8 @@
         ],
         "downloadUrls": []
       },
-      "status": "blocked",
-      "blockers": [
-        "missing-spdx-license"
-      ]
+      "status": "ready-for-cli-audit",
+      "blockers": []
     },
     {
       "legacyId": "wheel/resources/ForceloadLib.md",
@@ -758,7 +760,11 @@
       "version": "1.1.1",
       "license": "MIT",
       "licenseBasisUrl": "https://github.com/CMDred/ForceloadLib/blob/main/LICENSE",
-      "source": null,
+      "source": {
+        "type": "github-archive",
+        "repository": "CMDred/ForceloadLib",
+        "ref": "ab4e420bda11f8e0729393599f979da512270d1c"
+      },
       "subdir": null,
       "nestedZip": null,
       "minecraft": "1.21.5~1.21.11",
@@ -813,10 +819,8 @@
         ],
         "downloadUrls": []
       },
-      "status": "blocked",
-      "blockers": [
-        "missing-exact-version-tag-or-release"
-      ]
+      "status": "ready-for-cli-audit",
+      "blockers": []
     },
     {
       "legacyId": "wheel/resources/Kaer_MathLib.md",
@@ -826,7 +830,11 @@
       "version": "1.19.0",
       "license": "MIT",
       "licenseBasisUrl": "https://github.com/kaer-3058/large_number/blob/main/LICENSE",
-      "source": null,
+      "source": {
+        "type": "github-archive",
+        "repository": "kaer-3058/large_number",
+        "ref": "a7dcb48b2839eff3f3fc922e30a1172de95b665c"
+      },
       "subdir": null,
       "nestedZip": null,
       "minecraft": "1.21.3",
@@ -871,10 +879,8 @@
         ],
         "downloadUrls": []
       },
-      "status": "blocked",
-      "blockers": [
-        "missing-exact-version-tag-or-release"
-      ]
+      "status": "ready-for-cli-audit",
+      "blockers": []
     },
     {
       "legacyId": "wheel/resources/Mxpea_Motion_API.md",
@@ -1062,7 +1068,11 @@
       "version": "1.3.0",
       "license": "MIT",
       "licenseBasisUrl": "https://github.com/CMDred/Per-Player-Displays/blob/main/LICENSE",
-      "source": null,
+      "source": {
+        "type": "github-archive",
+        "repository": "CMDred/Per-Player-Displays",
+        "ref": "90c398ceff1cc88fb0b40c7dd8a2ff50db65dc09"
+      },
       "subdir": null,
       "nestedZip": null,
       "minecraft": "1.21~1.21.4",
@@ -1116,10 +1126,8 @@
         ],
         "downloadUrls": []
       },
-      "status": "blocked",
-      "blockers": [
-        "missing-exact-version-tag-or-release"
-      ]
+      "status": "ready-for-cli-audit",
+      "blockers": []
     },
     {
       "legacyId": "wheel/resources/PlayerDataExpansion.md",
@@ -1361,7 +1369,11 @@
       "version": "1.3.1",
       "license": "MIT",
       "licenseBasisUrl": "https://github.com/CMDred/ScoreFixer/blob/main/LICENSE",
-      "source": null,
+      "source": {
+        "type": "github-archive",
+        "repository": "CMDred/ScoreFixer",
+        "ref": "83663b25052caf956362a0105563cd96035f43a3"
+      },
       "subdir": null,
       "nestedZip": null,
       "minecraft": "1.21.2~26.2",
@@ -1414,10 +1426,8 @@
         ],
         "downloadUrls": []
       },
-      "status": "blocked",
-      "blockers": [
-        "missing-exact-version-tag-or-release"
-      ]
+      "status": "ready-for-cli-audit",
+      "blockers": []
     },
     {
       "legacyId": "wheel/resources/Sidebar_UI.md",
@@ -1674,7 +1684,11 @@
       "version": "1.1.5",
       "license": "MIT",
       "licenseBasisUrl": "https://github.com/TheSalts/Text_Effects/blob/main/LICENSE",
-      "source": null,
+      "source": {
+        "type": "github-archive",
+        "repository": "TheSalts/Text_Effects",
+        "ref": "ea922a1fc11559108afcfd2f97c754e96b4b6d55"
+      },
       "subdir": null,
       "nestedZip": null,
       "minecraft": "1.21.10-26.1",
@@ -1715,10 +1729,8 @@
         ],
         "downloadUrls": []
       },
-      "status": "blocked",
-      "blockers": [
-        "missing-exact-version-tag-or-release"
-      ]
+      "status": "ready-for-cli-audit",
+      "blockers": []
     },
     {
       "legacyId": "wheel/resources/TimeLib.md",
@@ -1728,7 +1740,11 @@
       "version": "2.3.1",
       "license": "MIT",
       "licenseBasisUrl": "https://github.com/CMDred/TimeLib/blob/main/LICENSE",
-      "source": null,
+      "source": {
+        "type": "github-archive",
+        "repository": "CMDred/TimeLib",
+        "ref": "47d39f3a0d062653986c481c1dc8ddf6f0fe32d7"
+      },
       "subdir": null,
       "nestedZip": null,
       "minecraft": "1.21~1.21.8",
@@ -1792,10 +1808,8 @@
         ],
         "downloadUrls": []
       },
-      "status": "blocked",
-      "blockers": [
-        "missing-exact-version-tag-or-release"
-      ]
+      "status": "ready-for-cli-audit",
+      "blockers": []
     },
     {
       "legacyId": "wheel/resources/Traditional-to-Simplified.md",
@@ -1805,7 +1819,11 @@
       "version": "0.0.2",
       "license": "MIT",
       "licenseBasisUrl": "https://github.com/Rain156/Traditional-to-Simplified/blob/main/LICENSE",
-      "source": null,
+      "source": {
+        "type": "github-archive",
+        "repository": "Rain156/Traditional-to-Simplified",
+        "ref": "71338ae366cedbd32ec79f5fac1990aee5b746e4"
+      },
       "subdir": null,
       "nestedZip": null,
       "minecraft": "1.20+",
@@ -1847,10 +1865,8 @@
         "githubUrls": [],
         "downloadUrls": []
       },
-      "status": "blocked",
-      "blockers": [
-        "missing-exact-version-tag-or-release"
-      ]
+      "status": "ready-for-cli-audit",
+      "blockers": []
     },
     {
       "legacyId": "wheel/resources/UIN.md",
@@ -2076,7 +2092,11 @@
       "version": "1.1.0",
       "license": "MIT",
       "licenseBasisUrl": "https://github.com/HalbFettKaese/WireframeDisplay/blob/main/LICENSE",
-      "source": null,
+      "source": {
+        "type": "github-archive",
+        "repository": "HalbFettKaese/WireframeDisplay",
+        "ref": "633d202becfd2b4d856c5477e282c562f06f6688"
+      },
       "subdir": null,
       "nestedZip": null,
       "minecraft": "1.21-1.21.4",
@@ -2116,10 +2136,8 @@
         ],
         "downloadUrls": []
       },
-      "status": "blocked",
-      "blockers": [
-        "missing-exact-version-tag-or-release"
-      ]
+      "status": "ready-for-cli-audit",
+      "blockers": []
     },
     {
       "legacyId": "wheel/resources/bookshelf.md",
@@ -2425,7 +2443,11 @@
       "version": "1.0.0",
       "license": "MIT",
       "licenseBasisUrl": "https://github.com/Dahesor/Leopard-Cat/blob/main/LICENSE",
-      "source": null,
+      "source": {
+        "type": "github-archive",
+        "repository": "Dahesor/Leopard-Cat",
+        "ref": "2d23d5cec5fcddd76570e090ddfea6cb1d2cc38b"
+      },
       "subdir": null,
       "nestedZip": null,
       "minecraft": "1.21.5+",
@@ -2472,7 +2494,7 @@
       },
       "status": "blocked",
       "blockers": [
-        "missing-exact-version-tag-or-release"
+        "pinned-cli:root-pack-cannot-be-selected-when-dependency-pack-is-present"
       ]
     },
     {
@@ -2483,7 +2505,11 @@
       "version": "2.0.0",
       "license": "Unlicense",
       "licenseBasisUrl": "https://github.com/Dahesor/DNT-Dahesor-NBT-Transformer/blob/main/LICENSE",
-      "source": null,
+      "source": {
+        "type": "github-archive",
+        "repository": "Dahesor/DNT-Dahesor-NBT-Transformer",
+        "ref": "ee7e399cebc2c76d227729368e0af6949af93bb6"
+      },
       "subdir": null,
       "nestedZip": null,
       "minecraft": "1.21.5~26.3",
@@ -2527,10 +2553,8 @@
         ],
         "downloadUrls": []
       },
-      "status": "blocked",
-      "blockers": [
-        "missing-exact-version-tag-or-release"
-      ]
+      "status": "ready-for-cli-audit",
+      "blockers": []
     },
     {
       "legacyId": "wheel/resources/doom.schedule.md",
@@ -2595,7 +2619,11 @@
       "version": "1.0.0",
       "license": "Unlicense",
       "licenseBasisUrl": "https://github.com/gibbsly/ehid/blob/main/LICENSE",
-      "source": null,
+      "source": {
+        "type": "github-archive",
+        "repository": "gibbsly/ehid",
+        "ref": "9cfed3223157a1a1d970b06e9d0db12d283378c7"
+      },
       "subdir": null,
       "nestedZip": null,
       "minecraft": "1.21.5+",
@@ -2633,10 +2661,8 @@
         "githubUrls": [],
         "downloadUrls": []
       },
-      "status": "blocked",
-      "blockers": [
-        "missing-exact-version-tag-or-release"
-      ]
+      "status": "ready-for-cli-audit",
+      "blockers": []
     },
     {
       "legacyId": "wheel/resources/fast_bitwise_ops.md",
@@ -2646,7 +2672,11 @@
       "version": "1.1.0",
       "license": "Unlicense",
       "licenseBasisUrl": "https://github.com/Triton365/fast_bitwise_ops/blob/main/LICENSE",
-      "source": null,
+      "source": {
+        "type": "github-archive",
+        "repository": "Triton365/fast_bitwise_ops",
+        "ref": "7e6c98e5dfeed47977420b16fdc981ee5c10a7e6"
+      },
       "subdir": null,
       "nestedZip": null,
       "minecraft": "1.21+",
@@ -2686,10 +2716,8 @@
         ],
         "downloadUrls": []
       },
-      "status": "blocked",
-      "blockers": [
-        "missing-exact-version-tag-or-release"
-      ]
+      "status": "ready-for-cli-audit",
+      "blockers": []
     },
     {
       "legacyId": "wheel/resources/fptrick_impulse.md",
@@ -2813,7 +2841,11 @@
       "version": "1.0.0",
       "license": "Unlicense",
       "licenseBasisUrl": "https://github.com/gibbsly/gm/blob/main/LICENSE",
-      "source": null,
+      "source": {
+        "type": "github-archive",
+        "repository": "gibbsly/gm",
+        "ref": "d68b6c9fd7fd56a2b9c5ebcb9c6fe0651b7f73cd"
+      },
       "subdir": null,
       "nestedZip": null,
       "minecraft": "1.21~26.3",
@@ -2852,10 +2884,8 @@
         "githubUrls": [],
         "downloadUrls": []
       },
-      "status": "blocked",
-      "blockers": [
-        "missing-exact-version-tag-or-release"
-      ]
+      "status": "ready-for-cli-audit",
+      "blockers": []
     },
     {
       "legacyId": "wheel/resources/gu.md",
@@ -2917,9 +2947,13 @@
       "legacyPath": "/wheel/resources/math3.0_lalib.html",
       "coordinate": "io.github.xiaodou8593:math3.0_lalib",
       "version": "3.0.0",
-      "license": null,
-      "licenseBasisUrl": null,
-      "source": null,
+      "license": "MIT",
+      "licenseBasisUrl": "https://github.com/Alumopper/datapack-index-mcfpm-staging/blob/master/.github/migrations/legacy-license-attestations.md#xiaodou8593-math-libraries",
+      "source": {
+        "type": "github-archive",
+        "repository": "xiaodou8593/math3.0_lalib",
+        "ref": "e114da8b2d2a93fdaa2679dc4dbaf8884967d07d"
+      },
       "subdir": null,
       "nestedZip": null,
       "minecraft": "1.20.2+",
@@ -2962,11 +2996,8 @@
         "githubUrls": [],
         "downloadUrls": []
       },
-      "status": "blocked",
-      "blockers": [
-        "missing-exact-version-tag-or-release",
-        "missing-spdx-license"
-      ]
+      "status": "ready-for-cli-audit",
+      "blockers": []
     },
     {
       "legacyId": "wheel/resources/math3.1_dslib.md",
@@ -2974,8 +3005,8 @@
       "legacyPath": "/wheel/resources/math3.1_dslib.html",
       "coordinate": "io.github.xiaodou8593:math3.1_dslib",
       "version": "3.1.4",
-      "license": null,
-      "licenseBasisUrl": null,
+      "license": "MIT",
+      "licenseBasisUrl": "https://github.com/Alumopper/datapack-index-mcfpm-staging/blob/master/.github/migrations/legacy-license-attestations.md#xiaodou8593-math-libraries",
       "source": {
         "type": "github-archive",
         "repository": "xiaodou8593/math3.1_dslib",
@@ -3022,10 +3053,8 @@
         "githubUrls": [],
         "downloadUrls": []
       },
-      "status": "blocked",
-      "blockers": [
-        "missing-spdx-license"
-      ]
+      "status": "ready-for-cli-audit",
+      "blockers": []
     },
     {
       "legacyId": "wheel/resources/math3.1_gelib.md",
@@ -3033,8 +3062,8 @@
       "legacyPath": "/wheel/resources/math3.1_gelib.html",
       "coordinate": "io.github.xiaodou8593:math3.1_gelib",
       "version": "3.1.4",
-      "license": null,
-      "licenseBasisUrl": null,
+      "license": "MIT",
+      "licenseBasisUrl": "https://github.com/Alumopper/datapack-index-mcfpm-staging/blob/master/.github/migrations/legacy-license-attestations.md#xiaodou8593-math-libraries",
       "source": {
         "type": "github-archive",
         "repository": "xiaodou8593/math3.1_gelib",
@@ -3082,10 +3111,8 @@
         "githubUrls": [],
         "downloadUrls": []
       },
-      "status": "blocked",
-      "blockers": [
-        "missing-spdx-license"
-      ]
+      "status": "ready-for-cli-audit",
+      "blockers": []
     },
     {
       "legacyId": "wheel/resources/objmc.md",
@@ -3095,7 +3122,11 @@
       "version": "1.0.0",
       "license": "MIT",
       "licenseBasisUrl": "https://github.com/Godlander/objmc/blob/main/LICENSE",
-      "source": null,
+      "source": {
+        "type": "github-archive",
+        "repository": "Godlander/objmc",
+        "ref": "787125519e640ca08943475e8119aaef50b9e5d2"
+      },
       "subdir": null,
       "nestedZip": null,
       "minecraft": "~1.21.11",
@@ -3135,10 +3166,8 @@
         ],
         "downloadUrls": []
       },
-      "status": "blocked",
-      "blockers": [
-        "missing-exact-version-tag-or-release"
-      ]
+      "status": "ready-for-cli-audit",
+      "blockers": []
     },
     {
       "legacyId": "wheel/resources/timelist.md",
@@ -3146,8 +3175,8 @@
       "legacyPath": "/wheel/resources/timelist.html",
       "coordinate": "io.github.xiaodou8593:timelist",
       "version": "1.0.0",
-      "license": null,
-      "licenseBasisUrl": null,
+      "license": "MIT",
+      "licenseBasisUrl": "https://github.com/Alumopper/datapack-index-mcfpm-staging/blob/master/.github/migrations/legacy-license-attestations.md#xiaodou8593-math-libraries",
       "source": {
         "type": "github-archive",
         "repository": "xiaodou8593/timelist",
@@ -3193,10 +3222,8 @@
         "githubUrls": [],
         "downloadUrls": []
       },
-      "status": "blocked",
-      "blockers": [
-        "missing-spdx-license"
-      ]
+      "status": "ready-for-cli-audit",
+      "blockers": []
     },
     {
       "legacyId": "wheel/resources/xiaodou_math.md",
@@ -3204,8 +3231,8 @@
       "legacyPath": "/wheel/resources/xiaodou_math.html",
       "coordinate": "io.github.xiaodou8593:math3.1",
       "version": "3.1.4",
-      "license": null,
-      "licenseBasisUrl": null,
+      "license": "MIT",
+      "licenseBasisUrl": "https://github.com/Alumopper/datapack-index-mcfpm-staging/blob/master/.github/migrations/legacy-license-attestations.md#xiaodou8593-math-libraries",
       "source": {
         "type": "github-archive",
         "repository": "xiaodou8593/math3.1",
@@ -3253,10 +3280,9 @@
         ],
         "downloadUrls": []
       },
-      "status": "blocked",
-      "blockers": [
-        "missing-spdx-license"
-      ]
+      "status": "ready-for-cli-audit",
+      "blockers": []
     }
-  ]
+  ],
+  "updatedAt": "2026-09-02T00:00:00Z"
 }
