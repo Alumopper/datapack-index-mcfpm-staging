@@ -20,6 +20,7 @@ const labels = [
   ["标签", "test"],
   ["依赖项", ""],
   ["详情", "Details"],
+  ["可发布内容类型", "数据包"],
   ["来源类型", "普通 HTTPS ZIP"],
   ["GitHub 仓库", ""],
   ["GitHub tag/commit", ""],
@@ -87,6 +88,7 @@ test("parses URL, release asset, and archive source fixtures", () => {
     assert.equal(result.status, 0, result.stderr);
     const parsed = JSON.parse(fs.readFileSync(output, "utf8"));
     assert.equal(parsed.package, "example:pack");
+    assert.equal(parsed.contentType, "datapack");
     assert.deepEqual(parsed.dependencies, ["example:a@1.0.0", "example:z@^1.0.0"]);
   }
 });
@@ -94,6 +96,7 @@ test("parses URL, release asset, and archive source fixtures", () => {
 test("rejects missing form fields and shell-like dependency data", () => {
   assert.notEqual(run({ "Maven 坐标（GROUP:NAME）": "example:pack;touch /tmp/pwned" }).result.status, 0);
   assert.notEqual(run({ "许可证/再分发依据链接": "http://example.test/license" }).result.status, 0);
+  assert.notEqual(run({ "可发布内容类型": "模组" }).result.status, 0);
   const missingMarker = run();
   const directory = path.dirname(missingMarker.output);
   const event = path.join(directory, "event.json");

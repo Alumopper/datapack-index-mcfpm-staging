@@ -3,14 +3,15 @@
   "generatedAt": "2026-09-01T19:01:39.983Z",
   "legacyCount": 55,
   "entryCount": 55,
-  "readyCount": 41,
-  "blockedCount": 14,
+  "readyCount": 42,
+  "blockedCount": 13,
   "entries": [
     {
       "legacyId": "wheel/resources/Anisum.md",
       "legacyFile": "wheel/resources/Anisum.md",
       "legacyPath": "/wheel/resources/Anisum.html",
       "coordinate": "io.github.anvil-dev:anisum",
+      "contentType": "mod",
       "version": "0.0.1",
       "license": null,
       "licenseBasisUrl": null,
@@ -71,7 +72,8 @@
       "status": "blocked",
       "blockers": [
         "missing-exact-version-tag-or-release",
-        "missing-spdx-license"
+        "missing-spdx-license",
+        "unsupported-content-type:mod"
       ]
     },
     {
@@ -2202,13 +2204,15 @@
       "licenseBasisUrl": "https://github.com/Dahesor/DaBsu-Batch-Spawner-Utils/blob/main/LICENSE",
       "source": {
         "type": "github-release-asset",
-        "repository": "Dahesor/DaBsu",
+        "repository": "Dahesor/DaBsu-Batch-Spawner-Utils",
         "ref": "v1.0.7",
         "asset": "DaBsu.v1.0.7.zip"
       },
-      "subdir": null,
+      "subdir": "version_warning",
       "nestedZip": null,
-      "minecraft": "1.21.6~26.2",
+      "minecraft": "1.21.11",
+      "rootPack": true,
+      "expectedSha256": "1b99c13ebc5f400b673d26f75b8eb3e1515bb97bb8a5f67d3d5fc36794497e79",
       "dependencies": [],
       "site": {
         "name": "大别墅",
@@ -2234,24 +2238,22 @@
           "刷怪笼"
         ],
         "gameVersions": [
-          "1.21.6~26.2"
+          "1.21.11"
         ],
         "dependencyNotes": null,
-        "details": "大别墅是一个重量级的刷怪笼管理前置，可以快捷，批量地修改，管理世界中的刷怪笼。它拥有可视化的编辑界面，也允许作为前置对世界中的刷怪笼执行编辑。\r\n\r\n阅读其官方说明文件（[Github](https://github.com/Dahesor/DaBsu) | [红石中继站](https://www.mczwlt.net/resource/hacscexr)）以获取更多信息。",
-        "projectUrl": "https://github.com/Dahesor/DaBsu",
+        "details": "大别墅是一个重量级的刷怪笼管理前置，可以快捷，批量地修改，管理世界中的刷怪笼。它拥有可视化的编辑界面，也允许作为前置对世界中的刷怪笼执行编辑。\r\n\r\n阅读其官方说明文件（[Github](https://github.com/Dahesor/DaBsu-Batch-Spawner-Utils) | [红石中继站](https://www.mczwlt.net/resource/hacscexr)）以获取更多信息。",
+        "projectUrl": "https://github.com/Dahesor/DaBsu-Batch-Spawner-Utils",
         "legacyPath": "/wheel/resources/dabsu.html"
       },
       "discovery": {
         "repositoryArchived": false,
         "githubUrls": [
-          "https://github.com/Dahesor/DaBsu"
+          "https://github.com/Dahesor/DaBsu-Batch-Spawner-Utils"
         ],
         "downloadUrls": []
       },
-      "status": "blocked",
-      "blockers": [
-        "pinned-cli:root-pack-is-ambiguous-with-version-warning-pack"
-      ]
+      "status": "ready-for-cli-audit",
+      "blockers": []
     },
     {
       "legacyId": "wheel/resources/dam.md",

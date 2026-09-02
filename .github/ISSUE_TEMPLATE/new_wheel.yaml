@@ -101,6 +101,17 @@ body:
       required: true
 
   - type: dropdown
+    id: contentType
+    attributes:
+      label: 可发布内容类型
+      description: Mcfpm 只接收数据包和资源包；模组会继续使用前置馆静态页面，不会上传 Nexus。
+      options:
+        - 数据包
+        - 资源包
+    validations:
+      required: true
+
+  - type: dropdown
     id: sourceType
     attributes:
       label: 来源类型

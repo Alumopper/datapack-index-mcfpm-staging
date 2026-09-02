@@ -6,6 +6,7 @@ import path from "node:path";
 import { spawnSync } from "node:child_process";
 
 import { encodeCanonicalSiteMetadata, siteMetadataSha256 } from "./site-metadata-lib.mjs";
+import { assertMigrationPublishable } from "./migration-policy.mjs";
 
 const PACKAGE_ID = /^[a-z0-9](?:[a-z0-9._-]*[a-z0-9])?:[a-z0-9](?:[a-z0-9._-]*[a-z0-9])?$/;
 const SEMVER = /^(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)(?:-[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*)?(?:\+[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*)?$/;
@@ -85,6 +86,74 @@ function atomicWrite(output, content) {
   fs.renameSync(temporary, output);
 }
 
+function sha256(file) {
+  return crypto.createHash("sha256").update(fs.readFileSync(file)).digest("hex");
+}
+
+function checkedSpawn(commandName, commandArguments, options, failureMessage) {
+  const executed = spawnSync(commandName, commandArguments, options);
+  if (executed.error) throw executed.error;
+  if (executed.status !== 0) fail(executed.stderr?.trim() || executed.stdout?.trim() || failureMessage);
+  return executed;
+}
+
+function freezeRootPack(entry, bootstrapCandidate, candidate, outputDirectory, mcfpmExecutable, audit) {
+  if (
+    entry.source?.type !== "github-release-asset"
+    || !entry.source.repository
+    || !entry.source.ref
+    || !entry.source.asset
+    || path.basename(entry.source.asset) !== entry.source.asset
+    || !entry.subdir
+    || !/^[0-9a-f]{64}$/.test(entry.expectedSha256 ?? "")
+  ) fail("root-pack migration requires an exact GitHub release asset, audit subdirectory, and SHA-256");
+
+  const downloadDirectory = path.join(path.dirname(candidate), ".root-source");
+  fs.mkdirSync(downloadDirectory, { recursive: false });
+  checkedSpawn("gh", [
+    "release", "download", entry.source.ref,
+    "--repo", entry.source.repository,
+    "--pattern", entry.source.asset,
+    "--dir", downloadDirectory,
+  ], { cwd: process.cwd(), env: process.env, encoding: "utf8", maxBuffer: 4 * 1024 * 1024 }, "GitHub asset download failed");
+  const rawArchive = path.join(downloadDirectory, entry.source.asset);
+  if (!fs.existsSync(rawArchive) || sha256(rawArchive) !== entry.expectedSha256 || audit.data?.rawSha256 !== entry.expectedSha256) {
+    fail("root-pack source does not match the pinned or Mcfpm-audited SHA-256");
+  }
+
+  const helperDirectory = path.join(outputDirectory, ".root-helper");
+  const installation = path.dirname(path.dirname(path.resolve(mcfpmExecutable)));
+  const libraries = path.join(installation, "lib", "*");
+  const helperSource = path.join(import.meta.dirname, "McfpmRootCandidate.java");
+  const javaHome = process.env.JAVA_HOME_17_X64;
+  const javac = javaHome ? path.join(javaHome, "bin", process.platform === "win32" ? "javac.exe" : "javac") : "javac";
+  const java = javaHome ? path.join(javaHome, "bin", process.platform === "win32" ? "java.exe" : "java") : "java";
+  if (!fs.existsSync(path.join(helperDirectory, "McfpmRootCandidate.class"))) {
+    fs.mkdirSync(helperDirectory, { recursive: true });
+    checkedSpawn(javac, ["-cp", libraries, "-d", helperDirectory, helperSource], {
+      cwd: process.cwd(), env: process.env, encoding: "utf8", maxBuffer: 4 * 1024 * 1024,
+    }, "Root candidate helper compilation failed");
+  }
+  const classpath = `${helperDirectory}${path.delimiter}${libraries}`;
+  const rewritten = checkedSpawn(java, [
+    "-cp", classpath, "McfpmRootCandidate", bootstrapCandidate, rawArchive, entry.subdir, candidate,
+  ], { cwd: process.cwd(), env: process.env, encoding: "utf8", maxBuffer: 4 * 1024 * 1024 }, "Root candidate rewrite failed");
+  let frozenPayload;
+  try {
+    frozenPayload = JSON.parse(rewritten.stdout);
+  } catch {
+    fail("Root candidate helper returned invalid output");
+  }
+  if (!/^[0-9a-f]{64}$/.test(frozenPayload.normalizedSha256 ?? "") || !Number.isSafeInteger(frozenPayload.normalizedSize)) {
+    fail("Root candidate helper returned invalid payload identity");
+  }
+  audit.data.selectionPath = "/";
+  audit.data.normalizedSha256 = frozenPayload.normalizedSha256;
+  audit.data.normalizedSize = frozenPayload.normalizedSize;
+  fs.rmSync(bootstrapCandidate);
+  fs.rmSync(downloadDirectory, { recursive: true });
+}
+
 const args = parseArguments(process.argv.slice(2));
 const manifestRaw = fs.readFileSync(args["--manifest"]);
 const manifest = JSON.parse(manifestRaw.toString("utf8"));
@@ -100,13 +169,15 @@ for (const entry of manifest.entries) {
   if (entry.status !== "ready-for-cli-audit") continue;
   const result = { coordinate: entry.coordinate, version: entry.version, ok: false };
   try {
+    assertMigrationPublishable(entry);
     if (!PACKAGE_ID.test(entry.coordinate ?? "") || !SEMVER.test(entry.version ?? "") || !entry.license) {
       fail("entry has invalid package identity, version, or license");
     }
     const directory = path.join(outputDirectory, safeName(entry));
     fs.mkdirSync(directory, { recursive: false });
     const candidate = path.join(directory, "candidate.mcfpm-import");
-    const executed = spawnSync(args["--mcfpm"], command(entry, candidate, cacheDirectory), {
+    const cliCandidate = entry.rootPack === true ? `${candidate}.bootstrap` : candidate;
+    const executed = spawnSync(args["--mcfpm"], command(entry, cliCandidate, cacheDirectory), {
       cwd: process.cwd(),
       env: process.env,
       encoding: "utf8",
@@ -114,7 +185,6 @@ for (const entry of manifest.entries) {
       shell: process.platform === "win32",
     });
     if (executed.error) throw executed.error;
-    atomicWrite(path.join(directory, "mcfpm-stdout.txt"), executed.stdout || "");
     atomicWrite(path.join(directory, "mcfpm-stderr.txt"), executed.stderr || "");
     let audit;
     try {
@@ -122,7 +192,7 @@ for (const entry of manifest.entries) {
     } catch {
       fail(executed.stderr?.trim() || "Mcfpm audit did not return JSON");
     }
-    if (executed.status !== 0 || audit.ok !== true || !fs.existsSync(candidate)) {
+    if (executed.status !== 0 || audit.ok !== true || !fs.existsSync(cliCandidate)) {
       const auditError = audit.error?.message || audit.error?.detail || audit.error;
       fail(
         (typeof auditError === "string" ? auditError : JSON.stringify(auditError || audit))
@@ -130,6 +200,8 @@ for (const entry of manifest.entries) {
         || `Mcfpm audit exited ${executed.status}`,
       );
     }
+    if (entry.rootPack === true) freezeRootPack(entry, cliCandidate, candidate, outputDirectory, args["--mcfpm"], audit);
+    atomicWrite(path.join(directory, "mcfpm-stdout.txt"), `${JSON.stringify(audit)}\n`);
     const metadata = siteMetadata(entry);
     const metadataPath = path.join(directory, "package.mcfpm-site.json");
     atomicWrite(metadataPath, metadata);

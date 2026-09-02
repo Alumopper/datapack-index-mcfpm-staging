@@ -5,6 +5,8 @@ import fs from "node:fs";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
 
+import { assertMigrationPublishable } from "./migration-policy.mjs";
+
 function fail(message) {
   throw new Error(message);
 }
@@ -44,6 +46,9 @@ function httpsRepository(value) {
 
 const args = parseArguments(process.argv.slice(2));
 const manifestSha256 = sha256(args["--manifest"]);
+const manifest = JSON.parse(fs.readFileSync(args["--manifest"], "utf8"));
+if (manifest.schema !== 1 || !Array.isArray(manifest.entries)) fail("Migration manifest is invalid");
+const trustedEntries = new Map(manifest.entries.map((entry) => [`${entry.coordinate}@${entry.version}`, entry]));
 const audit = JSON.parse(fs.readFileSync(args["--audit-report"], "utf8"));
 if (audit.schema !== 1 || audit.manifestSha256 !== manifestSha256 || !Array.isArray(audit.results)) {
   fail("Batch audit report does not match the trusted migration manifest");
@@ -56,6 +61,9 @@ const results = [];
 for (const audited of audit.results.filter((result) => result.ok)) {
   const result = { coordinate: audited.coordinate, version: audited.version, ok: false };
   try {
+    const trustedEntry = trustedEntries.get(`${audited.coordinate}@${audited.version}`);
+    if (!trustedEntry) fail("Audit report contains a package absent from the trusted migration manifest");
+    assertMigrationPublishable(trustedEntry);
     if (!/^[a-z0-9._@+-]+$/.test(audited.directory ?? "")) fail("Audit report contains an unsafe artifact directory");
     const directory = path.join(artifactRoot, audited.directory);
     if (path.dirname(directory) !== artifactRoot) fail("Artifact directory escaped its root");

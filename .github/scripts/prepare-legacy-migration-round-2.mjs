@@ -4,6 +4,8 @@ import fs from "node:fs";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
 
+import { enforceMigrationPolicy } from "./migration-policy.mjs";
+
 const CURRENT_COMMITS = {
   "io.github.dartcat25:cem-s": ["DartCat25/CEM-S", "fb82f20698e8972f241574a9390413f385c8bddb"],
   "io.github.4tubborn:sbox": ["4tubborn/sbox", "032af44081a987ab7c303777b0043f15cf0113b5"],
@@ -40,6 +42,15 @@ const SUBDIRECTORIES = {
 
 const STRUCTURAL_BLOCKERS = {
   "io.github.dahesor:leopard-cat": "pinned-cli:root-pack-cannot-be-selected-when-dependency-pack-is-present",
+};
+
+const ROOT_PACKS = {
+  "io.github.dahesor:dabsu": {
+    repository: "Dahesor/DaBsu-Batch-Spawner-Utils",
+    auditSubdir: "version_warning",
+    expectedSha256: "1b99c13ebc5f400b673d26f75b8eb3e1515bb97bb8a5f67d3d5fc36794497e79",
+    minecraft: "1.21.11",
+  },
 };
 
 function fail(message) {
@@ -84,14 +95,30 @@ export function prepareManifest(manifest) {
     if (!entry.blockers.includes(blocker)) entry.blockers.push(blocker);
   }
 
+  for (const [coordinate, rootPack] of Object.entries(ROOT_PACKS)) {
+    const entry = entries.get(coordinate);
+    if (!entry) fail(`Migration entry ${coordinate} does not exist`);
+    entry.source.repository = rootPack.repository;
+    entry.subdir = rootPack.auditSubdir;
+    entry.rootPack = true;
+    entry.expectedSha256 = rootPack.expectedSha256;
+    entry.minecraft = rootPack.minecraft;
+    entry.site.gameVersions = [rootPack.minecraft];
+    entry.site.projectUrl = `https://github.com/${rootPack.repository}`;
+    entry.site.details = entry.site.details.replaceAll("https://github.com/Dahesor/DaBsu", entry.site.projectUrl);
+    entry.discovery.githubUrls = [entry.site.projectUrl];
+    removeBlocker(entry, "pinned-cli:root-pack-is-ambiguous-with-version-warning-pack");
+  }
+
   for (const entry of manifest.entries) {
+    enforceMigrationPolicy(entry);
     entry.status = entry.blockers.length ? "blocked" : "ready-for-cli-audit";
   }
   manifest.readyCount = manifest.entries.filter((entry) => entry.status === "ready-for-cli-audit").length;
   manifest.blockedCount = manifest.entries.length - manifest.readyCount;
   manifest.updatedAt = "2026-09-02T00:00:00Z";
-  if (manifest.readyCount !== 41 || manifest.blockedCount !== 14) {
-    fail(`Expected 41 ready and 14 blocked entries, got ${manifest.readyCount} and ${manifest.blockedCount}`);
+  if (manifest.readyCount !== 42 || manifest.blockedCount !== 13) {
+    fail(`Expected 42 ready and 13 blocked entries, got ${manifest.readyCount} and ${manifest.blockedCount}`);
   }
   return manifest;
 }
