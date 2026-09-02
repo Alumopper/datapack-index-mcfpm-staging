@@ -53,6 +53,17 @@ const ROOT_PACKS = {
   },
 };
 
+const PINNED_METADATA_REPAIRS = {
+  "io.github.windwavessea:simple-npc": {
+    repository: "WindWavesSea/Simple-NPC",
+    ref: "V1.1.0",
+    asset: "Simple_NPC_Data_Pack_V1.1.0.zip",
+    version: "1.1.0",
+    expectedSha256: "437a858138f03637667c761cfe3ce61323bce660c625ff9a18f9bc43318b6fd2",
+    repair: "simple-npc-description-comma-v1",
+  },
+};
+
 function fail(message) {
   throw new Error(message);
 }
@@ -105,9 +116,29 @@ export function prepareManifest(manifest) {
     entry.minecraft = rootPack.minecraft;
     entry.site.gameVersions = [rootPack.minecraft];
     entry.site.projectUrl = `https://github.com/${rootPack.repository}`;
-    entry.site.details = entry.site.details.replaceAll("https://github.com/Dahesor/DaBsu", entry.site.projectUrl);
+    entry.site.details = entry.site.details.replace(
+      /https:\/\/github\.com\/Dahesor\/DaBsu(?:-Batch-Spawner-Utils)*/g,
+      entry.site.projectUrl,
+    );
     entry.discovery.githubUrls = [entry.site.projectUrl];
     removeBlocker(entry, "pinned-cli:root-pack-is-ambiguous-with-version-warning-pack");
+  }
+
+  for (const [coordinate, repair] of Object.entries(PINNED_METADATA_REPAIRS)) {
+    const entry = entries.get(coordinate);
+    if (!entry) fail(`Migration entry ${coordinate} does not exist`);
+    entry.source = {
+      type: "github-release-asset",
+      repository: repair.repository,
+      ref: repair.ref,
+      asset: repair.asset,
+    };
+    entry.version = repair.version;
+    entry.expectedSha256 = repair.expectedSha256;
+    entry.packMetadataRepair = repair.repair;
+    entry.site.projectUrl = `https://github.com/${repair.repository}`;
+    entry.discovery.githubUrls = [entry.site.projectUrl];
+    removeBlocker(entry, "pinned-cli:upstream-pack-mcmeta-is-invalid-json");
   }
 
   for (const entry of manifest.entries) {
@@ -117,8 +148,8 @@ export function prepareManifest(manifest) {
   manifest.readyCount = manifest.entries.filter((entry) => entry.status === "ready-for-cli-audit").length;
   manifest.blockedCount = manifest.entries.length - manifest.readyCount;
   manifest.updatedAt = "2026-09-02T00:00:00Z";
-  if (manifest.readyCount !== 42 || manifest.blockedCount !== 13) {
-    fail(`Expected 42 ready and 13 blocked entries, got ${manifest.readyCount} and ${manifest.blockedCount}`);
+  if (manifest.readyCount !== 43 || manifest.blockedCount !== 12) {
+    fail(`Expected 43 ready and 12 blocked entries, got ${manifest.readyCount} and ${manifest.blockedCount}`);
   }
   return manifest;
 }

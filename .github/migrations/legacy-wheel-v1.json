@@ -3,8 +3,8 @@
   "generatedAt": "2026-09-01T19:01:39.983Z",
   "legacyCount": 55,
   "entryCount": 55,
-  "readyCount": 42,
-  "blockedCount": 13,
+  "readyCount": 43,
+  "blockedCount": 12,
   "entries": [
     {
       "legacyId": "wheel/resources/Anisum.md",
@@ -1497,14 +1497,14 @@
       "legacyFile": "wheel/resources/Simple_NPC.md",
       "legacyPath": "/wheel/resources/Simple_NPC.html",
       "coordinate": "io.github.windwavessea:simple-npc",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "license": "MIT",
       "licenseBasisUrl": "https://github.com/WindWavesSea/Simple-NPC/blob/main/LICENSE",
       "source": {
         "type": "github-release-asset",
         "repository": "WindWavesSea/Simple-NPC",
-        "ref": "V1.0.0",
-        "asset": "Simple_NPC_Data_Pack_v1.0.0.zip"
+        "ref": "V1.1.0",
+        "asset": "Simple_NPC_Data_Pack_V1.1.0.zip"
       },
       "subdir": null,
       "nestedZip": null,
@@ -1545,15 +1545,14 @@
       "discovery": {
         "repositoryArchived": false,
         "githubUrls": [
-          "https://github.com/WindWavesSea/Simple-NPC/blob/main/README.md",
-          "https://github.com/WindWavesSea/Simple-NPC/"
+          "https://github.com/WindWavesSea/Simple-NPC"
         ],
         "downloadUrls": []
       },
-      "status": "blocked",
-      "blockers": [
-        "pinned-cli:upstream-pack-mcmeta-is-invalid-json"
-      ]
+      "status": "ready-for-cli-audit",
+      "blockers": [],
+      "expectedSha256": "437a858138f03637667c761cfe3ce61323bce660c625ff9a18f9bc43318b6fd2",
+      "packMetadataRepair": "simple-npc-description-comma-v1"
     },
     {
       "legacyId": "wheel/resources/StringLib.md",
