@@ -97,6 +97,102 @@ function checkedSpawn(commandName, commandArguments, options, failureMessage) {
   return executed;
 }
 
+function freezeSimpleNpcPack(entry, candidate, outputDirectory, mcfpmExecutable) {
+  const expected = {
+    coordinate: "io.github.windwavessea:simple-npc",
+    version: "1.1.0",
+    license: "MIT",
+    minecraft: "1.21.9+",
+    repository: "WindWavesSea/Simple-NPC",
+    ref: "V1.1.0",
+    asset: "Simple_NPC_Data_Pack_V1.1.0.zip",
+    sha256: "437a858138f03637667c761cfe3ce61323bce660c625ff9a18f9bc43318b6fd2",
+  };
+  if (
+    entry.packMetadataRepair !== "simple-npc-description-comma-v1"
+    || entry.coordinate !== expected.coordinate
+    || entry.version !== expected.version
+    || entry.license !== expected.license
+    || entry.minecraft !== expected.minecraft
+    || entry.source?.type !== "github-release-asset"
+    || entry.source.repository !== expected.repository
+    || entry.source.ref !== expected.ref
+    || entry.source.asset !== expected.asset
+    || entry.expectedSha256 !== expected.sha256
+  ) fail("Simple NPC metadata repair is restricted to the reviewed pinned release");
+
+  const downloadDirectory = path.join(path.dirname(candidate), ".simple-npc-source");
+  fs.mkdirSync(downloadDirectory, { recursive: false });
+  try {
+    checkedSpawn("gh", [
+      "release", "download", expected.ref,
+      "--repo", expected.repository,
+      "--pattern", expected.asset,
+      "--dir", downloadDirectory,
+    ], { cwd: process.cwd(), env: process.env, encoding: "utf8", maxBuffer: 4 * 1024 * 1024 }, "Simple NPC asset download failed");
+    const rawArchive = path.join(downloadDirectory, expected.asset);
+    if (!fs.existsSync(rawArchive) || sha256(rawArchive) !== expected.sha256) {
+      fail("Simple NPC source does not match the pinned SHA-256");
+    }
+
+    const helperDirectory = path.join(outputDirectory, ".simple-npc-helper");
+    const installation = path.dirname(path.dirname(path.resolve(mcfpmExecutable)));
+    const libraries = path.join(installation, "lib", "*");
+    const helperSource = path.join(import.meta.dirname, "McfpmSimpleNpcCandidate.java");
+    const javaHome = process.env.JAVA_HOME_17_X64;
+    const javac = javaHome ? path.join(javaHome, "bin", process.platform === "win32" ? "javac.exe" : "javac") : "javac";
+    const java = javaHome ? path.join(javaHome, "bin", process.platform === "win32" ? "java.exe" : "java") : "java";
+    if (!fs.existsSync(path.join(helperDirectory, "McfpmSimpleNpcCandidate.class"))) {
+      fs.mkdirSync(helperDirectory, { recursive: true });
+      checkedSpawn(javac, ["-cp", libraries, "-d", helperDirectory, helperSource], {
+        cwd: process.cwd(), env: process.env, encoding: "utf8", maxBuffer: 4 * 1024 * 1024,
+      }, "Simple NPC candidate helper compilation failed");
+    }
+    const classpath = `${helperDirectory}${path.delimiter}${libraries}`;
+    const rewritten = checkedSpawn(java, [
+      "-cp", classpath, "McfpmSimpleNpcCandidate", rawArchive, candidate,
+    ], { cwd: process.cwd(), env: process.env, encoding: "utf8", maxBuffer: 4 * 1024 * 1024 }, "Simple NPC candidate repair failed");
+    let frozenPayload;
+    try {
+      frozenPayload = JSON.parse(rewritten.stdout);
+    } catch {
+      fail("Simple NPC candidate helper returned invalid output");
+    }
+    if (
+      frozenPayload.rawSha256 !== expected.sha256
+      || frozenPayload.rawSize !== 1_612_944
+      || !/^[0-9a-f]{64}$/.test(frozenPayload.normalizedSha256 ?? "")
+      || !Number.isSafeInteger(frozenPayload.normalizedSize)
+      || !fs.existsSync(candidate)
+    ) fail("Simple NPC candidate helper returned invalid payload identity");
+
+    const sourceUrl = `https://github.com/${expected.repository}/releases/download/${expected.ref}/${expected.asset}`;
+    return {
+      schema: 1,
+      ok: true,
+      command: "legacy pinned pack metadata repair",
+      data: {
+        state: "audited",
+        package: expected.coordinate,
+        version: expected.version,
+        candidate,
+        requestUrl: sourceUrl,
+        finalUrl: sourceUrl,
+        rawSha256: frozenPayload.rawSha256,
+        rawSize: frozenPayload.rawSize,
+        normalizedSha256: frozenPayload.normalizedSha256,
+        normalizedSize: frozenPayload.normalizedSize,
+        payloadType: "minecraft.datapack",
+        classifier: "datapack",
+        selectionPath: "/",
+        repair: entry.packMetadataRepair,
+      },
+    };
+  } finally {
+    fs.rmSync(downloadDirectory, { recursive: true, force: true });
+  }
+}
+
 function freezeRootPack(entry, bootstrapCandidate, candidate, outputDirectory, mcfpmExecutable, audit) {
   if (
     entry.source?.type !== "github-release-asset"
@@ -175,32 +271,37 @@ for (const entry of manifest.entries) {
     }
     const directory = path.join(outputDirectory, safeName(entry));
     fs.mkdirSync(directory, { recursive: false });
-    const candidate = path.join(directory, "candidate.mcfpm-import");
-    const cliCandidate = entry.rootPack === true ? `${candidate}.bootstrap` : candidate;
-    const executed = spawnSync(args["--mcfpm"], command(entry, cliCandidate, cacheDirectory), {
-      cwd: process.cwd(),
-      env: process.env,
-      encoding: "utf8",
-      maxBuffer: 32 * 1024 * 1024,
-      shell: process.platform === "win32",
-    });
-    if (executed.error) throw executed.error;
-    atomicWrite(path.join(directory, "mcfpm-stderr.txt"), executed.stderr || "");
     let audit;
-    try {
-      audit = JSON.parse(executed.stdout || "");
-    } catch {
-      fail(executed.stderr?.trim() || "Mcfpm audit did not return JSON");
+    const candidate = path.join(directory, "candidate.mcfpm-import");
+    if (entry.packMetadataRepair) {
+      audit = freezeSimpleNpcPack(entry, candidate, outputDirectory, args["--mcfpm"]);
+      atomicWrite(path.join(directory, "mcfpm-stderr.txt"), "");
+    } else {
+      const cliCandidate = entry.rootPack === true ? `${candidate}.bootstrap` : candidate;
+      const executed = spawnSync(args["--mcfpm"], command(entry, cliCandidate, cacheDirectory), {
+        cwd: process.cwd(),
+        env: process.env,
+        encoding: "utf8",
+        maxBuffer: 32 * 1024 * 1024,
+        shell: process.platform === "win32",
+      });
+      if (executed.error) throw executed.error;
+      atomicWrite(path.join(directory, "mcfpm-stderr.txt"), executed.stderr || "");
+      try {
+        audit = JSON.parse(executed.stdout || "");
+      } catch {
+        fail(executed.stderr?.trim() || "Mcfpm audit did not return JSON");
+      }
+      if (executed.status !== 0 || audit.ok !== true || !fs.existsSync(cliCandidate)) {
+        const auditError = audit.error?.message || audit.error?.detail || audit.error;
+        fail(
+          (typeof auditError === "string" ? auditError : JSON.stringify(auditError || audit))
+          || executed.stderr?.trim()
+          || `Mcfpm audit exited ${executed.status}`,
+        );
+      }
+      if (entry.rootPack === true) freezeRootPack(entry, cliCandidate, candidate, outputDirectory, args["--mcfpm"], audit);
     }
-    if (executed.status !== 0 || audit.ok !== true || !fs.existsSync(cliCandidate)) {
-      const auditError = audit.error?.message || audit.error?.detail || audit.error;
-      fail(
-        (typeof auditError === "string" ? auditError : JSON.stringify(auditError || audit))
-        || executed.stderr?.trim()
-        || `Mcfpm audit exited ${executed.status}`,
-      );
-    }
-    if (entry.rootPack === true) freezeRootPack(entry, cliCandidate, candidate, outputDirectory, args["--mcfpm"], audit);
     atomicWrite(path.join(directory, "mcfpm-stdout.txt"), `${JSON.stringify(audit)}\n`);
     const metadata = siteMetadata(entry);
     const metadataPath = path.join(directory, "package.mcfpm-site.json");

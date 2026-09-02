@@ -11,8 +11,8 @@ test("round two pins current commits and records direct MIT attestations", () =>
   const prepared = prepareManifest(structuredClone(manifest));
   const entries = new Map(prepared.entries.map((entry) => [entry.coordinate, entry]));
 
-  assert.equal(prepared.readyCount, 42);
-  assert.equal(prepared.blockedCount, 13);
+  assert.equal(prepared.readyCount, 43);
+  assert.equal(prepared.blockedCount, 12);
   assert.deepEqual(entries.get("io.github.dartcat25:cem-s").source, {
     type: "github-archive",
     repository: "DartCat25/CEM-S",
@@ -27,6 +27,16 @@ test("round two pins current commits and records direct MIT attestations", () =>
   assert.equal(entries.get("io.github.dahesor:dabsu").status, "ready-for-cli-audit");
   assert.equal(entries.get("io.github.dahesor:dabsu").rootPack, true);
   assert.equal(entries.get("io.github.dahesor:dabsu").minecraft, "1.21.11");
+  assert.deepEqual(entries.get("io.github.windwavessea:simple-npc").source, {
+    type: "github-release-asset",
+    repository: "WindWavesSea/Simple-NPC",
+    ref: "V1.1.0",
+    asset: "Simple_NPC_Data_Pack_V1.1.0.zip",
+  });
+  assert.equal(entries.get("io.github.windwavessea:simple-npc").version, "1.1.0");
+  assert.equal(entries.get("io.github.windwavessea:simple-npc").status, "ready-for-cli-audit");
+  assert.equal(entries.get("io.github.windwavessea:simple-npc").packMetadataRepair, "simple-npc-description-comma-v1");
+  assert.equal(entries.get("io.github.windwavessea:simple-npc").expectedSha256, "437a858138f03637667c761cfe3ce61323bce660c625ff9a18f9bc43318b6fd2");
   assert.equal(entries.get("io.github.anvil-dev:anisum").status, "blocked");
   assert.equal(entries.get("io.github.anvil-dev:anisum").contentType, "mod");
   assert.ok(entries.get("io.github.anvil-dev:anisum").blockers.includes("unsupported-content-type:mod"));
